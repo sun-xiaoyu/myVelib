@@ -1,0 +1,44 @@
+package myVelib;
+
+
+public abstract class Ride{
+	protected User user;
+	protected Station startStation, endStation;
+	protected long startTime;
+	protected long endTime;
+	protected Bicycle bicycle;
+	protected double fee;
+	protected boolean ispaid;
+	protected double lengthInMin;
+	
+	public User getUser() {
+		return user;
+	}
+	public Station getStartStation() {
+		return startStation;
+	}
+	public Station getEndStation() {
+		return endStation;
+	}
+	public long getStartTime() {
+		return startTime;
+	}
+	public long getEndTime() {
+		return endTime;
+	}
+	public Bicycle getBike() {
+		return bicycle;
+	}
+	public double getFee() {
+		return fee;
+	}
+	public boolean isIspaid() {
+		return ispaid;
+	}
+	public double getLengthInMin() {
+		return lengthInMin;
+	}
+	
+
+	
+}
