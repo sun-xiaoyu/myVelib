@@ -23,6 +23,12 @@ public class GPS {
 	public void setY(float y) {
 		this.y = y;
 	}
+
+	@Override
+	public String toString() {
+		return "GPS [x=" + x + ", y=" + y + "]";
+	}
+	
 	
 	
 }
