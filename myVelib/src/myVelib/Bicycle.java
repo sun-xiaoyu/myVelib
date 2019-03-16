@@ -2,7 +2,7 @@ package myVelib;
 
 public abstract class Bicycle {
 	private int bicycleId;
-	protected float speed;
+	protected double speed;
 	private boolean ridingStatus;
 	private static int idConstructor;
 	
@@ -15,7 +15,7 @@ public abstract class Bicycle {
 	public int getBicycleId() {
 		return bicycleId;
 	}
-	public float getSpeed() {
+	public double getSpeed() {
 		return speed;
 	}
 	public boolean isRidingStatus() {
@@ -27,4 +27,10 @@ public abstract class Bicycle {
 
 	public abstract double accept(CardVisitor visitor, OngoingRide ongoingRide);
 
+	@Override
+	public String toString() {
+		return "Bicycle [bicycleId=" + bicycleId + ", speed=" + speed + ", ridingStatus=" + ridingStatus + "]";
+	}
+	
+	
 }

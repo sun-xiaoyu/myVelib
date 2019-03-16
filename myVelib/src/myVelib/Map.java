@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Map {
-	public ArrayList <Station> stationList; 
+	private ArrayList <Station> stationList; 
 	private int stationNum;
 	private int totalSlotNum;
 	private int totalBicycleNum;
@@ -86,10 +86,12 @@ public class Map {
 	 * @throws Exception
 	 */
 	public void init() {
+		this.stationList = new ArrayList <Station>();
 		for (int i=0;i<10;i++) {
 			Station s = new Station(10);
 			this.stationList.add(s);
 		}
+		instance = this;
 	}
 	
 	public static Map getInstance() {
@@ -137,6 +139,13 @@ public class Map {
 		if(this.stationList.isEmpty()) {
 			throw new Exception("no station any more");
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "Map [stationList=" + stationList + ", stationNum=" + stationNum + ", totalSlotNum=" + totalSlotNum
+				+ ", totalBicycleNum=" + totalBicycleNum + ", eleTotalBicycleNum=" + eleTotalBicycleNum
+				+ ", mecTotalBicycleNum=" + mecTotalBicycleNum + "]";
 	}
 
 	

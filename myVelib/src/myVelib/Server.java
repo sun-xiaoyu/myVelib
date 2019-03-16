@@ -10,9 +10,9 @@ public class Server {
 	private int numEleBicyle;
 	private int numMecBicyle;
 	private CurrentDistribution curDis;
-	public static final double walkingSpeed = 4/60;
-	public static final double mecRidingSpeed = 15/60;
-	public static final double eleRidingSpeed = 20/60;
+	public static final double walkingSpeed = (double)4/60;
+	public static final double mecRidingSpeed = (double)15/60;
+	public static final double eleRidingSpeed = (double)20/60;
 	
 	public Server(Map map) {
 		this.map = map;

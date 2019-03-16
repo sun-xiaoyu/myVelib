@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Slot {
 	private int slotId;
-	public boolean occupied;
+	private boolean occupied;
 	private static int idConstructor;
 	private Bicycle bicycleInThisSlot;
 	
@@ -28,6 +28,7 @@ public class Slot {
 		}
 		
 	}
+	
 
 	public int getSlotId() {
 		return slotId;
@@ -66,6 +67,11 @@ public class Slot {
 	}
 	//TODO use pattern to get add methods more flexible.
 
+	@Override
+	public String toString() {
+		return "Slot [slotId=" + slotId + ", occupied=" + occupied + ", bicycleInThisSlot=" + bicycleInThisSlot + "]";
+	}
+
 
 	/**
 	 * TODO method moveBicycle to move a bicycle from a slot to another
@@ -79,4 +85,6 @@ public class Slot {
 		if(this.bicycleInThisSlot)
 	}
 	**/
+	
+	
 }

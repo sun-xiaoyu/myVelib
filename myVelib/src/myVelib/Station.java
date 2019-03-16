@@ -26,6 +26,7 @@ public class Station {
 		this.spareSlotNum = 0;
 		this.eBicycleNumber = 0;
 		this.mBicycleNumber = 0;
+		this.slots = new ArrayList<Slot>();
 		this.slots.add(new Slot());
 	}
 	
@@ -36,6 +37,7 @@ public class Station {
 		this.plus = (boolean)(random.nextFloat()>0.6);	
 		this.stationId = ++idConstructor;
 		this.slotNum = slotnum;
+		this.slots = new ArrayList<Slot>();
 		for (int i =0;i<slotnum;i++) {
 			this.slots.add(new Slot(0.7,0.3));
 		}
@@ -135,7 +137,7 @@ public class Station {
 	public boolean judgeFull() {
 		boolean flagFull = true; // if flagFull should be set as a public variable?
 		for(int i = 0; i < this.slots.size(); i++){
-			if(this.slots.get(i).occupied == false) {
+			if(this.slots.get(i).isOccupied() == false) {
 				flagFull = false;
 			}
 		}
@@ -179,6 +181,17 @@ public class Station {
 			throw new Exception("spareSlotNum < 0");
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "Station [stationId=" + stationId + ", offline=" + offline + ", pos=" + pos + ", plus=" + plus
+				+ ", slots=" + slots + ", spareSlotNum=" + spareSlotNum + ", slotNum=" + slotNum + ", full=" + full
+				+ ", eBicycleNumber=" + eBicycleNumber + ", mBicycleNumber=" + mBicycleNumber + "]";
+	}
+	
+	
+	
+	
 
 
 }
