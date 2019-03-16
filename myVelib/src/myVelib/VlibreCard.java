@@ -2,8 +2,8 @@ package myVelib;
 
 public class VlibreCard extends Card{
 
-	public VlibreCard(User user, float timeCredit) {
-		super(user, timeCredit);
+	public VlibreCard(User user) {
+		super(user);
 		// TODO Auto-generated constructor stub
 	}
 

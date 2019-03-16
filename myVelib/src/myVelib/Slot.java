@@ -16,13 +16,13 @@ public class Slot {
 		 */
 	}
 
-	public Slot(double probaBike, double probaEbike) {
+	public Slot(double probaBike, double probaEBike) {
 		super();
 		this.slotId = ++idConstructor;
 		Random random = new Random();
 		if (random.nextFloat() < probaBike) {
 			this.occupied = true;
-			if (random.nextFloat() < probaEbike) {
+			if (random.nextFloat() < probaEBike) {
 				this.bicycleInThisSlot = new EBike();
 			}else this.bicycleInThisSlot = new MBike();
 		}
@@ -60,16 +60,26 @@ public class Slot {
 		this.setBicycleInThisSlot(eBike);
 	}
 
-	public void addmecBicycle() throws Exception{
+	public void addMecBicycle() throws Exception{
 		MBike mBike = new MBike();
 		this.occupied = true;
 		this.setBicycleInThisSlot(mBike);
 	}
 	//TODO use pattern to get add methods more flexible.
 
+	public void removeBicycle() {
+		this.bicycleInThisSlot = null;
+		this.occupied = false;
+	}
+	
 	@Override
 	public String toString() {
 		return "Slot [slotId=" + slotId + ", occupied=" + occupied + ", bicycleInThisSlot=" + bicycleInThisSlot + "]";
+	}
+
+	public void restore(Bicycle bike) {
+		this.bicycleInThisSlot = bike;
+		this.occupied = true;
 	}
 
 

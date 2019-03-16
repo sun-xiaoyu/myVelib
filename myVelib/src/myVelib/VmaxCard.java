@@ -2,9 +2,11 @@ package myVelib;
 
 public class VmaxCard extends Card {
 
-	public VmaxCard(User user, float timeCredit) {
-		super(user, timeCredit);
+	public VmaxCard(User user) {
+		super(user);
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 
 }

@@ -1,10 +1,15 @@
 package myVelib;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-class MapTest {
+public class MapTest {
+
+	@Test
+	public void testInitIntInt() {
+		fail("Not yet implemented");
+	}
 
 	@Test
 	/**
@@ -20,6 +25,51 @@ class MapTest {
 	public static void main(String [] args) {
 		MapTest maptest = new MapTest();
 		maptest.testInit();
+	}
+
+	@Test
+	public void testGetInstance() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetStationList() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetStationNum() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetTotalBicycleNum() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetEleTotalBicycleNum() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetMecTotalBicycleNum() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testAddStation() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testDelStation() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testToString() {
+		fail("Not yet implemented");
 	}
 
 }

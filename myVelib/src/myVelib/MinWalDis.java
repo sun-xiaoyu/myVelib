@@ -3,9 +3,10 @@ package myVelib;
 public class MinWalDis implements PlanningAlgo{
 
 	@Override
-	public Answer handle(Request request, CurrentDistribution curDis) throws Exception {
+	public Answer handle(Request request) throws Exception {
 		GPS startPoint = request.getStartPos();
 		GPS endPoint = request.getEndPos();
+		CurrentDistribution curDis = CurrentDistribution.getInstance();
 		
 		Station minStartStation = curDis.getRentableStationList().get(0);
 		double minStartDis = Math.sqrt((minStartStation.getPos().getX() - startPoint.getX()) * (minStartStation.getPos().getX() - startPoint.getX()) + 

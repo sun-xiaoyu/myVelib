@@ -19,11 +19,11 @@ public class CurrentDistribution {
 		this.allStation = map.getStationList();
 		
 		for(Station s : this.allStation) {
-			if(s.geteBicycleNumber() > 0) {
+			if(s.getEBicycleNumber() > 0) {
 				this.eAvaStationList.add(s);
 				this.rentableStationList.add(s);
 				}
-			if(s.getmBicycleNumber() > 0) {
+			if(s.getMBicycleNumber() > 0) {
 				this.mAvaStationList.add(s);
 				this.rentableStationList.add(s);
 				}
