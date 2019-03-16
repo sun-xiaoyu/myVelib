@@ -7,10 +7,8 @@ public class EBike extends Bicycle implements BikeVisitable{
 	 */
 	public EBike() {
 		super();
-		this.speed = (double)20/60;
-		System.out.println(this.speed);
+		this.speed = (double)0.33;
 	}
-	
 	
 	public double accept(CardVisitor visitor, OngoingRide ongoingRide) {
 		return visitor.visit(this, ongoingRide);

@@ -12,6 +12,14 @@ public class OngoingRide extends Ride {
 		this.bicycle = bicycle;
 	}
 	
+	public OngoingRide(User user, Station startStation, Bicycle bicycle, long startTime) {
+		super();
+		this.user = user;
+		this.startStation = startStation;
+		this.startTime = startTime;
+		this.bicycle = bicycle;
+	}
+	
 	public void endAt(Station endStation) {
 		this.endTime = Calendar.getInstance().getTimeInMillis();
 		this.endStation = endStation;
@@ -34,11 +42,6 @@ public class OngoingRide extends Ride {
 	 * @return The total cost of the ride, in EUR
 	 */
 	public double charge() {
-		//Visitor parttern?
-		
-		//if (this.getUser().card instanceof Vmax) {}
-		//TODO
-		//return accept(this.getUser().getCard());
 		CardVisitor visitor;
 		if (this.user.isWithCard() ==  false) visitor = new NoCardVisitor();
 		else if (this.user.getCard() instanceof VmaxCard) visitor = new VmaxCardVisitor();

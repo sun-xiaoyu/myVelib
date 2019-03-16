@@ -7,10 +7,25 @@ public class User{
 	private boolean withCard;
 	private Card card;
 	private int totalRides;
-	private float totalTime;
-	private float totalCharge;
+	private double totalTime;
+	private double totalCharge;
 	private static int idConstructor;
 	private String policy;
+	
+	public User() {
+		super();
+		this.name = "NoName";
+		String strId = String.format("%5d", idConstructor).replace(" ", "0"); 
+		int intId = Integer.parseInt(strId);		
+		this.userId = intId;
+		idConstructor += 1;
+		this.withCard = false;
+		this.riding = false;
+		this.totalRides = 0;
+		this.totalTime = 0;
+		this.totalCharge = 0;
+	}
+	
 	public User(String name) {
 		super();
 		this.name = name;
@@ -61,13 +76,13 @@ public class User{
 	public void setTotalRides(int totalRides) {
 		this.totalRides = totalRides;
 	}
-	public float getTotalTime() {
+	public double getTotalTime() {
 		return totalTime;
 	}
 	public void setTotalTime(float totalTime) {
 		this.totalTime = totalTime;
 	}
-	public float getTotalCharge() {
+	public double getTotalCharge() {
 		return totalCharge;
 	}
 	public void setTotalCharge(float totalCharge) {
@@ -89,6 +104,13 @@ public class User{
 		this.totalRides += rideAdd;
 		this.totalTime += timeAdd;
 		this.totalCharge += chargeAdd;
+		
+	}
+
+	public void payFor(OngoingRide ride) {
+		// TODO Auto-generated method stub
+		this.totalCharge += ride.charge();
+		ride.setPaid();
 		
 	}
 	

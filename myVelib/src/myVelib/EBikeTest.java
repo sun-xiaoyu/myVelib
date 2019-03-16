@@ -4,12 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class MBikeTest {
+public class EBikeTest {
 
 	@Test
 	public void testSpeed() {
-		MBike mb = new MBike();
-		assertEquals(Server.mecRidingSpeed, mb.getSpeed(), 1e-6);
+		EBike eb = new EBike();
+		assertEquals(Server.eleRidingSpeed, eb.getSpeed(), 1e-6);
 	}
 
 }

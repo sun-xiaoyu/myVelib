@@ -30,7 +30,7 @@ public class Station {
 		this.slots.add(new Slot());
 	}
 	
-	public Station(int slotnum) {
+	public Station(int slotnum, double probaBike, double probaEBike) {
 		super();
 		Random random = new Random();
 		this.pos = new GPS(random.nextInt(11)*4,random.nextInt(11)*4);
@@ -39,7 +39,7 @@ public class Station {
 		this.slotNum = slotnum;
 		this.slots = new ArrayList<Slot>();
 		for (int i =0;i<slotnum;i++) {
-			this.slots.add(new Slot(0.7,0.3));
+			this.slots.add(new Slot(probaBike, probaEBike));
 		}
 		for (int i =0;i<slotnum;i++) {
 			if (this.slots.get(i).getBicycleInThisSlot() == null) this.spareSlotNum++;
@@ -92,7 +92,7 @@ public class Station {
 		this.full = full;
 	}
 
-	public int geteBicycleNumber() {
+	public int getEBicycleNumber() {
 		return eBicycleNumber;
 	}
 
@@ -100,7 +100,7 @@ public class Station {
 		this.eBicycleNumber = eBicycleNumber;
 	}
 
-	public int getmBicycleNumber() {
+	public int getMBicycleNumber() {
 		return mBicycleNumber;
 	}
 
@@ -184,11 +184,18 @@ public class Station {
 
 	@Override
 	public String toString() {
+		String slotsstr = "";
+		for (Slot s: slots) {
+			slotsstr += '\t'+ s.toString()+"\n";
+		}
 		return "Station [stationId=" + stationId + ", offline=" + offline + ", pos=" + pos + ", plus=" + plus
-				+ ", slots=" + slots + ", spareSlotNum=" + spareSlotNum + ", slotNum=" + slotNum + ", full=" + full
+				+ ", slots=\n" + slotsstr + ", spareSlotNum=" + spareSlotNum + ", slotNum=" + slotNum + ", full=" + full
 				+ ", eBicycleNumber=" + eBicycleNumber + ", mBicycleNumber=" + mBicycleNumber + "]";
 	}
 	
+	public void notifyIncomingPassenger() {
+		// TODO
+	}
 	
 	
 	

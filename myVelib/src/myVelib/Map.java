@@ -11,6 +11,7 @@ public class Map {
 	private int totalBicycleNum;
 	private int eleTotalBicycleNum;
 	private int mecTotalBicycleNum;
+	private double sizeX,sizeY;
 	private static Map instance = null;
 	
 	private Map() {}
@@ -86,9 +87,11 @@ public class Map {
 	 * @throws Exception
 	 */
 	public void init() {
+		this.sizeX = 40;
+		this.sizeY = 40;
 		this.stationList = new ArrayList <Station>();
 		for (int i=0;i<10;i++) {
-			Station s = new Station(10);
+			Station s = new Station(10,0.7,0.3);
 			this.stationList.add(s);
 		}
 		instance = this;
@@ -99,6 +102,15 @@ public class Map {
 			instance = new Map();
 		}
 		return instance;
+	}
+	
+
+	public double getSizeX() {
+		return sizeX;
+	}
+
+	public double getSizeY() {
+		return sizeY;
 	}
 
 	public ArrayList<Station> getStationList() {
@@ -143,13 +155,18 @@ public class Map {
 
 	@Override
 	public String toString() {
-		return "Map [stationList=" + stationList + ", stationNum=" + stationNum + ", totalSlotNum=" + totalSlotNum
+		String stationListstr = "";
+		for (Station s: stationList) {
+			stationListstr += s.toString()+"\n\n";
+		}
+		return "Map [stationList=" + stationListstr + ", stationNum=" + stationNum + ", totalSlotNum=" + totalSlotNum
 				+ ", totalBicycleNum=" + totalBicycleNum + ", eleTotalBicycleNum=" + eleTotalBicycleNum
 				+ ", mecTotalBicycleNum=" + mecTotalBicycleNum + "]";
 	}
 
+	public void initFromFile(String filepath) {
+		// TODO
+	}
 	
-
-
 
 }

@@ -1,6 +1,8 @@
 package myVelib;
 
 public class Record extends Ride{
+	private long lenghInMin;
+	private double distance;
 	public Record(OngoingRide ride) {
 		super();
 		this.user = ride.user;
@@ -10,7 +12,7 @@ public class Record extends Ride{
 		this.endTime = ride.endTime;
 		this.bicycle = ride.bicycle;
 		this.fee = ride.fee;
-		this.ispaid = ride.ispaid;
+		this.ispaid = ride.ispaid;		
 	}
 		
 }

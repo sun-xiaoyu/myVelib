@@ -32,8 +32,11 @@ public abstract class Ride{
 	public double getFee() {
 		return fee;
 	}
-	public boolean isIspaid() {
+	public boolean isPaid() {
 		return ispaid;
+	}
+	public void setPaid() {
+		ispaid = true;
 	}
 	public double getLengthInMin() {
 		return lengthInMin;
