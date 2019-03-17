@@ -23,7 +23,7 @@ public class FastPathToDestination implements PlanningAlgo{
 		}
 
 		if(givenTypeAvaNotPlusStations.size() == 0) {
-			throw new Exception("no available station containing given type of bicycle");
+			Server.error("no available station containing given type of bicycle");
 		}
 		
 		double minEndDis = Math.sqrt((minEndStation.getPos().getX() - endPoint.getX()) * (minEndStation.getPos().getX() - endPoint.getX()) + 

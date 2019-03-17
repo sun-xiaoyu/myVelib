@@ -20,7 +20,7 @@ public class Request {
 			throw new Exception("bikeTpye illegal");
 		}
 		this.bikeType = bikeType;
-		if(!(policy == "FPTD") && !(policy == "MWD")) {
+		if(!(policy == "FPTD") && !(policy == "MWD")) {// need addition of all policies
 			throw new Exception("bikeTpye illegal");
 		}
 		this.policy = policy;

@@ -18,6 +18,15 @@ public class GPS {
 		this.y = random.nextDouble()*Map.getInstance().getSizeX();
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof GPS) {
+			GPS p1 = (GPS) obj;
+			return ((Math.abs((p1.getX() - this.x)) < 0.1) && (Math.abs((p1.getY() - this.y)) < 0.1));
+		}
+		return false;
+	}
+
 	public double getX() {
 		return x;
 	}

@@ -40,7 +40,7 @@ public class Map {
 				plus = true;}
 			else {
 				plus = false;}
-			Station station = new Station(plus);
+			Station station = new Station(plus,11);
 			this.stationList.add(station);
 		}
 		for(Station station: stationList) {
