@@ -4,9 +4,10 @@ import java.util.ArrayList;
 
 public class AvoidPlusStation implements PlanningAlgo{
 	@Override
-	public Answer handle(Request request, CurrentDistribution curDis) throws Exception {
+	public Answer handle(Request request) throws Exception {
 		GPS startPoint = request.getStartPos();
 		GPS endPoint = request.getEndPos();
+		CurrentDistribution curDis = CurrentDistribution.getInstance();
 		ArrayList<Station> givenTypeAvaNotPlusStations = null;// whether this init is a correct choice in case that ArrayList can not be covered directly 
 		double ridingSpeed = 0.00001;//if not given proper bicycle type, time cost would be extremely large
 		if(request.getBikeType() == 'E') {
@@ -26,7 +27,7 @@ public class AvoidPlusStation implements PlanningAlgo{
 		}
 		
 		if(givenTypeAvaNotPlusStations.size() == 0) {
-			throw new Exception("no available station containing given type of bicycle");
+			Server.error("no available station containing given type of bicycle");
 		}
 		
 		Station minStartStation = givenTypeAvaNotPlusStations.get(0);

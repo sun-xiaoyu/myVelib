@@ -26,22 +26,24 @@ public class Station {
 		if(gridSize <= 1) {
 			throw new Exception("gridSize should be bigger than 1");
 		}
+		Random random = new Random();
 		this.plus = plus;
 		this.stationId = ++idConstructor;
 		this.slots = new ArrayList<Slot>();
 		this.full = this.judgeFull();
+		GPS gps;
 		boolean newGPSFlag = false;
 		do {
-			Random random = new Random();
-			GPS gps = new GPS(random.nextInt(11)*4,random.nextInt(11)*4);
+			gps = new GPS(random.nextInt(gridSize)*4,random.nextInt(gridSize)*4);
 			for(Station s: existedStations) {
 				if(s.getPos().equals(gps)) {
 					newGPSFlag = true;
 				}
 			}
 		}while(newGPSFlag);
+		this.pos = gps;
 		existedStations.add(this);
-	}	
+	}
 	
 	public Station(int slotnum, double probaBike, double probaEBike) {//0.7,0.3 initialization
 		super();
@@ -57,15 +59,17 @@ public class Station {
 			if (this.slots.get(i).getBicycleInThisSlot() == null) this.spareSlotNum++;
 		}
 		this.full = this.judgeFull();
+		GPS gps;
 		boolean newGPSFlag = false;
 		do {
-			GPS gps = new GPS(random.nextInt(11)*4,random.nextInt(11)*4);
+			gps = new GPS(random.nextInt(11)*4,random.nextInt(11)*4);
 			for(Station s: existedStations) {
 				if(s.getPos().equals(gps)) {
 					newGPSFlag = true;
 				}
 			}
 		}while(newGPSFlag);
+		this.pos = gps;
 		existedStations.add(this);
 	}
 
@@ -76,15 +80,17 @@ public class Station {
 		this.stationId = ++idConstructor;
 		this.slots = new ArrayList<Slot>();
 		this.full = this.judgeFull();
+		GPS gps;
 		boolean newGPSFlag = false;
 		do {
-			GPS gps = new GPS(random.nextInt(11)*4,random.nextInt(11)*4);
+			gps = new GPS(random.nextInt(11)*4,random.nextInt(11)*4);
 			for(Station s: existedStations) {
 				if(s.getPos().equals(gps)) {
 					newGPSFlag = true;
 				}
 			}
 		}while(newGPSFlag);
+		this.pos = gps;
 		existedStations.add(this);
 	}
 	
@@ -232,7 +238,7 @@ public class Station {
 		b.setRidingStatus(false);
 		this.spareSlotNum -= 1;
 		if(spareSlotNum < 0) {
-			throw new Exception("spareSlotNum < 0");
+			Server.error("spareSlotNum < 0");
 		}
 	}
 
