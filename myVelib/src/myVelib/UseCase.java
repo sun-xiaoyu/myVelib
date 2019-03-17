@@ -3,7 +3,7 @@ package myVelib;
 import java.util.Random;
 
 public class UseCase {
-	public static void main(String [] args) {
+	public static void main(String [] args) throws Exception {
 		Random random = new Random();
 		//###########¡°Setting up of myVelib¡±###########		
 		Map map = Map.getInstance();
@@ -38,7 +38,7 @@ public class UseCase {
 		
 		GPS moulon = new GPS();
 		GPS massy = new GPS();
-		Request rq = new Request(Alice, moulon, massy, 'e', "minimumWalking"); 
+		Request rq = new Request(Alice, moulon, massy, 'e', "MWD"); 
 		
 		/**
 		 * User didn't indicate the ride planning policy.Server

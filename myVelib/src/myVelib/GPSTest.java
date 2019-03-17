@@ -2,6 +2,8 @@ package myVelib;
 
 import org.junit.Test;
 
+import static org.junit.Assert.*;
+
 class GPSTest {
 	@Test
 	void testEqualsObject() {
