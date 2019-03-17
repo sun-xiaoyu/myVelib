@@ -162,7 +162,7 @@ public class Map {
 		for (Station s: stationList) {
 			stationListstr += s.toString()+"\n\n";
 		}
-		return "Map [stationList=" + stationListstr + ", stationNum=" + stationNum + ", totalSlotNum=" + totalSlotNum
+		return "Map [stationList=\n" + stationListstr + ", stationNum=" + stationNum + ", totalSlotNum=" + totalSlotNum
 				+ ", totalBicycleNum=" + totalBicycleNum + ", eleTotalBicycleNum=" + eleTotalBicycleNum
 				+ ", mecTotalBicycleNum=" + mecTotalBicycleNum + "]";
 	}

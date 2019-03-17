@@ -9,15 +9,19 @@ import java.util.ArrayList;
  */
 public class CurrentDistribution {
 	private ArrayList<Station> allStation;
-	private ArrayList<Station> eAvaStationList;
+	private  ArrayList<Station> eAvaStationList;
 	private ArrayList<Station> mAvaStationList;
 	private ArrayList<Station> returnableStationList;
 	private ArrayList<Station> rentableStationList;
-	private static CurrentDistribution instance = null;
+	private static CurrentDistribution instance;
 	
 	private CurrentDistribution(Map map) {
+		this.allStation = new ArrayList<Station>();
+		this.eAvaStationList = new ArrayList<Station>();
+		this.mAvaStationList = new ArrayList<Station>();
+		this.returnableStationList = new ArrayList<Station>();
+		this.rentableStationList = new ArrayList<Station>();
 		this.allStation = map.getStationList();
-		
 		for(Station s : this.allStation) {
 			if(s.getEBicycleNumber() > 0) {
 				this.eAvaStationList.add(s);
@@ -28,14 +32,30 @@ public class CurrentDistribution {
 				this.rentableStationList.add(s);
 				}
 			if(s.isFull() == false) {
-				this.eAvaStationList.add(s);
+				this.returnableStationList.add(s);
 				}
 		}
+		
 	}
 	
 	public static CurrentDistribution getInstance() {
 		if (instance == null) {
-			instance = new CurrentDistribution(Map.getInstance());
+			instance = new CurrentDistribution(Map.getInstance());	
+		}
+		else {
+			for(Station s : instance.allStation) {
+				if(s.getEBicycleNumber() > 0) {
+					instance.eAvaStationList.add(s);
+					instance.rentableStationList.add(s);
+					}
+				if(s.getMBicycleNumber() > 0) {
+					instance.mAvaStationList.add(s);
+					instance.rentableStationList.add(s);
+					}
+				if(s.isFull() == false) {
+					instance.returnableStationList.add(s);
+					}
+			}	
 		}
 		return instance;
 	}
@@ -62,10 +82,6 @@ public class CurrentDistribution {
 
 	public ArrayList<Station> getRentableStationList() {
 		return rentableStationList;
-	}
-	
-	public ArrayList<Station> getNotPlusStation() {
-		return notPlusStation;
 	}
 
 	public void deleAvastation(Station s) {

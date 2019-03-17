@@ -13,6 +13,7 @@ public class Station {
 	private int slotNum;
 	private static int idConstructor;
 	private boolean full;
+	private static ArrayList<Station> existedStations = new ArrayList<Station>();
 	
 	public Station(boolean plus) {//general initialization
 		super();
@@ -21,7 +22,9 @@ public class Station {
 		this.slots = new ArrayList<Slot>();
 		Random random = new Random();
 		this.pos = new GPS(random.nextInt(11)*4,random.nextInt(11)*4);
-		this.full = this.judgeFull();}
+		this.full = this.judgeFull();
+		existedStations.add(this);
+	}	
 	
 	public Station(int slotnum, double probaBike, double probaEBike) {//0.7,0.3 initialization
 		super();
@@ -38,9 +41,10 @@ public class Station {
 			if (this.slots.get(i).getBicycleInThisSlot() == null) this.spareSlotNum++;
 		}
 		this.full = this.judgeFull();
+		existedStations.add(this);
 	}
 
-	public Station() {
+	public Station() { // 4km * 4km , 10 *10 grid , 0.4 probability of plus(chosen)
 		super();
 		Random random = new Random();
 		this.pos = new GPS(random.nextInt(11)*4,random.nextInt(11)*4);
@@ -48,6 +52,7 @@ public class Station {
 		this.stationId = ++idConstructor;
 		this.slots = new ArrayList<Slot>();
 		this.full = this.judgeFull();
+		existedStations.add(this);
 	}
 	
 	int getStationId() {
@@ -206,7 +211,7 @@ public class Station {
 		}
 		return "Station [stationId=" + stationId + ", offline=" + offline + ", pos=" + pos + ", plus=" + plus
 				+ ", slots=\n" + slotsstr + ", spareSlotNum=" + spareSlotNum + ", slotNum=" + slotNum + ", full=" + full
-				+ ", eBicycleNumber=" + eBicycleNumber + ", mBicycleNumber=" + mBicycleNumber + "]";
+				+ ", eBicycleNumber=" + this.getEBicycleNumber() + ", mBicycleNumber=" + this.getMBicycleNumber() + "]";
 	}
 
 	public void notifyIncomingPassenger() {
