@@ -1,9 +1,8 @@
 package myVelib;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 class GPSTest {
-
 	@Test
 	void testEqualsObject() {
 		GPS gps1 = new GPS(2,5.10);
