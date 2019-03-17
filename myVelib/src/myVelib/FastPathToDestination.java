@@ -3,28 +3,33 @@ package myVelib;
 import java.util.ArrayList;
 
 public class FastPathToDestination implements PlanningAlgo{
+	/*
+	 * fast path to destination
+	 * @see myVelib.PlanningAlgo#handle(myVelib.Request)
+	 */
 	@Override
 	public Answer handle(Request request) throws Exception {
 		GPS startPoint = request.getStartPos();
 		GPS endPoint = request.getEndPos();
 		CurrentDistribution curDis = CurrentDistribution.getInstance();
-		Station minStartStation = curDis.getRentableStationList().get(0);
-		Station minEndStation = curDis.getReturnableStationList().get(0);
-		ArrayList<Station> givenTypeAvaNotPlusStations = null;// whether this init is a correct choice in case that ArrayList can not be covered directly 
+		ArrayList<Station> givenTypeAvaStations = null;// whether this init is a correct choice in case that ArrayList can not be covered directly 
 		double ridingSpeed = 0.00001;//if not given proper bicycle type, time cost would be extremely large
 		if(request.getBikeType() == 'E') {
 			ridingSpeed = Server.eleRidingSpeed;
-			givenTypeAvaNotPlusStations = curDis.geteAvaStationList();
+			givenTypeAvaStations = curDis.geteAvaStationList();
 		}
 		
 		if(request.getBikeType() == 'M') {
 			ridingSpeed = Server.mecRidingSpeed;
-			givenTypeAvaNotPlusStations = curDis.getmAvaStationList();
+			givenTypeAvaStations = curDis.getmAvaStationList();
 		}
 
-		if(givenTypeAvaNotPlusStations.size() == 0) {
+		if(givenTypeAvaStations.size() == 0) {
 			Server.error("no available station containing given type of bicycle");
 		}
+
+		Station minStartStation = givenTypeAvaStations.get(0);
+		Station minEndStation = curDis.getReturnableStationList().get(0);
 		
 		double minEndDis = Math.sqrt((minEndStation.getPos().getX() - endPoint.getX()) * (minEndStation.getPos().getX() - endPoint.getX()) + 
 				(minEndStation.getPos().getY() - endPoint.getY())*(minEndStation.getPos().getY() - endPoint.getY()));
@@ -45,7 +50,7 @@ public class FastPathToDestination implements PlanningAlgo{
 						(minStartStation.getPos().getY() - endPoint.getY()))/
 				ridingSpeed;
 		
-		for(Station s: curDis.getRentableStationList()) {
+		for(Station s: givenTypeAvaStations) {
 			double walkRideTime = Math.sqrt((s.getPos().getX() - startPoint.getX()) * (s.getPos().getX() - startPoint.getX())+
 					(s.getPos().getX() - startPoint.getX()) * (s.getPos().getX() - startPoint.getX()))/
 					Server.walkingSpeed +

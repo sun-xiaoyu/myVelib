@@ -2,7 +2,7 @@ package myVelib;
 
 import java.util.ArrayList;
 
-public class MinWalDis implements PlanningAlgo{
+public class PreferPlusStation implements PlanningAlgo{
 	@Override
 	public Answer handle(Request request) throws Exception {
 		GPS startPoint = request.getStartPos();
@@ -48,6 +48,23 @@ public class MinWalDis implements PlanningAlgo{
 				minEndStation = s;
 				minEndDis = endDis; 
 			}
+		}
+		/**
+		 * to get plus returnable station of minimal distance to destination.
+		 */
+		Station minDisPlusReturnableStation = null;
+		double plusMinEndDis = 9999999;
+		for(Station s: curDis.getRetunableStationList()) {
+			double plusEndDis = Math.sqrt((s.getPos().getX() - endPoint.getX()) * (s.getPos().getX() - endPoint.getX()) + 
+					(s.getPos().getY() - endPoint.getY())*(s.getPos().getY() - endPoint.getY()));
+			if(s.isPlus() && (plusEndDis < 1.1*minEndDis) && (plusEndDis < plusMinEndDis)) {
+				plusMinEndDis = plusEndDis;
+				minDisPlusReturnableStation = s;
+			}
+		}
+		if(minDisPlusReturnableStation != null) {
+			minEndDis = plusMinEndDis;
+			minEndStation = minDisPlusReturnableStation;
 		}
 
 		double minTime = (minStartDis + minEndDis) / Server.walkingSpeed + 
