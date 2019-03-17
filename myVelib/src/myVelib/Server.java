@@ -44,8 +44,12 @@ public class Server {
 					if (bicycle instanceof MBike && bicycleType == 'm' || bicycle instanceof EBike && bicycleType == 'e') {
 						successful = true;
 						OngoingRide ride = new OngoingRide(user, station, bicycle);
+						slot.removeBicycle();
+						user.setRiding(true);
+						bicycle.setRidingStatus(true);
 						instance.ongoingRides.put(user,ride);
 						slot.removeBicycle();
+						break;
 					}
 				}
 			}
@@ -66,7 +70,11 @@ public class Server {
 					Bicycle bicycle = slot.getBicycleInThisSlot();
 					successful = true;
 					OngoingRide ride = new OngoingRide(user, station, bicycle);
+					slot.removeBicycle();
+					user.setRiding(true);
+					bicycle.setRidingStatus(true);
 					instance.ongoingRides.put(user,ride);
+					break;
 				}
 			}
 			if (!successful) error("Rent failed. The station does not have any bike!");
@@ -82,17 +90,22 @@ public class Server {
 	 */
 	public static void restore(User user, Station station) {
 		if (!station.isOffline()){
-			if (!station.isFull()) {
+			if (!station.judgeFull()) {
 				for (Slot slot: station.getSlots()) {
 					if (!slot.isOccupied()) {
 						OngoingRide ride = instance.ongoingRides.get(user);
-						slot.restore(ride.getBicycle());
 						ride.endAt(station);
+						Bicycle bicycle = ride.getBicycle();
+						slot.restore(bicycle);
+						user.setRiding(false);
+						bicycle.setRidingStatus(false);
 						user.payFor(ride);
 						if (station.isPlus()) user.getCard().addCredit(5);
 						Record record = new Record(ride);
 						instance.ongoingRides.remove(user);
 						instance.update(record);
+						log("Returned with success, user paid" + record.getFee()+ "EUR.");
+						break;
 					}
 				}
 			} else error("Return failed. The station is full!");
@@ -100,7 +113,7 @@ public class Server {
 	}
 	
 	/**
-	 * This method is used to maintain the user balance and stainon balance using the information stored in record.
+	 * This method is used to maintain the user balance and station balance using the information stored in record.
 	 * @param record
 	 */
 	private void update(Record record) {
@@ -115,6 +128,10 @@ public class Server {
 	}
 	
 	public static void error(String str) {
+		System.out.println(str);
+	}
+	
+	public static void log(String str) {
 		System.out.println(str);
 	}
 	
