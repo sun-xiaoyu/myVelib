@@ -15,7 +15,13 @@ public class Station {
 	private boolean full;
 	private static ArrayList<Station> existedStations = new ArrayList<Station>();
 	
-	public Station(boolean plus, int gridSize) throws Exception {//general initialization
+	/**
+	 * general initialization
+	 * @param plus if it is a plus station
+	 * @param gridSize edge length of the grid
+	 * @throws Exception
+	 */
+	public Station(boolean plus, int gridSize) throws Exception {
 		super();
 		if(gridSize <= 1) {
 			throw new Exception("gridSize should be bigger than 1");

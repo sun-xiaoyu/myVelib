@@ -12,7 +12,6 @@ public class MapTest {
 		Map map = Map.getInstance();
 		map.init();		
 		System.out.println(map);
-//		fail("Not yet implemented");
 	}
 	
 	public static void main(String [] args) {
