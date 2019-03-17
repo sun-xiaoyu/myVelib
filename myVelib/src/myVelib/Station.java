@@ -73,7 +73,11 @@ public class Station {
 		existedStations.add(this);
 	}
 
-	public Station() { // 4km * 4km , 10 *10 grid , 0.4 probability of plus(chosen)
+	/**
+	 * grid size 4km * 4km , 10 *10 grid
+	 * 0.4 probability of plus(chosen)
+	 */
+	public Station() {
 		super();
 		Random random = new Random();
 		this.plus = (boolean)(random.nextFloat()>0.6);	
