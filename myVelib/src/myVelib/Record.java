@@ -12,7 +12,7 @@ public class Record extends Ride{
 		this.endTime = ride.endTime;
 		this.bicycle = ride.bicycle;
 		this.fee = ride.fee;
-		this.ispaid = ride.ispaid;		
+		this.ispaid = ride.ispaid;
 	}
 		
 }

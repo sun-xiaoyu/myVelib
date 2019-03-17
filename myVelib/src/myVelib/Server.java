@@ -86,7 +86,7 @@ public class Server {
 				for (Slot slot: station.getSlots()) {
 					if (!slot.isOccupied()) {
 						OngoingRide ride = instance.ongoingRides.get(user);
-						slot.restore(ride.getBike());
+						slot.restore(ride.getBicycle());
 						ride.endAt(station);
 						user.payFor(ride);
 						if (station.isPlus()) user.getCard().addCredit(5);

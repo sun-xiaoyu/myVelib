@@ -26,7 +26,7 @@ public abstract class Ride{
 	public long getEndTime() {
 		return endTime;
 	}
-	public Bicycle getBike() {
+	public Bicycle getBicycle() {
 		return bicycle;
 	}
 	public double getFee() {

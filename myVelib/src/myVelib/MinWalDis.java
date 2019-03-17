@@ -1,22 +1,37 @@
 package myVelib;
 
-public class MinWalDis implements PlanningAlgo{
+import java.util.ArrayList;
 
+public class MinWalDis implements PlanningAlgo{
 	@Override
 	public Answer handle(Request request) throws Exception {
 		GPS startPoint = request.getStartPos();
 		GPS endPoint = request.getEndPos();
 		CurrentDistribution curDis = CurrentDistribution.getInstance();
+		ArrayList<Station> givenTypeAvaNotPlusStations = null;// whether this init is a correct choice in case that ArrayList can not be covered directly 
+		double ridingSpeed = 0.00001;//if not given proper bicycle type, time cost would be extremely large
+			ridingSpeed = Server.eleRidingSpeed;
+			givenTypeAvaNotPlusStations = curDis.geteAvaStationList();
+		}
 		
-		Station minStartStation = curDis.getRentableStationList().get(0);
+		if(request.getBikeType() == 'M') {
+			ridingSpeed = Server.mecRidingSpeed;
+			givenTypeAvaNotPlusStations = curDis.getmAvaStationList();
+		}
+		
+		if(givenTypeAvaNotPlusStations.size() == 0) {
+			throw new Exception("no available station containing given type of bicycle");
+		}
+		
+		Station minStartStation = givenTypeAvaNotPlusStations.get(0);
 		double minStartDis = Math.sqrt((minStartStation.getPos().getX() - startPoint.getX()) * (minStartStation.getPos().getX() - startPoint.getX()) + 
 				(minStartStation.getPos().getY() - startPoint.getY())*(minStartStation.getPos().getY() - startPoint.getY()));
 		
-		Station minEndStation = curDis.getRentableStationList().get(0);
+		Station minEndStation = curDis.getRetunableStationList().get(0);
 		double minEndDis = Math.sqrt((minEndStation.getPos().getX() - endPoint.getX()) * (minEndStation.getPos().getX() - endPoint.getX()) + 
 				(minEndStation.getPos().getY() - endPoint.getY())*(minEndStation.getPos().getY() - endPoint.getY()));
 		
-		for(Station s: curDis.getRentableStationList()) {
+		for(Station s: givenTypeAvaNotPlusStations) {
 			double startDis = Math.sqrt((s.getPos().getX() - startPoint.getX())*(s.getPos().getX() - startPoint.getX()) + 
 				(s.getPos().getY() - startPoint.getY()) * (s.getPos().getY() - startPoint.getY()));
 			if( startDis < minStartDis) {
@@ -25,7 +40,7 @@ public class MinWalDis implements PlanningAlgo{
 			}
 		}
 		
-		for(Station s: curDis.getRentableStationList()) {
+		for(Station s: curDis.getRetunableStationList()) {
 			double endDis = Math.sqrt((s.getPos().getX() - endPoint.getX())*(s.getPos().getX() - endPoint.getX()) + 
 					(s.getPos().getY() - endPoint.getY()) * (s.getPos().getY() - endPoint.getY()));
 			if( endDis < minEndDis) {
@@ -33,13 +48,7 @@ public class MinWalDis implements PlanningAlgo{
 				minEndDis = endDis; 
 			}
 		}
-		double ridingSpeed = 0.00001;//if not given proper bicycle type, time cost would be extremely large
-		if(request.getBikeType() == 'e') {
-			ridingSpeed = Server.eleRidingSpeed;
-		}
-		if(request.getBikeType() == 'm') {
-			ridingSpeed = Server.mecRidingSpeed;
-		}
+
 		double minTime = (minStartDis + minEndDis) / Server.walkingSpeed + 
 				(Math.abs(minStartStation.getPos().getX() - minEndStation.getPos().getX()) +
 				Math.abs(minStartStation.getPos().getY() - minEndStation.getPos().getY()))/ridingSpeed;
@@ -57,3 +66,4 @@ public class MinWalDis implements PlanningAlgo{
 	}
 	
 }
+

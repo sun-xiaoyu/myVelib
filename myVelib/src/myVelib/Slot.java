@@ -8,6 +8,9 @@ public class Slot {
 	private static int idConstructor;
 	private Bicycle bicycleInThisSlot;
 	
+	/**
+	 * vacant initialization
+	 */
 	public Slot() {
 		super();
 		this.slotId = ++idConstructor;
@@ -16,6 +19,9 @@ public class Slot {
 		 */
 	}
 
+	/**
+	 * probability initialization
+	 */
 	public Slot(double probaBike, double probaEBike) {
 		super();
 		this.slotId = ++idConstructor;

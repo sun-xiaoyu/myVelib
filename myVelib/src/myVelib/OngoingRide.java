@@ -20,6 +20,13 @@ public class OngoingRide extends Ride {
 		this.bicycle = bicycle;
 	}
 	
+	@Override
+	public String toString() {
+		return "OngoingRide [user=" + user + ", startStation=" + startStation + ", endStation=" + endStation
+				+ ", startTime=" + startTime + ", endTime=" + endTime + ", bicycle=" + bicycle + ", fee=" + fee
+				+ ", ispaid=" + ispaid + ", lengthInMin=" + lengthInMin + "]";
+	}
+
 	public void endAt(Station endStation) {
 		this.endTime = Calendar.getInstance().getTimeInMillis();
 		this.endStation = endStation;
