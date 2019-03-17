@@ -24,4 +24,10 @@ public class Answer {
 		return totalDis;
 	}
 	
+	@Override
+	public String toString() {
+		return "Answer [startStation=" + startStation + ", endStation=" + endStation + ", totalTime=" + totalTime
+				+ ", totalDis=" + totalDis + "]";
+	}
+	
 }
