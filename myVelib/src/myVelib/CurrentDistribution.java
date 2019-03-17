@@ -23,7 +23,7 @@ public class CurrentDistribution {
 				this.eAvaStationList.add(s);
 				this.rentableStationList.add(s);
 				}
-			if(s.getEBicycleNumber() > 0) {
+			if(s.getMBicycleNumber() > 0) {
 				this.mAvaStationList.add(s);
 				this.rentableStationList.add(s);
 				}
