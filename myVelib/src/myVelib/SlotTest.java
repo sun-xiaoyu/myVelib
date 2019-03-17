@@ -27,6 +27,7 @@ class SlotTest {
 		System.out.println(slot);
 		EBike eb = new EBike();
 		System.out.println(eb);
+		fail("Not yet implemented");
 	}
 
 }

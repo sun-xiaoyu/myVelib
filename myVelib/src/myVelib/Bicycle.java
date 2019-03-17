@@ -5,8 +5,9 @@ public abstract class Bicycle {
 	protected double speed;
 	private boolean ridingStatus;
 	private static int idConstructor;
+	protected char type;
 	
-	public Bicycle() {
+	public Bicycle(){
 		super();
 		this.bicycleId = ++idConstructor;
 		this.ridingStatus = false;
@@ -23,6 +24,9 @@ public abstract class Bicycle {
 	}
 	public void setRidingStatus(boolean ridingStatus) {
 		this.ridingStatus = ridingStatus;
+	}
+	public char getType() {
+		return type;
 	}
 
 	public abstract double accept(CardVisitor visitor, OngoingRide ongoingRide);

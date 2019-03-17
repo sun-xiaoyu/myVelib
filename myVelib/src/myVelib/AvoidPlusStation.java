@@ -2,7 +2,7 @@ package myVelib;
 
 import java.util.ArrayList;
 
-public class MinWalDis implements PlanningAlgo{
+public class AvoidPlusStation implements PlanningAlgo{
 	@Override
 	public Answer handle(Request request, CurrentDistribution curDis) throws Exception {
 		GPS startPoint = request.getStartPos();
@@ -17,6 +17,12 @@ public class MinWalDis implements PlanningAlgo{
 		if(request.getBikeType() == 'M') {
 			ridingSpeed = Server.mecRidingSpeed;
 			givenTypeAvaNotPlusStations = curDis.getmAvaStationList();
+		}
+
+		for(Station station: givenTypeAvaNotPlusStations) {
+			if(station.isPlus()) {
+				givenTypeAvaNotPlusStations.remove(station);
+			}
 		}
 		
 		if(givenTypeAvaNotPlusStations.size() == 0) {

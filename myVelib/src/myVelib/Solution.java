@@ -62,16 +62,11 @@ public class Solution {
 
 
 	public void solve() {
-		Answer ans;
-		try {
-			ans = this.algo.handle(this.rq);
-			this.endStation = ans.getEndStation();
-			this.startStation = ans.getStartStation();
-			this.totalDis = ans.getTotalDis();
-			this.totalTime = ans.getTotalTime();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
+		Answer ans = this.algo.handle(this.rq, CurrentDistribution.getInstance());
+		this.endStation = ans.getEndStation();
+		this.startStation = ans.getStartStation();
+		this.totalDis = ans.getTotalDis();
+		this.totalTime = ans.getTotalTime();
+		
 	}
 }

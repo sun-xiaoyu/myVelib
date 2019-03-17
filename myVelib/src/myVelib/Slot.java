@@ -8,7 +8,7 @@ public class Slot {
 	private static int idConstructor;
 	private Bicycle bicycleInThisSlot;
 	
-	public Slot() {
+	public Slot() {// vacant initialization
 		super();
 		this.slotId = ++idConstructor;
 		/**
@@ -16,13 +16,13 @@ public class Slot {
 		 */
 	}
 
-	public Slot(double probaBike, double probaEBike) {
+	public Slot(double probaBike, double probaEbike) {//probability initialization
 		super();
 		this.slotId = ++idConstructor;
 		Random random = new Random();
 		if (random.nextFloat() < probaBike) {
 			this.occupied = true;
-			if (random.nextFloat() < probaEBike) {
+			if (random.nextFloat() < probaEbike) {
 				this.bicycleInThisSlot = new EBike();
 			}else this.bicycleInThisSlot = new MBike();
 		}
@@ -60,26 +60,16 @@ public class Slot {
 		this.setBicycleInThisSlot(eBike);
 	}
 
-	public void addMecBicycle() throws Exception{
+	public void addmecBicycle() throws Exception{
 		MBike mBike = new MBike();
 		this.occupied = true;
 		this.setBicycleInThisSlot(mBike);
 	}
 	//TODO use pattern to get add methods more flexible.
 
-	public void removeBicycle() {
-		this.bicycleInThisSlot = null;
-		this.occupied = false;
-	}
-	
 	@Override
 	public String toString() {
 		return "Slot [slotId=" + slotId + ", occupied=" + occupied + ", bicycleInThisSlot=" + bicycleInThisSlot + "]";
-	}
-
-	public void restore(Bicycle bike) {
-		this.bicycleInThisSlot = bike;
-		this.occupied = true;
 	}
 
 

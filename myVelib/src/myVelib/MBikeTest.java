@@ -7,9 +7,10 @@ import org.junit.Test;
 public class MBikeTest {
 
 	@Test
-	public void testSpeed() {
+	public void test() {
 		MBike mb = new MBike();
 		assertEquals(Server.mecRidingSpeed, mb.getSpeed(), 1e-6);
 	}
 
 }
+

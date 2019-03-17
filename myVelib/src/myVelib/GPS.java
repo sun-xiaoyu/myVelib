@@ -1,36 +1,26 @@
 package myVelib;
-
-import java.util.Random;
-
 public class GPS {
-	private double x,y;
+	private float x,y;
 
-	public GPS(double x, double y) {
+	public GPS(float x, float y) {
 		super();
 		this.x = x;
 		this.y = y;
 	}
-	
-	public GPS() {
-		super();
-		Random random = new Random();
-		this.x = random.nextDouble()*Map.getInstance().getSizeX();
-		this.y = random.nextDouble()*Map.getInstance().getSizeX();
-	}
 
-	public double getX() {
+	public float getX() {
 		return x;
 	}
 
-	public void setX(double x) {
+	public void setX(float x) {
 		this.x = x;
 	}
 
-	public double getY() {
+	public float getY() {
 		return y;
 	}
 
-	public void setY(double y) {
+	public void setY(float y) {
 		this.y = y;
 	}
 

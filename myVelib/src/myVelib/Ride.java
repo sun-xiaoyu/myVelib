@@ -10,7 +10,7 @@ public abstract class Ride{
 	protected double fee;
 	protected boolean ispaid;
 	protected double lengthInMin;
-	
+
 	public User getUser() {
 		return user;
 	}
@@ -26,17 +26,14 @@ public abstract class Ride{
 	public long getEndTime() {
 		return endTime;
 	}
-	public Bicycle getBike() {
+	public Bicycle getBicycle() {
 		return bicycle;
 	}
 	public double getFee() {
 		return fee;
 	}
-	public boolean isPaid() {
+	public boolean isIspaid() {
 		return ispaid;
-	}
-	public void setPaid() {
-		ispaid = true;
 	}
 	public double getLengthInMin() {
 		return lengthInMin;

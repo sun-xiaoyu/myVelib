@@ -23,7 +23,7 @@ public class CurrentDistribution {
 				this.eAvaStationList.add(s);
 				this.rentableStationList.add(s);
 				}
-			if(s.getMBicycleNumber() > 0) {
+			if(s.getEBicycleNumber() > 0) {
 				this.mAvaStationList.add(s);
 				this.rentableStationList.add(s);
 				}
@@ -62,6 +62,10 @@ public class CurrentDistribution {
 
 	public ArrayList<Station> getRentableStationList() {
 		return rentableStationList;
+	}
+	
+	public ArrayList<Station> getNotPlusStation() {
+		return notPlusStation;
 	}
 
 	public void deleAvastation(Station s) {

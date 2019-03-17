@@ -13,24 +13,17 @@ public class Station {
 	private int slotNum;
 	private static int idConstructor;
 	private boolean full;
-	private int eBicycleNumber;
-	private int mBicycleNumber;
 	
-	public Station(GPS pos, boolean plus) {
+	public Station(boolean plus) {//general initialization
 		super();
-		this.pos = pos;
 		this.plus = plus;
-		this.offline = false;	
 		this.stationId = ++idConstructor;
-		this.slotNum = 0;
-		this.spareSlotNum = 0;
-		this.eBicycleNumber = 0;
-		this.mBicycleNumber = 0;
 		this.slots = new ArrayList<Slot>();
-		this.slots.add(new Slot());
-	}
+		Random random = new Random();
+		this.pos = new GPS(random.nextInt(11)*4,random.nextInt(11)*4);
+		this.full = this.judgeFull();}
 	
-	public Station(int slotnum, double probaBike, double probaEBike) {
+	public Station(int slotnum) {//0.7,0.3 initialization
 		super();
 		Random random = new Random();
 		this.pos = new GPS(random.nextInt(11)*4,random.nextInt(11)*4);
@@ -39,16 +32,25 @@ public class Station {
 		this.slotNum = slotnum;
 		this.slots = new ArrayList<Slot>();
 		for (int i =0;i<slotnum;i++) {
-			this.slots.add(new Slot(probaBike, probaEBike));
+			this.slots.add(new Slot(0.7, 0.3));
 		}
 		for (int i =0;i<slotnum;i++) {
 			if (this.slots.get(i).getBicycleInThisSlot() == null) this.spareSlotNum++;
-			if (this.slots.get(i).getBicycleInThisSlot() instanceof EBike) this.eBicycleNumber++;
-			if (this.slots.get(i).getBicycleInThisSlot() instanceof MBike) this.mBicycleNumber++;
 		}
+		this.full = this.judgeFull();
 	}
 
-	public int getStationId() {
+	public Station() {
+		super();
+		Random random = new Random();
+		this.pos = new GPS(random.nextInt(11)*4,random.nextInt(11)*4);
+		this.plus = (boolean)(random.nextFloat()>0.6);	
+		this.stationId = ++idConstructor;
+		this.slots = new ArrayList<Slot>();
+		this.full = this.judgeFull();
+	}
+	
+	int getStationId() {
 		return stationId;
 	}
 
@@ -93,19 +95,33 @@ public class Station {
 	}
 
 	public int getEBicycleNumber() {
+		int eBicycleNumber = 0;
+		for(Slot slot: this.slots) {
+			if(slot.isOccupied() && (slot.getBicycleInThisSlot().getType() =='E')) {
+				eBicycleNumber +=1;
+			}
+		}
 		return eBicycleNumber;
 	}
 
-	public void seteBicycleNumber(int eBicycleNumber) {
-		this.eBicycleNumber = eBicycleNumber;
-	}
 
 	public int getMBicycleNumber() {
+		int mBicycleNumber = 0;
+		for(Slot slot: this.slots) {
+			if(slot.isOccupied() && (slot.getBicycleInThisSlot().getType() =='M')) {
+				mBicycleNumber +=1;
+			}
+		}
 		return mBicycleNumber;
 	}
-
-	public void setmBicycleNumber(int mBicycleNumber) {
-		this.mBicycleNumber = mBicycleNumber;
+	public int getBicycleNumber() {
+		int bicycleNumber = 0;
+		for(Slot slot: this.slots) {
+			if(slot.isOccupied()) {
+				bicycleNumber +=1;
+			}
+		}
+		return bicycleNumber;
 	}
 
 	public void addSlot(Slot slot) {
@@ -135,7 +151,7 @@ public class Station {
 	}
 	
 	public boolean judgeFull() {
-		boolean flagFull = true; // if flagFull should be set as a public variable?
+		boolean flagFull = true;
 		for(int i = 0; i < this.slots.size(); i++){
 			if(this.slots.get(i).isOccupied() == false) {
 				flagFull = false;
@@ -184,18 +200,13 @@ public class Station {
 
 	@Override
 	public String toString() {
-		String slotsstr = "";
-		for (Slot s: slots) {
-			slotsstr += '\t'+ s.toString()+"\n";
-		}
 		return "Station [stationId=" + stationId + ", offline=" + offline + ", pos=" + pos + ", plus=" + plus
-				+ ", slots=\n" + slotsstr + ", spareSlotNum=" + spareSlotNum + ", slotNum=" + slotNum + ", full=" + full
-				+ ", eBicycleNumber=" + eBicycleNumber + ", mBicycleNumber=" + mBicycleNumber + "]";
+				+ ", slots=" + slots + ", spareSlotNum=" + spareSlotNum + ", slotNum=" + slotNum + ", full=" + full
+				+ "]";
 	}
+
+
 	
-	public void notifyIncomingPassenger() {
-		// TODO
-	}
 	
 	
 	

@@ -1,7 +1,6 @@
 package myVelib;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 public class Map {
@@ -11,15 +10,22 @@ public class Map {
 	private int totalBicycleNum;
 	private int eleTotalBicycleNum;
 	private int mecTotalBicycleNum;
-	private double sizeX,sizeY;
 	private static Map instance = null;
 	
 	private Map() {}
+
+	/*
+	 * first case that station number is less than general bicycle number.(i.e enough to set each station with at least one mechanic bicycle.)
+	 */
 
 	public void init(int stationNum, int totalSlotNum) throws Exception{
 		if(stationNum < totalSlotNum) {//to avoid that 
 			throw new Exception("station number can not be more than total slot number");
 		}
+		else if(stationNum < 2.05*totalSlotNum) {//to avoid that 
+			throw new Exception("bicycles not enough for general initialization");
+		}
+		this.stationList = new ArrayList<Station>();
 		this.stationNum = stationNum;
 		this.totalSlotNum = totalSlotNum;
 		this.totalBicycleNum = (int)(0.7 * this.totalSlotNum);
@@ -27,18 +33,17 @@ public class Map {
 		this.eleTotalBicycleNum = this.totalBicycleNum - this.mecTotalBicycleNum;
 		for(int i = 0; i < stationNum; i++) {//initialize numbers
 			Random random = new Random();
-			int i1 = random.nextInt(100);
-			int i2 = random.nextInt(100);
-			GPS position = new GPS(i1,i2);
-			String stationName = "map"+Integer.toString(i);
 			float plusFlag = random.nextFloat(); 
 			boolean plus;
 			if(plusFlag < 0.2) {//probability of 0.2 to set a station into plus
 				plus = true;}
 			else {
 				plus = false;}
-			Station station = new Station(position, plus);
+			Station station = new Station(plus);
 			this.stationList.add(station);
+		}
+		for(Station station: stationList) {
+			station.addSlot(new Slot(1,0));
 		}
 		
 		for(int i = 0; i < totalSlotNum - stationNum; i++) {//to initialize slot distribution in all stations randomly
@@ -47,33 +52,31 @@ public class Map {
 			 s.addSlot(new Slot());
 		}
 		
-		/**
-		 * first case that station number is less than bicycle number.
-		 */
-		if(this.stationNum < this.mecTotalBicycleNum) {
-			for(int i = 0; i < this.stationNum; i++) {
-				for(Station s: this.stationList) {
-					s.getSlots().get(0).addmecBicycle();
-					
-				}
-			}
-			for(int i = 0; i < this.mecTotalBicycleNum - this.stationNum; i++) {
-				int index = (int) (Math.random()* this.stationList.size()); 
-				Station s = stationList.get(index);
-				if(s.isFull() == false) {
-					s.getSlots().get
-				}
-					
-			}
-			
+		int alreadySetEleNum = 0;
+		while(alreadySetEleNum < eleTotalBicycleNum) {
+			 int index = (int) (Math.random()* this.stationList.size()); 
+			 Station s = stationList.get(index);
+			 for(Slot slot: s.getSlots()) {
+				 if(!slot.isOccupied()) {
+					 slot.setBicycleInThisSlot(new EBike());
+					 alreadySetEleNum += 1;
+					 break;
+				 }
+			 }
 		}
-		else {
-			for(int i = 0; i < this.mecTotalBicycleNum; i++) {
-				for(Station s: this.stationList) {
-					s.getSlots().get(0).addmecBicycle();
-				}
-			}
-		}
+		
+		int alreadySetMecNum = mecTotalBicycleNum - stationNum;
+		while(alreadySetMecNum < mecTotalBicycleNum) {
+			 int index = (int) (Math.random()* this.stationList.size()); 
+			 Station s = stationList.get(index);
+			 for(Slot slot: s.getSlots()) {
+				 if(!slot.isOccupied()) {
+					 slot.setBicycleInThisSlot(new MBike());
+					 alreadySetMecNum += 1;
+					 break;
+				 }
+			 }
+		}	
 		instance = this; 
 	}
 	
@@ -87,11 +90,9 @@ public class Map {
 	 * @throws Exception
 	 */
 	public void init() {
-		this.sizeX = 40;
-		this.sizeY = 40;
 		this.stationList = new ArrayList <Station>();
 		for (int i=0;i<10;i++) {
-			Station s = new Station(10,0.7,0.3);
+			Station s = new Station(10);
 			this.stationList.add(s);
 		}
 		instance = this;
@@ -102,15 +103,6 @@ public class Map {
 			instance = new Map();
 		}
 		return instance;
-	}
-	
-
-	public double getSizeX() {
-		return sizeX;
-	}
-
-	public double getSizeY() {
-		return sizeY;
 	}
 
 	public ArrayList<Station> getStationList() {
@@ -138,7 +130,7 @@ public class Map {
 	}
 	
 	public void delStation(Station s) throws Exception{
-		if(Arrays.asList(this.stationList).contains(s)) {
+		if(this.stationList.contains(s)) {
 			throw new Exception("this station is not in the station list.");
 		}
 		ArrayList<Slot> slotsToDelete = s.getSlots();
@@ -155,18 +147,13 @@ public class Map {
 
 	@Override
 	public String toString() {
-		String stationListstr = "";
-		for (Station s: stationList) {
-			stationListstr += s.toString()+"\n\n";
-		}
-		return "Map [stationList=" + stationListstr + ", stationNum=" + stationNum + ", totalSlotNum=" + totalSlotNum
+		return "Map [stationList=" + stationList + ", stationNum=" + stationNum + ", totalSlotNum=" + totalSlotNum
 				+ ", totalBicycleNum=" + totalBicycleNum + ", eleTotalBicycleNum=" + eleTotalBicycleNum
 				+ ", mecTotalBicycleNum=" + mecTotalBicycleNum + "]";
 	}
 
-	public void initFromFile(String filepath) {
-		// TODO
-	}
 	
+
+
 
 }
