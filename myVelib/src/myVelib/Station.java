@@ -15,21 +15,31 @@ public class Station {
 	private boolean full;
 	private static ArrayList<Station> existedStations = new ArrayList<Station>();
 	
-	public Station(boolean plus) {//general initialization
+	public Station(boolean plus, int gridSize) throws Exception {//general initialization
 		super();
+		if(gridSize <= 1) {
+			throw new Exception("gridSize should be bigger than 1");
+		}
 		this.plus = plus;
 		this.stationId = ++idConstructor;
 		this.slots = new ArrayList<Slot>();
-		Random random = new Random();
-		this.pos = new GPS(random.nextInt(11)*4,random.nextInt(11)*4);
 		this.full = this.judgeFull();
+		boolean newGPSFlag = false;
+		do {
+			Random random = new Random();
+			GPS gps = new GPS(random.nextInt(11)*4,random.nextInt(11)*4);
+			for(Station s: existedStations) {
+				if(s.getPos().equals(gps)) {
+					newGPSFlag = true;
+				}
+			}
+		}while(newGPSFlag);
 		existedStations.add(this);
 	}	
 	
 	public Station(int slotnum, double probaBike, double probaEBike) {//0.7,0.3 initialization
 		super();
 		Random random = new Random();
-		this.pos = new GPS(random.nextInt(11)*4,random.nextInt(11)*4);
 		this.plus = (boolean)(random.nextFloat()>0.6);	
 		this.stationId = ++idConstructor;
 		this.slotNum = slotnum;
@@ -41,17 +51,34 @@ public class Station {
 			if (this.slots.get(i).getBicycleInThisSlot() == null) this.spareSlotNum++;
 		}
 		this.full = this.judgeFull();
+		boolean newGPSFlag = false;
+		do {
+			GPS gps = new GPS(random.nextInt(11)*4,random.nextInt(11)*4);
+			for(Station s: existedStations) {
+				if(s.getPos().equals(gps)) {
+					newGPSFlag = true;
+				}
+			}
+		}while(newGPSFlag);
 		existedStations.add(this);
 	}
 
 	public Station() { // 4km * 4km , 10 *10 grid , 0.4 probability of plus(chosen)
 		super();
 		Random random = new Random();
-		this.pos = new GPS(random.nextInt(11)*4,random.nextInt(11)*4);
 		this.plus = (boolean)(random.nextFloat()>0.6);	
 		this.stationId = ++idConstructor;
 		this.slots = new ArrayList<Slot>();
 		this.full = this.judgeFull();
+		boolean newGPSFlag = false;
+		do {
+			GPS gps = new GPS(random.nextInt(11)*4,random.nextInt(11)*4);
+			for(Station s: existedStations) {
+				if(s.getPos().equals(gps)) {
+					newGPSFlag = true;
+				}
+			}
+		}while(newGPSFlag);
 		existedStations.add(this);
 	}
 	
