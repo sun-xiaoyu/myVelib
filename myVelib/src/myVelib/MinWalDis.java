@@ -10,6 +10,7 @@ public class MinWalDis implements PlanningAlgo{
 		CurrentDistribution curDis = CurrentDistribution.getInstance();
 		ArrayList<Station> givenTypeAvaNotPlusStations = null;// whether this init is a correct choice in case that ArrayList can not be covered directly 
 		double ridingSpeed = 0.00001;//if not given proper bicycle type, time cost would be extremely large
+		if(request.getBikeType() == 'E') {
 			ridingSpeed = Server.eleRidingSpeed;
 			givenTypeAvaNotPlusStations = curDis.geteAvaStationList();
 		}
