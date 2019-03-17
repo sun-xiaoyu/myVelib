@@ -1,5 +1,7 @@
 package myVelib;
 
+import java.util.ArrayList;
+
 public class FastPathToDestination implements PlanningAlgo{
 	@Override
 	public Answer handle(Request request) throws Exception {
@@ -7,20 +9,27 @@ public class FastPathToDestination implements PlanningAlgo{
 		GPS endPoint = request.getEndPos();
 		CurrentDistribution curDis = CurrentDistribution.getInstance();
 		Station minStartStation = curDis.getRentableStationList().get(0);
-		Station minEndStation = curDis.getRentableStationList().get(0);
-		
+		Station minEndStation = curDis.getReturnableStationList().get(0);
+		ArrayList<Station> givenTypeAvaNotPlusStations = null;// whether this init is a correct choice in case that ArrayList can not be covered directly 
 		double ridingSpeed = 0.00001;//if not given proper bicycle type, time cost would be extremely large
-		if(request.getBikeType() == 'e') {
+		if(request.getBikeType() == 'E') {
 			ridingSpeed = Server.eleRidingSpeed;
+			givenTypeAvaNotPlusStations = curDis.geteAvaStationList();
 		}
-		if(request.getBikeType() == 'm') {
+		
+		if(request.getBikeType() == 'M') {
 			ridingSpeed = Server.mecRidingSpeed;
+			givenTypeAvaNotPlusStations = curDis.getmAvaStationList();
+		}
+
+		if(givenTypeAvaNotPlusStations.size() == 0) {
+			throw new Exception("no available station containing given type of bicycle");
 		}
 		
 		double minEndDis = Math.sqrt((minEndStation.getPos().getX() - endPoint.getX()) * (minEndStation.getPos().getX() - endPoint.getX()) + 
 				(minEndStation.getPos().getY() - endPoint.getY())*(minEndStation.getPos().getY() - endPoint.getY()));
 		
-		for(Station s: curDis.getRentableStationList()) {
+		for(Station s: curDis.getReturnableStationList()) {
 			double endDis = Math.sqrt((s.getPos().getX() - endPoint.getX())*(s.getPos().getX() - endPoint.getX()) + 
 					(s.getPos().getY() - endPoint.getY()) * (s.getPos().getY() - endPoint.getY()));
 			if( endDis < minEndDis) {

@@ -11,12 +11,18 @@ public class Request {
 	
 
 	
-	public Request(User user, GPS startPos, GPS endPos, char bikeType, String policy) {
+	public Request(User user, GPS startPos, GPS endPos, char bikeType, String policy) throws Exception{
 		super();
 		this.user = user;
 		this.startPos = startPos;
 		this.endPos = endPos;
+		if(!(bikeType == 'E') && !(bikeType == 'M')) {
+			throw new Exception("bikeTpye illegal");
+		}
 		this.bikeType = bikeType;
+		if(!(policy == "FPTD") && !(policy == "MWD")) {
+			throw new Exception("bikeTpye illegal");
+		}
 		this.policy = policy;
 		this.sendTime = Calendar.getInstance().getTimeInMillis();
 	}

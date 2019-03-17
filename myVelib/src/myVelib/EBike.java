@@ -8,6 +8,7 @@ public class EBike extends Bicycle implements BikeVisitable{
 	public EBike() {
 		super();
 		this.speed = (double)0.33;
+		this.type = 'E';
 	}
 	
 	public double accept(CardVisitor visitor, OngoingRide ongoingRide) {

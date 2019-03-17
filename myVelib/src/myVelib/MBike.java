@@ -8,6 +8,7 @@ public class MBike extends Bicycle implements BikeVisitable {
 	public MBike() {
 		super();
 		this.speed = (double)15/60;
+		this.type = 'M';
 	}
 	
 	@Override
