@@ -63,6 +63,10 @@ public class CurrentDistribution {
 	public ArrayList<Station> getRentableStationList() {
 		return rentableStationList;
 	}
+	
+	public ArrayList<Station> getNotPlusStation() {
+		return notPlusStation;
+	}
 
 	public void deleAvastation(Station s) {
 		this.eAvaStationList.remove(s);
