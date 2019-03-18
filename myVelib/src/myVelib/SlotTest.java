@@ -7,18 +7,19 @@ import org.junit.Test;
 class SlotTest {
 
 	@Test
-	void testSlotDoubleDouble() {
-		fail("Not yet implemented");
+	public void testRestore() {
+		Slot slot = new Slot();
+		Bicycle bicycle = new EBike();
+		slot.restore(bicycle);
+		assertNotNull(slot.getBicycleInThisSlot());
 	}
-
+	
 	@Test
-	void testAddEleBicycle() {		
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testAddmecBicycle() {
-		fail("Not yet implemented");
+	public void testRent() {
+		Slot slot = new Slot();
+		slot.addEleBicycle();
+		slot.removeBicycle();
+		assertNull(slot.getBicycleInThisSlot());
 	}
 
 	@Test

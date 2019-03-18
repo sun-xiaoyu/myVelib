@@ -10,7 +10,14 @@ public abstract class Ride{
 	protected double fee;
 	protected boolean ispaid;
 	protected double lengthInMin;
+	protected int timeCreditUsed;
 	
+	public boolean isIspaid() {
+		return ispaid;
+	}
+	public int getTimeCreditUsed() {
+		return timeCreditUsed;
+	}
 	public User getUser() {
 		return user;
 	}

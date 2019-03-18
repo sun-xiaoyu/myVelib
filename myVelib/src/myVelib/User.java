@@ -110,6 +110,7 @@ public class User{
 	public void payFor(OngoingRide ride) {
 		// TODO Auto-generated method stub
 		this.totalCharge += ride.charge();
+		this.card.setTimeCredit(this.card.getTimeCredit() - ride.timeCreditUsed);
 		ride.setPaid();
 		
 	}

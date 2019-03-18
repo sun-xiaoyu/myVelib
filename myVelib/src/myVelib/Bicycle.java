@@ -33,7 +33,8 @@ public abstract class Bicycle {
 
 	@Override
 	public String toString() {
-		return "Bicycle [bicycleId=" + bicycleId + ", speed=" + speed + ", ridingStatus=" + ridingStatus + "]";
+		return "Bicycle [bicycleId=" + bicycleId + ", ridingStatus=" + ridingStatus + ", type="
+				+ type + "]";
 	}
 	
 	

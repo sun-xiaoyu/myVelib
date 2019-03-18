@@ -60,16 +60,20 @@ public class Slot {
 		this.bicycleInThisSlot = bicycleInThisSlot;
 	}
 	
-	public void addEleBicycle() throws Exception{
-		EBike eBike = new EBike();
-		this.occupied = true;
-		this.setBicycleInThisSlot(eBike);
+	public void addEleBicycle(){
+		if (!this.occupied) {
+			EBike eBike = new EBike();
+			this.occupied = true;
+			this.setBicycleInThisSlot(eBike);
+		}else Server.error("Slot occupied!");
 	}
 
-	public void addMecBicycle() throws Exception{
-		MBike mBike = new MBike();
-		this.occupied = true;
-		this.setBicycleInThisSlot(mBike);
+	public void addMecBicycle(){
+		if (!this.occupied) {
+			MBike mBike = new MBike();
+			this.occupied = true;
+			this.setBicycleInThisSlot(mBike);
+		}else Server.error("Slot occupied!");
 	}
 	//TODO use pattern to get add methods more flexible.
 
