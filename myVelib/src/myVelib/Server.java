@@ -35,7 +35,7 @@ public class Server {
 	 * @param station The station where the bicycle is rented.
 	 * @param bicycleType The type of bike the user wanted.
 	 */
-	public static void rent(User user, Station station, char bicycleType) {
+	public void rent(User user, Station station, char bicycleType) {
 		if (!station.isOffline()){
 			boolean successful = false;
 			for (Slot slot: station.getSlots()) {
@@ -62,7 +62,7 @@ public class Server {
 	 * @param user The user who rents the bicycle.
 	 * @param station
 	 */
-	public static void rent(User user, Station station) {
+	public void rent(User user, Station station) {
 		if (!station.isOffline()){
 			boolean successful = false;
 			for (Slot slot: station.getSlots()) {
@@ -74,6 +74,7 @@ public class Server {
 					user.setRiding(true);
 					bicycle.setRidingStatus(true);
 					instance.ongoingRides.put(user,ride);
+					log("Rented with success.");
 					break;
 				}
 			}
@@ -88,7 +89,7 @@ public class Server {
 	 * @param user The user who returns the bicycle.
 	 * @param station The station where the bicycle is returned.
 	 */
-	public static void restore(User user, Station station) {
+	public void restore(User user, Station station) {
 		if (!station.isOffline()){
 			if (!station.judgeFull()) {
 				for (Slot slot: station.getSlots()) {
@@ -103,8 +104,34 @@ public class Server {
 						if (station.isPlus()) user.getCard().addCredit(5);
 						Record record = new Record(ride);
 						instance.ongoingRides.remove(user);
-						instance.update(record);
-						log("Returned with success, user paid" + record.getFee()+ "EUR.");
+						instance.updateStatistic(record);
+						log("Returned with success, user paid " + String.format("%.2f",record.getFee())+ " EUR.");
+						log(record.toString());
+						break;
+					}
+				}
+			} else error("Return failed. The station is full!");
+		}else error("Return failed. The station is offline!");
+	}
+	
+	public void restoreAfter(User user, Station station, double LengthInMin) {
+		if (!station.isOffline()){
+			if (!station.judgeFull()) {
+				for (Slot slot: station.getSlots()) {
+					if (!slot.isOccupied()) {
+						OngoingRide ride = instance.ongoingRides.get(user);
+						ride.endAfter(station,LengthInMin);
+						Bicycle bicycle = ride.getBicycle();
+						slot.restore(bicycle);
+						user.setRiding(false);
+						bicycle.setRidingStatus(false);
+						user.payFor(ride);
+						if (station.isPlus() && user.isWithCard()) user.getCard().addCredit(5);
+						Record record = new Record(ride);
+						instance.ongoingRides.remove(user);
+						instance.updateStatistic(record);
+						log("Returned with success, user paid " + String.format("%.2f",record.getFee())+ " EUR.");
+						log(record.toString());
 						break;
 					}
 				}
@@ -116,7 +143,7 @@ public class Server {
 	 * This method is used to maintain the user balance and station balance using the information stored in record.
 	 * @param record
 	 */
-	private void update(Record record) {
+	private void updateStatistic(Record record) {
 		// TODO Auto-generated method stub
 		
 	}

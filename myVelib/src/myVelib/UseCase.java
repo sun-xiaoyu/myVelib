@@ -24,20 +24,36 @@ public class UseCase {
 		server.addUser(Bob);
 		Bob.addCard(new VmaxCard(Bob));
 		
-		Station s = map.getStationList().get(5);
-		Station d = map.getStationList().get(6);
+		Station s1 = map.getStationList().get(1);
+		Station s5 = map.getStationList().get(5);
+		Station s6 = map.getStationList().get(6);
 		
-		//Bob went to s, the source station as indicated in s1
+		//Bob went to s, the source station
 		//Bob pick up a bike at random
-		//Bob identifies herself at the terminal and successfully picked the bike and rides away.
+		//Bob identifies himself at the terminal and successfully picked the bike and rides away.
 
-		Server.rent(Bob,s); 
-		// Bob just rent a bike b form the station s. All these 3 objects needs to change their status together. In the means time the server generate a new Ride object to record this event.
+		server.rent(Bob,s5); 
+		// Bob just rent a bike b form the station s. All these 3 objects needs to change their status together. 
+		// In the means time the server generate a new Ride object to record this event.
 
 		//Bob is riding the bike.
 		//Bob arrived at station d
-		Server.restore(Bob,d);
-		// Bob just rent a bike b form the station d. All these 3 objects needs to change their status together. In the means time the server generate a new Record object to record this event.
-
+		server.restore(Bob,s6);
+		// Bob just rent a bike b form the station d. All these 3 objects needs to change their status together. 
+		// In the means time the server generate a new Record object to record this event.
+		
+		User Alix = new User();
+		server.addUser(Alix);
+		Alix.addCard(new VlibreCard(Alix));
+		
+		s6.setPlus(true);
+		Server.log(s1.toString());
+		Server.log(s6.toString());
+		for (int i=0;i<5;i++) {
+			server.rent(Alix, s1);
+			server.restoreAfter(Alix, s6, 125);
+		}
+		Server.log(s1.toString());
+		Server.log(s6.toString());		
 	}
 }
