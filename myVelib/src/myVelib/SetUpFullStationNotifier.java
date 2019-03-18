@@ -14,9 +14,13 @@ public class SetUpFullStationNotifier {
 		this.fullStation = fullStation;
 	}
 	
-	public void notifyFullStation(User user) {
+	public void notifyFullStation(ObserverFullStation user) {
+		ObservableFullStation observableFullStation = new ObservableFullStation(fullStation);
+		observableFullStation.registerObserver(user);
+		
 		
 	}
+	
 	
 	
 	

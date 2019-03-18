@@ -2,7 +2,7 @@ package myVelib;
 
 import java.util.ArrayList;
 
-public class EBikeEmpty implements Observable{
+public class ObservableEBikeEmpty implements Observable{
 	/**
 	 *  when number of electronic bike in a station is used up, 
 	 *  all related observers should receive notification
@@ -10,7 +10,7 @@ public class EBikeEmpty implements Observable{
 	private ArrayList<Observer> observers = new ArrayList<Observer>();
 	private boolean changed;
 	private Station station;
-	public EBikeEmpty(Station station) {
+	public ObservableEBikeEmpty(Station station) {
 		this.station = station;
 		this.changed = false;
 	}

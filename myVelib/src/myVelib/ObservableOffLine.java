@@ -2,15 +2,14 @@ package myVelib;
 
 import java.util.ArrayList;
 
-public class FullStation implements Observable{
+public class ObservableOffLine implements Observable{
 	/**
-	 *  when  a station is full, 
-	 *  all related observers should receive notification
+	 *  when a station is set offline, all related observers should receive notification
 	 */
 	private ArrayList<Observer> observers = new ArrayList<Observer>();
 	private boolean changed;
 	private Station station;
-	public FullStation(Station station) {
+	public ObservableOffLine(Station station) {
 		this.station = station;
 		this.changed = false;
 	}
@@ -35,4 +34,3 @@ public class FullStation implements Observable{
 	}
 
 }
-

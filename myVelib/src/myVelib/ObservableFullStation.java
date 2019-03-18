@@ -2,15 +2,15 @@ package myVelib;
 
 import java.util.ArrayList;
 
-public class MBikeEmpty implements Observable{
+public class ObservableFullStation implements Observable{
 	/**
-	 *  when number of mechanic bike in a station is used up, 
+	 *  when  a station is full, 
 	 *  all related observers should receive notification
 	 */
 	private ArrayList<Observer> observers = new ArrayList<Observer>();
 	private boolean changed;
 	private Station station;
-	public MBikeEmpty(Station station) {
+	public ObservableFullStation(Station station) {
 		this.station = station;
 		this.changed = false;
 	}

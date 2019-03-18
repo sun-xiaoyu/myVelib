@@ -2,14 +2,15 @@ package myVelib;
 
 import java.util.ArrayList;
 
-public class OffLine implements Observable{
+public class ObservableMBikeEmpty implements Observable{
 	/**
-	 *  when a station is set offline, all related observers should receive notification
+	 *  when number of mechanic bike in a station is used up, 
+	 *  all related observers should receive notification
 	 */
 	private ArrayList<Observer> observers = new ArrayList<Observer>();
 	private boolean changed;
 	private Station station;
-	public OffLine(Station station) {
+	public ObservableMBikeEmpty(Station station) {
 		this.station = station;
 		this.changed = false;
 	}
@@ -34,3 +35,4 @@ public class OffLine implements Observable{
 	}
 
 }
+
