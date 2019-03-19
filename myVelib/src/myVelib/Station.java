@@ -14,6 +14,9 @@ public class Station {
 	private static int idConstructor;
 	private boolean full;
 	private static ArrayList<Station> existedStations = new ArrayList<Station>();
+	private ObservableStation rentObservableStation;
+	private ObservableStation returnObservableStation;
+	
 	
 	/**
 	 * general initialization
@@ -24,6 +27,7 @@ public class Station {
 	public Station(boolean plus, int gridSize) throws Exception {
 		super();
 		if(gridSize <= 1) {
+			
 			throw new Exception("gridSize should be bigger than 1");
 		}
 		Random random = new Random();
@@ -98,7 +102,7 @@ public class Station {
 		existedStations.add(this);
 	}
 	
-	int getStationId() {
+	public int getStationId() {
 		return stationId;
 	}
 
@@ -108,6 +112,8 @@ public class Station {
 
 	public void setOffline(boolean offline) {
 		this.offline = offline;
+		this.rentObservableStation.notifyObservers();
+		this.returnObservableStation.notifyObservers();
 	}
 
 	public GPS getPos() {
@@ -135,11 +141,14 @@ public class Station {
 	}
 
 	public boolean isFull() {
-		return full;
-	}
-
-	public void setFull(boolean full) {
-		this.full = full;
+		this.full = true;
+		for(Slot slot: this.slots) {
+			if(slot.isOccupied() == false) {
+				this.full = false;
+				break;
+			}
+		}
+		return this.full;
 	}
 
 	public int getEBicycleNumber() {
@@ -170,6 +179,14 @@ public class Station {
 			}
 		}
 		return bicycleNumber;
+	}
+
+	public ObservableStation getRentObservableStation() {
+		return rentObservableStation;
+	}
+
+	public ObservableStation getReturnObservableStation() {
+		return returnObservableStation;
 	}
 
 	public void addSlot(Slot slot) {
@@ -214,10 +231,10 @@ public class Station {
 			for(Slot slot: this.slots) {
 				if(slot.getBicycleInThisSlot() == b) {
 					b.setRidingStatus(true);
-					slot.setOccupied(false);
+					slot.removeBicycle();
 					this.spareSlotNum += 1;
 					if(this.spareSlotNum > slotNum) {
-						throw new Exception("spareSlotNum > slotNum");
+						Server.error("spareSlotNum > slotNum");
 					}
 					break;
 				}
@@ -238,7 +255,7 @@ public class Station {
 		else if(this.getSpareSlotNum() == 0) {
 			throw new IllegalArgumentException("this station has no spare slot");
 		}
-		s.setOccupied(true);
+		s.restore(b);
 		b.setRidingStatus(false);
 		this.spareSlotNum -= 1;
 		if(spareSlotNum < 0) {

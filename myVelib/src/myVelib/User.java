@@ -1,6 +1,6 @@
 package myVelib;
 
-public class User{
+public class User implements Observer{
 	private int userId;
 	private String name;
 	private boolean riding;
@@ -105,6 +105,15 @@ public class User{
 		this.totalTime += timeAdd;
 		this.totalCharge += chargeAdd;
 		
+	}
+	
+	/**
+	 * 
+	 */
+	
+	@Override
+	public void update(Station station) {
+		System.out.println(this.getName()+ ", station" + station.getStationId() + "is full,you can not return bike to it.");
 	}
 
 	public void payFor(OngoingRide ride) {

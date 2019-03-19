@@ -1,7 +1,6 @@
 package myVelib;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 
 public class Server {
@@ -34,21 +33,22 @@ public class Server {
 	 * @param user The user who rents the bicycle.
 	 * @param station The station where the bicycle is rented.
 	 * @param bicycleType The type of bike the user wanted.
+	 * @throws Exception 
 	 */
-	public void rent(User user, Station station, char bicycleType) {
+	public void rent(User user, Station station, char bicycleType) throws Exception{
 		if (!station.isOffline()){
 			boolean successful = false;
 			for (Slot slot: station.getSlots()) {
 				if (slot.isOccupied()) {
 					Bicycle bicycle = slot.getBicycleInThisSlot();
-					if (bicycle instanceof MBike && bicycleType == 'm' || bicycle instanceof EBike && bicycleType == 'e') {
+					if (bicycle instanceof MBike && bicycleType == 'M' || bicycle instanceof EBike && bicycleType == 'E') {
 						successful = true;
+						station.getRentObservableStation().removeObserver(user);
+						station.rentBicycle(bicycle);
+						
 						OngoingRide ride = new OngoingRide(user, station, bicycle);
-						slot.removeBicycle();
 						user.setRiding(true);
-						bicycle.setRidingStatus(true);
 						instance.ongoingRides.put(user,ride);
-						slot.removeBicycle();
 						break;
 					}
 				}
@@ -61,18 +61,18 @@ public class Server {
 	 * A user tries to rent a bike at station, where the type of bike does not metter.
 	 * @param user The user who rents the bicycle.
 	 * @param station
+	 * @throws Exception 
 	 */
-	public void rent(User user, Station station) {
+	public void rent(User user, Station station) throws Exception {
 		if (!station.isOffline()){
 			boolean successful = false;
 			for (Slot slot: station.getSlots()) {
 				if (slot.isOccupied()) {
 					Bicycle bicycle = slot.getBicycleInThisSlot();
 					successful = true;
+					station.rentBicycle(bicycle);
 					OngoingRide ride = new OngoingRide(user, station, bicycle);
-					slot.removeBicycle();
 					user.setRiding(true);
-					bicycle.setRidingStatus(true);
 					instance.ongoingRides.put(user,ride);
 					log("Rented with success.");
 					break;
@@ -88,8 +88,10 @@ public class Server {
 	 * This might lead to prevent a bug, which a user might use two cards to alternate renting bikes at return everyone in an hour.??	 *
 	 * @param user The user who returns the bicycle.
 	 * @param station The station where the bicycle is returned.
+	 * @throws Exception 
+	 * @throws IllegalArgumentException 
 	 */
-	public void restore(User user, Station station) {
+	public void restore(User user, Station station) throws IllegalArgumentException, Exception {
 		if (!station.isOffline()){
 			if (!station.judgeFull()) {
 				for (Slot slot: station.getSlots()) {
@@ -97,9 +99,8 @@ public class Server {
 						OngoingRide ride = instance.ongoingRides.get(user);
 						ride.endAt(station);
 						Bicycle bicycle = ride.getBicycle();
-						slot.restore(bicycle);
+						station.returnBicycle(bicycle, slot);
 						user.setRiding(false);
-						bicycle.setRidingStatus(false);
 						user.payFor(ride);
 						if (station.isPlus()) user.getCard().addCredit(5);
 						Record record = new Record(ride);
@@ -107,6 +108,10 @@ public class Server {
 						instance.updateStatistic(record);
 						log("Returned with success, user paid " + String.format("%.2f",record.getFee())+ " EUR.");
 						log(record.toString());
+						station.getReturnObservableStation().removeObserver(user);;
+						if(station.isFull()) {
+							station.getReturnObservableStation().notifyObservers();
+						}
 						break;
 					}
 				}
@@ -114,7 +119,7 @@ public class Server {
 		}else error("Return failed. The station is offline!");
 	}
 	
-	public void restoreAfter(User user, Station station, double LengthInMin) {
+	public void restoreAfter(User user, Station station, double LengthInMin) throws IllegalArgumentException, Exception {
 		if (!station.isOffline()){
 			if (!station.judgeFull()) {
 				for (Slot slot: station.getSlots()) {
@@ -122,9 +127,8 @@ public class Server {
 						OngoingRide ride = instance.ongoingRides.get(user);
 						ride.endAfter(station,LengthInMin);
 						Bicycle bicycle = ride.getBicycle();
-						slot.restore(bicycle);
+						station.returnBicycle(bicycle, slot);
 						user.setRiding(false);
-						bicycle.setRidingStatus(false);
 						user.payFor(ride);
 						if (station.isPlus() && user.isWithCard()) user.getCard().addCredit(5);
 						Record record = new Record(ride);
@@ -132,6 +136,7 @@ public class Server {
 						instance.updateStatistic(record);
 						log("Returned with success, user paid " + String.format("%.2f",record.getFee())+ " EUR.");
 						log(record.toString());
+						station.getReturnObservableStation().removeObserver(user);;
 						break;
 					}
 				}

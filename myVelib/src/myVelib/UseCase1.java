@@ -30,7 +30,7 @@ public class UseCase1 {
 		 * Alice wish to change to the ¡°fastest¡± policy
 		 */
 		
-		Alice.setPolicy("fastest");
+		Alice.setPolicy("FPTD");
 		//rq = Alice.send(); // no parameter means send the former request, but with her newly chosen policy.
 		Solution solution2 = server.handle(rq);
 		// Server.send(Alice, s2);

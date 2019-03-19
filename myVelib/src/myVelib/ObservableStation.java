@@ -2,7 +2,7 @@ package myVelib;
 
 import java.util.ArrayList;
 
-public class ObservableFullStation implements Observable{
+public class ObservableStation implements Observable{
 	/**
 	 *  when  a station is full, 
 	 *  all related observers should receive notification
@@ -10,10 +10,7 @@ public class ObservableFullStation implements Observable{
 	private ArrayList<Observer> observers = new ArrayList<Observer>();
 	private boolean changed;
 	private Station station;
-	public ObservableFullStation(Station station) {
-		this.station = station;
-		this.changed = false;
-	}
+	
 	@Override
 	public void registerObserver(Observer observer) {
 		observers.add(observer);}

@@ -59,7 +59,15 @@ public class Solution {
 	public void setTotalDis(double totalDis) {
 		this.totalDis = totalDis;
 	}
+	
+	
 
+
+	@Override
+	public String toString() {
+		return "Solution [startStation=" + startStation + ", endStation=" + endStation + ", totalTime=" + totalTime
+				+ ", totalDis=" + totalDis + "]";
+	}
 
 	public void solve() {
 		Answer ans;
@@ -69,6 +77,9 @@ public class Solution {
 			this.startStation = ans.getStartStation();
 			this.totalDis = ans.getTotalDis();
 			this.totalTime = ans.getTotalTime();
+			System.out.println(this);
+			this.getStartStation().getRentObservableStation().registerObserver(this.rq.getUser());
+			this.getEndStation().getReturnObservableStation().registerObserver(this.rq.getUser());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
