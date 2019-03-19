@@ -1,7 +1,7 @@
 package myVelib;
 
 public class UseCase1 {	
-	public static void main(String [] args) throws Exception {
+	/**public static void main(String [] args) throws Exception {
 		Map map = Map.getInstance();
 //		System.out.println(map);
 		map.init();		
@@ -55,5 +55,5 @@ public class UseCase1 {
 		endStation.notifyIncomingPassenger();// This method triggers the observation pattern.
 		// TODO
 		//========Î´Íê´ýÐø========
-	}
+	}**/
 }
