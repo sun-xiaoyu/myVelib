@@ -35,38 +35,22 @@ public class Solution {
 	public void setSolver(PlanningAlgo solver) {
 		this.algo = solver;
 	}
-
-
-
 	public double getTotalTime() {
 		return totalTime;
 	}
-
-
-
 	public void setTotalTime(double totalTime) {
 		this.totalTime = totalTime;
 	}
-
-
-
 	public double getTotalDis() {
 		return totalDis;
 	}
-
-
-
 	public void setTotalDis(double totalDis) {
 		this.totalDis = totalDis;
 	}
-	
-	
-
-
 	@Override
 	public String toString() {
 		return "Solution [startStation=" + startStation + ", endStation=" + endStation + ", totalTime=" + totalTime
-				+ ", totalDis=" + totalDis + "]";
+				+ ", totalDis=" + totalDis + "]" + rq;
 	}
 
 	public void solve() {

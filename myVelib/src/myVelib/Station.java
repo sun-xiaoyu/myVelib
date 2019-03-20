@@ -14,8 +14,8 @@ public class Station {
 	private static int idConstructor;
 	private boolean full;
 	private static ArrayList<Station> existedStations = new ArrayList<Station>();
-	private ObservableStation rentObservableStation;
-	private ObservableStation returnObservableStation;
+	private ObservableStation rentObservableStation = new ObservableStation(this);
+	private ObservableStation returnObservableStation = new ObservableStation(this);
 	
 	
 	/**
@@ -112,8 +112,8 @@ public class Station {
 
 	public void setOffline(boolean offline) {
 		this.offline = offline;
-		this.rentObservableStation.notifyObservers();
-		this.returnObservableStation.notifyObservers();
+		this.rentObservableStation.setAvailability();;
+		this.returnObservableStation.setAvailability();;
 	}
 
 	public GPS getPos() {
@@ -274,7 +274,4 @@ public class Station {
 				+ ", eBicycleNumber=" + this.getEBicycleNumber() + ", mBicycleNumber=" + this.getMBicycleNumber() + "]";
 	}
 
-	public void notifyIncomingPassenger() {
-		// TODO
-	}
 }

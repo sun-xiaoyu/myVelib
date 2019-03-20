@@ -15,6 +15,8 @@ public class Server {
 	public static final double mecRidingSpeed = (double)15/60;
 	public static final double eleRidingSpeed = (double)20/60;
 	private static Server instance;
+	private static String[] policies = {"FPTD", "MWD", "PPS", "POU", "APS"};
+	private static String[] bikeTypes = {"E", "M"};
 
 	private Server() {
 		this.records = new ArrayList <Record>();
@@ -28,6 +30,13 @@ public class Server {
 		return instance;
 	}
 	
+	public static String[] getPolicies() {
+		return policies;
+	}
+	
+	public static String[] getBikeTypes() {
+		return bikeTypes;
+	}
 	/**
 	 * A user try to rent a bicycle of a certain type.
 	 * @param user The user who rents the bicycle.
@@ -94,7 +103,7 @@ public class Server {
 	public void restore(User user, Station station) throws IllegalArgumentException, Exception {
 		if (!station.isOffline()){
 			if (!station.judgeFull()) {
-				for (Slot slot: station.getSlots()) {
+				for(Slot slot: station.getSlots()) {
 					if (!slot.isOccupied()) {
 						OngoingRide ride = instance.ongoingRides.get(user);
 						ride.endAt(station);
@@ -108,10 +117,11 @@ public class Server {
 						instance.updateStatistic(record);
 						log("Returned with success, user paid " + String.format("%.2f",record.getFee())+ " EUR.");
 						log(record.toString());
-						station.getReturnObservableStation().removeObserver(user);;
+						station.getReturnObservableStation().removeObserver(user);
 						if(station.isFull()) {
-							station.getReturnObservableStation().notifyObservers();
+							station.getReturnObservableStation().setAvailability();
 						}
+						
 						break;
 					}
 				}
@@ -137,6 +147,7 @@ public class Server {
 						log("Returned with success, user paid " + String.format("%.2f",record.getFee())+ " EUR.");
 						log(record.toString());
 						station.getReturnObservableStation().removeObserver(user);;
+						//TODO if return station is empty, try to find out a method of dealing with it
 						break;
 					}
 				}

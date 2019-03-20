@@ -3,6 +3,7 @@ package myVelib;
 import java.util.ArrayList;
 
 public class MinWalDis implements PlanningAlgo{
+	@SuppressWarnings("unchecked")
 	@Override
 	public Answer handle(Request request) throws Exception {
 		GPS startPoint = request.getStartPos();
@@ -10,14 +11,14 @@ public class MinWalDis implements PlanningAlgo{
 		CurrentDistribution curDis = CurrentDistribution.getInstance();
 		ArrayList<Station> givenTypeAvaStations = null;// whether this init is a correct choice in case that ArrayList can not be covered directly 
 		double ridingSpeed = 0.00001;//if not given proper bicycle type, time cost would be extremely large
-		if(request.getBikeType() == 'E') {
+		if(request.getBikeType().equalsIgnoreCase("E")) {
 			ridingSpeed = Server.eleRidingSpeed;
-			givenTypeAvaStations = curDis.geteAvaStationList();
+			givenTypeAvaStations = (ArrayList<Station>) curDis.getmAvaStationList().clone();
 		}
 		
-		if(request.getBikeType() == 'M') {
+		if(request.getBikeType().equalsIgnoreCase("M")) {
 			ridingSpeed = Server.mecRidingSpeed;
-			givenTypeAvaStations = curDis.getmAvaStationList();
+			givenTypeAvaStations = (ArrayList<Station>) curDis.getmAvaStationList().clone();
 		}
 		
 		if(givenTypeAvaStations.size() == 0) {
@@ -56,7 +57,7 @@ public class MinWalDis implements PlanningAlgo{
 		double minDis = minStartDis + minEndDis + 
 				(Math.abs(minStartStation.getPos().getX() - minEndStation.getPos().getX()) +
 				Math.abs(minStartStation.getPos().getY() - minEndStation.getPos().getY()));
-		if(minTime > 500) {
+		if(minTime > 5000) {
 			throw new Exception("BikeType input illegal.");
 		}
 		

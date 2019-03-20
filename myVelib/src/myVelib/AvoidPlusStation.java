@@ -11,12 +11,12 @@ public class AvoidPlusStation implements PlanningAlgo{
 		ArrayList<Station> givenTypeAvaStations = null;// whether this init is a correct choice in case that ArrayList can not be covered directly 
 		ArrayList<Station> notPlusReturnableStation = curDis.getRetunableStationList();
 		double ridingSpeed = 0.00001;//if not given proper bicycle type, time cost would be extremely large
-		if(request.getBikeType() == 'E') {
+		if(request.getBikeType().equalsIgnoreCase("E")) {
 			ridingSpeed = Server.eleRidingSpeed;
 			givenTypeAvaStations = curDis.geteAvaStationList();
 		}
 		
-		if(request.getBikeType() == 'M') {
+		if(request.getBikeType().equalsIgnoreCase("M")) {
 			ridingSpeed = Server.mecRidingSpeed;
 			givenTypeAvaStations = curDis.getmAvaStationList();
 		}

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Map {
+	/**
+	 * size in kilometer and speed in km/min. map to hold number information. single pattern used.
+	 */
 	private ArrayList <Station> stationList; 
 	private int stationNum;
 	private int totalSlotNum;

@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 class SlotTest {
-
 	@Test
 	public void testRestore() {
 		Slot slot = new Slot();

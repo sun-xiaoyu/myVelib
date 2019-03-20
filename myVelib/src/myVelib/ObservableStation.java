@@ -11,6 +11,9 @@ public class ObservableStation implements Observable{
 	private boolean changed;
 	private Station station;
 	
+	public ObservableStation(Station station) {
+		this.station = station;
+	}
 	@Override
 	public void registerObserver(Observer observer) {
 		observers.add(observer);}
@@ -21,12 +24,12 @@ public class ObservableStation implements Observable{
 	public void notifyObservers() {
 		if (this.changed) {
 			for (Observer ob : observers)
-			ob.update(this.station);
+				ob.update(this.station);
 			this.changed = false;
 		}
 	}
 	// setInterest() invoke notifyObserver()
-	public void setInterest(float i) {
+	public void setAvailability() {
 		this.changed = true;
 		this.notifyObservers();
 	}

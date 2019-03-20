@@ -14,11 +14,8 @@ public class User implements Observer{
 	
 	public User() {
 		super();
-		this.name = "NoName";
-		String strId = String.format("%5d", idConstructor).replace(" ", "0"); 
-		int intId = Integer.parseInt(strId);		
-		this.userId = intId;
-		idConstructor += 1;
+		this.name = "NoName";	
+		this.userId = ++idConstructor;
 		this.withCard = false;
 		this.riding = false;
 		this.totalRides = 0;
@@ -29,9 +26,7 @@ public class User implements Observer{
 	public User(String name) {
 		super();
 		this.name = name;
-		String strId = String.format("%5d", idConstructor).replace(" ", "0"); 
-		int intId = Integer.parseInt(strId);		
-		this.userId = intId;
+		this.userId = ++idConstructor;
 		idConstructor += 1;
 		this.withCard = false;
 		this.riding = false;
@@ -113,7 +108,7 @@ public class User implements Observer{
 	
 	@Override
 	public void update(Station station) {
-		System.out.println(this.getName()+ ", station" + station.getStationId() + "is full,you can not return bike to it.");
+		System.out.println(this.getName()+ ", station " + station.getStationId() + "is offline or full, you can not return bike to it.");
 	}
 
 	public void payFor(OngoingRide ride) {
