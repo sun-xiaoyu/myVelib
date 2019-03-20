@@ -14,7 +14,7 @@ public class FastPathToDestinationTest {
 		Random random = new Random();
 		GPS startPos = new GPS(random.nextInt(41),random.nextInt(41));
 		GPS endPos = new GPS(random.nextInt(41),random.nextInt(41));
-		char bikeType = 'E';
+		String bikeType = "E";
 		String policy = "FPTD";
 		Request request = new Request(bob, startPos, endPos, bikeType, policy);
 		FastPathToDestination FPTD = new FastPathToDestination();

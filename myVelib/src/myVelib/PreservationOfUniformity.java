@@ -61,11 +61,11 @@ public class PreservationOfUniformity implements PlanningAlgo{
 					(s.getPos().getY() - startPoint.getY())*(s.getPos().getY() - startPoint.getY()));
 			boolean flag1 = (betterStartDis < 1.05*minStartDis);
 			boolean flag2 = false;
-			if(request.getBikeType() == 'E') {
+			if(request.getBikeType() == "E") {
 				if(s.getEBicycleNumber() > minStartStation.getEBicycleNumber());
 				flag2 = true;
 			}
-			else if(request.getBikeType() == 'M') {
+			else if(request.getBikeType() == "M") {
 				if(s.getMBicycleNumber() > minStartStation.getMBicycleNumber());
 				flag2 = true;
 			}
