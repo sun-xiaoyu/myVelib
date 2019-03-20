@@ -7,6 +7,7 @@ public class Server {
 	private ArrayList <Record> records;
 	private ArrayList <User> users;
 	private HashMap<User, OngoingRide> ongoingRides;
+	private HashMap<User, Solution> solutions;
 	private double occupation = 0.3;
 	private double eleRate = 0.3;
 	private int numEleBicyle;
@@ -30,6 +31,9 @@ public class Server {
 		return instance;
 	}
 	
+	public HashMap<User, Solution> getSolutions() {
+		return solutions;
+	}
 	public static String[] getPolicies() {
 		return policies;
 	}
@@ -87,6 +91,7 @@ public class Server {
 					break;
 				}
 			}
+			
 			if (!successful) error("Rent failed. The station does not have any bike!");
 		}else error("Rent failed. The station is offline!");
 	}
@@ -114,6 +119,7 @@ public class Server {
 						if (station.isPlus()) user.getCard().addCredit(5);
 						Record record = new Record(ride);
 						instance.ongoingRides.remove(user);
+						instance.solutions.remove(user);
 						instance.updateStatistic(record);
 						log("Returned with success, user paid " + String.format("%.2f",record.getFee())+ " EUR.");
 						log(record.toString());
@@ -143,6 +149,7 @@ public class Server {
 						if (station.isPlus() && user.isWithCard()) user.getCard().addCredit(5);
 						Record record = new Record(ride);
 						instance.ongoingRides.remove(user);
+						instance.solutions.remove(user);
 						instance.updateStatistic(record);
 						log("Returned with success, user paid " + String.format("%.2f",record.getFee())+ " EUR.");
 						log(record.toString());
@@ -167,6 +174,10 @@ public class Server {
 	public Solution handle(Request rq) {
 		Solution solution = new Solution(rq);
 		solution.solve();
+		if(solution.getStartStation().equals(solution.getEndStation())) {
+			System.out.println("no need to rend a bike as this policy leads to the same start and end stations");
+			return null;
+		}
 		return solution;
 	}
 	
@@ -182,9 +193,6 @@ public class Server {
 		instance.users.add(user);
 	}
 	
-	public static void addPlannedRide(Solution s1) {
-		// TODO Auto-generated method stub
-		
-	}
+
 }
 

@@ -16,15 +16,23 @@ public class ObservableStation implements Observable{
 	}
 	@Override
 	public void registerObserver(Observer observer) {
-		observers.add(observer);}
+		if(!observers.contains(observer))
+			observers.add(observer);}
 	@Override
 	public void removeObserver(Observer observer) {
-		observers.remove(observer);}
+		if(observers.contains(observer)) {
+			observers.remove(observer);}
+		else {
+			System.out.println("observers is trying to delete an observer which doesn't exist in it!");
+		}
+	}
 	@Override
 	public void notifyObservers() {
 		if (this.changed) {
 			for (Observer ob : observers)
-				ob.update(this.station);
+				if (((User)ob).isRiding()) {
+					ob.update(this.station);
+				}
 			this.changed = false;
 		}
 	}
@@ -33,6 +41,5 @@ public class ObservableStation implements Observable{
 		this.changed = true;
 		this.notifyObservers();
 	}
-
 }
 

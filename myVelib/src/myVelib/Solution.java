@@ -62,11 +62,17 @@ public class Solution {
 			this.totalDis = ans.getTotalDis();
 			this.totalTime = ans.getTotalTime();
 			System.out.println(this);
-			this.getStartStation().getRentObservableStation().registerObserver(this.rq.getUser());
-			this.getEndStation().getReturnObservableStation().registerObserver(this.rq.getUser());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
+	}
+	
+	public void accept() {
+		if(this != null) {
+			Server server = Server.getInstance();
+			server.getSolutions().put(this.rq.getUser(),this);
+			this.getEndStation().getReturnObservableStation().registerObserver(this.rq.getUser());
+		}
 	}
 }
