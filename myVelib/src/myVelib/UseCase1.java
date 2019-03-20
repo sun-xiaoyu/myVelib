@@ -18,6 +18,7 @@ public class UseCase1 {
 	GPS massy = new GPS();
 	Request rq = new Request(Alice, moulon, massy, "e", "MWD"); 
 	
+
 	/**
 	 * User didn't indicate the ride planning policy.Server
 	 * this solver uses the default ride planning policy.
