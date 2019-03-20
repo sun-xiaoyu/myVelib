@@ -38,7 +38,8 @@ public class UseCase1 {
 	
 	//The client  Alice recieve the information about the ride accepct s1. She then clicks ¡°start¡±.
 	// Alice.accept(s1);
-	Server.addPlannedRide(solution1);
+	
+	solution2.accept();
 	
 	Station startStaion,endStation;
 	startStaion = solution1.getStartStation();

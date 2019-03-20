@@ -14,7 +14,6 @@ public class Station {
 	private static int idConstructor;
 	private boolean full;
 	private static ArrayList<Station> existedStations = new ArrayList<Station>();
-	private ObservableStation rentObservableStation = new ObservableStation(this);
 	private ObservableStation returnObservableStation = new ObservableStation(this);
 	
 	
@@ -112,7 +111,6 @@ public class Station {
 
 	public void setOffline(boolean offline) {
 		this.offline = offline;
-		this.rentObservableStation.setAvailability();;
 		this.returnObservableStation.setAvailability();;
 	}
 
@@ -137,6 +135,12 @@ public class Station {
 	}
 	
 	public int getSpareSlotNum() {
+		int spareSlotNum = 0;
+		for(Slot slot: this.slots) {
+			if(!slot.isOccupied()) {
+				spareSlotNum +=1;
+			}
+		}		
 		return spareSlotNum;
 	}
 
@@ -179,10 +183,6 @@ public class Station {
 			}
 		}
 		return bicycleNumber;
-	}
-
-	public ObservableStation getRentObservableStation() {
-		return rentObservableStation;
 	}
 
 	public ObservableStation getReturnObservableStation() {
@@ -270,7 +270,7 @@ public class Station {
 			slotsstr += '\t'+ s.toString()+"\n";
 		}
 		return "Station [stationId=" + stationId + ", offline=" + offline + ", pos=" + pos + ", plus=" + plus
-				+ ", slots=\n" + slotsstr + ", spareSlotNum=" + spareSlotNum + ", slotNum=" + slotNum + ", full=" + full
+				+ ", slots=\n" + slotsstr + ", spareSlotNum=" + this.getSpareSlotNum() + ", slotNum=" + this.getSlotNum() + ", full=" + full
 				+ ", eBicycleNumber=" + this.getEBicycleNumber() + ", mBicycleNumber=" + this.getMBicycleNumber() + "]";
 	}
 
