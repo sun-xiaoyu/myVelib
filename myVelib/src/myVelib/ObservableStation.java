@@ -41,6 +41,5 @@ public class ObservableStation implements Observable{
 		this.changed = true;
 		this.notifyObservers();
 	}
-
 }
 
