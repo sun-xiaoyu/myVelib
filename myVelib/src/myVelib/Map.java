@@ -174,7 +174,10 @@ public class Map {
 		// TODO
 	}
 	
-
+	map.serize
+	map.deserialize
+	map.show/display
+	
 
 
 }

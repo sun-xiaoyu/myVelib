@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_Z-DOQEtKEeml1uA_KjGiHw" name="myVelib">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_aLIA8EtKEeml1uA_KjGiHw">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_JbOesEtWEeml1uA_KjGiHw">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_v8kUAEtKEeml1uA_KjGiHw" name="Server"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_X0g4cEtWEeml1uA_KjGiHw" name="GPS">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_mWhwYEtWEeml1uA_KjGiHw" name="x" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_2kz84EtWEeml1uA_KjGiHw" name="y" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_9Co78EtWEeml1uA_KjGiHw" name="Slot">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Ma1N8EtXEeml1uA_KjGiHw" name="iD" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_XTjrAEtXEeml1uA_KjGiHw" name="isOccupied" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_bP5kwEtXEeml1uA_KjGiHw" name="idConstructor" visibility="private" isStatic="true" aggregation="shared">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_hd-QkEtXEeml1uA_KjGiHw" name="bicycleInThisSlot" visibility="private" type="_-HFbgEtWEeml1uA_KjGiHw"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_A9ucAEtYEeml1uA_KjGiHw" name="remove"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_VfFnQEtYEeml1uA_KjGiHw" name="restore">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_ZOq3YEtYEeml1uA_KjGiHw" name="bicycle" type="_-HFbgEtWEeml1uA_KjGiHw"/>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_-HFbgEtWEeml1uA_KjGiHw" name="Bicycle" isAbstract="true">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_hkB_0EtYEeml1uA_KjGiHw" name="iD">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_kd36wEtYEeml1uA_KjGiHw" name="speed">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_omYBMEtYEeml1uA_KjGiHw" name="ridingStatus">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_tybPUEtYEeml1uA_KjGiHw" name="type">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_HSQfsEtZEeml1uA_KjGiHw" name="BikeVisitable">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_xAATsEtaEeml1uA_KjGiHw" name="accept">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_0xx8MEtaEeml1uA_KjGiHw" name="visitor" type="_NnpJcEvSEemxSL-LtUE-zQ"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="__TvJgEvSEemxSL-LtUE-zQ" name="ride" type="_9r4l4EtZEeml1uA_KjGiHw"/>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_5JxFkEtZEeml1uA_KjGiHw" name="Ride"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_8QnhwEtZEeml1uA_KjGiHw" name="Record"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_9r4l4EtZEeml1uA_KjGiHw" name="OngoingRide"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_34LscEtaEeml1uA_KjGiHw" name="Card">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_6vAIkEtaEeml1uA_KjGiHw" name="user" visibility="private" type="_uc1TQEvREemxSL-LtUE-zQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_7ItI8EvREemxSL-LtUE-zQ" name="timeCredit" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_kFDAEEvREemxSL-LtUE-zQ" name="Answer" visibility="protected">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_mRiFwEvREemxSL-LtUE-zQ" name="startStation"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_uc1TQEvREemxSL-LtUE-zQ" name="user">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_OysUYEvfEemxSL-LtUE-zQ" name="iD" visibility="package">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_eOZNYEvfEemxSL-LtUE-zQ" name="name">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_kcVWUEvfEemxSL-LtUE-zQ" name="riding">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_o1RFcEvfEemxSL-LtUE-zQ" name="withCard">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_sjV5sEvfEemxSL-LtUE-zQ" name="card" type="_34LscEtaEeml1uA_KjGiHw"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_vfdskEvfEemxSL-LtUE-zQ" name="totalRides">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_xmcAIEvfEemxSL-LtUE-zQ" name="totalCharge">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_1NiCoEvfEemxSL-LtUE-zQ" name="totalTime">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_4T9BAEvfEemxSL-LtUE-zQ" name="idConstructor" visibility="package" isStatic="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_8A_6gEvfEemxSL-LtUE-zQ" name="policy">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_PCCQkEviEemxSL-LtUE-zQ" name="card" type="_34LscEtaEeml1uA_KjGiHw" aggregation="composite" association="_PBxx4EviEemxSL-LtUE-zQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_G3x_MEvSEemxSL-LtUE-zQ" name="EBike">
+    <generalization xmi:type="uml:Generalization" xmi:id="_0WrIkEveEemxSL-LtUE-zQ" general="_-HFbgEtWEeml1uA_KjGiHw"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_B2BpoEvfEemxSL-LtUE-zQ" name="accept">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_B2BpoUvfEemxSL-LtUE-zQ" name="visitor" type="_NnpJcEvSEemxSL-LtUE-zQ"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_B2BpokvfEemxSL-LtUE-zQ" name="ride" type="_9r4l4EtZEeml1uA_KjGiHw"/>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_NnpJcEvSEemxSL-LtUE-zQ" name="CardVisitor">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_OufcwEvSEemxSL-LtUE-zQ" name="visit">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_W5M0YEvSEemxSL-LtUE-zQ" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+      </ownedParameter>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_essl4EvSEemxSL-LtUE-zQ" name="ebike" type="_G3x_MEvSEemxSL-LtUE-zQ"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_xu0zAEvSEemxSL-LtUE-zQ" name="ride" type="_9r4l4EtZEeml1uA_KjGiHw"/>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_g6vx0EvSEemxSL-LtUE-zQ" name="visit">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_mUXh4EvSEemxSL-LtUE-zQ" name="mbike" type="_Pkf3sEvSEemxSL-LtUE-zQ"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_psyPMEvSEemxSL-LtUE-zQ" name="ride" type="_9r4l4EtZEeml1uA_KjGiHw"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_tZyFYEvSEemxSL-LtUE-zQ" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Pkf3sEvSEemxSL-LtUE-zQ" name="MBike" visibility="package">
+    <generalization xmi:type="uml:Generalization" xmi:id="_2NdEAEveEemxSL-LtUE-zQ" general="_-HFbgEtWEeml1uA_KjGiHw"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_DciUcEvfEemxSL-LtUE-zQ" name="accept">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_DciUcUvfEemxSL-LtUE-zQ" name="visitor" type="_NnpJcEvSEemxSL-LtUE-zQ"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_DciUckvfEemxSL-LtUE-zQ" name="ride" type="_9r4l4EtZEeml1uA_KjGiHw"/>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_CMFOoEveEemxSL-LtUE-zQ" client="_Pkf3sEvSEemxSL-LtUE-zQ" supplier="_HSQfsEtZEeml1uA_KjGiHw"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_umX94EveEemxSL-LtUE-zQ" client="_G3x_MEvSEemxSL-LtUE-zQ" supplier="_HSQfsEtZEeml1uA_KjGiHw"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_vUbEwEvgEemxSL-LtUE-zQ" name="NoCardVisitor">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_AgvKUEviEemxSL-LtUE-zQ" name="visit">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_AgvKUUviEemxSL-LtUE-zQ" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+      </ownedParameter>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_AgvKUkviEemxSL-LtUE-zQ" name="ebike" type="_G3x_MEvSEemxSL-LtUE-zQ"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_AgvKU0viEemxSL-LtUE-zQ" name="ride" type="_9r4l4EtZEeml1uA_KjGiHw"/>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_Agw_gEviEemxSL-LtUE-zQ" name="visit">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_Agw_gUviEemxSL-LtUE-zQ" name="mbike" type="_Pkf3sEvSEemxSL-LtUE-zQ"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_Agw_gkviEemxSL-LtUE-zQ" name="ride" type="_9r4l4EtZEeml1uA_KjGiHw"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_Agw_g0viEemxSL-LtUE-zQ" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_zydWUEvgEemxSL-LtUE-zQ" name="VlibreCardVisitor">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_9uAkAEvhEemxSL-LtUE-zQ" name="visit">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_9uAkAUvhEemxSL-LtUE-zQ" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+      </ownedParameter>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_9uAkAkvhEemxSL-LtUE-zQ" name="ebike" type="_G3x_MEvSEemxSL-LtUE-zQ"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_9uAkA0vhEemxSL-LtUE-zQ" name="ride" type="_9r4l4EtZEeml1uA_KjGiHw"/>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_9uEOYEvhEemxSL-LtUE-zQ" name="visit">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_9uEOYUvhEemxSL-LtUE-zQ" name="mbike" type="_Pkf3sEvSEemxSL-LtUE-zQ"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_9uEOYkvhEemxSL-LtUE-zQ" name="ride" type="_9r4l4EtZEeml1uA_KjGiHw"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_9uEOY0vhEemxSL-LtUE-zQ" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_5l57oEvgEemxSL-LtUE-zQ" name="VmaxCardVisitor">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_7vMt8EvhEemxSL-LtUE-zQ" name="visit">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_7vMt8UvhEemxSL-LtUE-zQ" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+      </ownedParameter>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_7vMt8kvhEemxSL-LtUE-zQ" name="ebike" type="_G3x_MEvSEemxSL-LtUE-zQ"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_7vMt80vhEemxSL-LtUE-zQ" name="ride" type="_9r4l4EtZEeml1uA_KjGiHw"/>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_7vQ_YEvhEemxSL-LtUE-zQ" name="visit">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_7vQ_YUvhEemxSL-LtUE-zQ" name="mbike" type="_Pkf3sEvSEemxSL-LtUE-zQ"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_7vQ_YkvhEemxSL-LtUE-zQ" name="ride" type="_9r4l4EtZEeml1uA_KjGiHw"/>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_7vQ_Y0vhEemxSL-LtUE-zQ" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_K3G9sEvhEemxSL-LtUE-zQ" client="_5l57oEvgEemxSL-LtUE-zQ" supplier="_NnpJcEvSEemxSL-LtUE-zQ"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_ymVsAEvhEemxSL-LtUE-zQ" client="_vUbEwEvgEemxSL-LtUE-zQ" supplier="_NnpJcEvSEemxSL-LtUE-zQ"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_4Fy-UEvhEemxSL-LtUE-zQ" client="_zydWUEvgEemxSL-LtUE-zQ" supplier="_NnpJcEvSEemxSL-LtUE-zQ"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ClDLcEviEemxSL-LtUE-zQ" name="VlibreCard">
+    <generalization xmi:type="uml:Generalization" xmi:id="_LQNkwEviEemxSL-LtUE-zQ" general="_34LscEtaEeml1uA_KjGiHw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_G5hRUEviEemxSL-LtUE-zQ" name="VmaxCard">
+    <generalization xmi:type="uml:Generalization" xmi:id="_KHzLMEviEemxSL-LtUE-zQ" general="_34LscEtaEeml1uA_KjGiHw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_PBxx4EviEemxSL-LtUE-zQ" memberEnd="_PCCQkEviEemxSL-LtUE-zQ _PCOd0EviEemxSL-LtUE-zQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_PB34gEviEemxSL-LtUE-zQ" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PB34gUviEemxSL-LtUE-zQ" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_PCOd0EviEemxSL-LtUE-zQ" name="user" type="_uc1TQEvREemxSL-LtUE-zQ" association="_PBxx4EviEemxSL-LtUE-zQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_T0x9UEwjEemxSL-LtUE-zQ" name="Station">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_tPGmIEwkEemxSL-LtUE-zQ" name="iD">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_srdboEwmEemxSL-LtUE-zQ" name="offline">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_0tNrkEwmEemxSL-LtUE-zQ" name="position" type="_X0g4cEtWEeml1uA_KjGiHw"/>
+  </packagedElement>
+</uml:Model>
