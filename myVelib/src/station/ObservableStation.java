@@ -3,7 +3,7 @@ package station;
 import java.util.ArrayList;
 
 import card.Observer;
-import testSenario.User;
+import ride.User;
 
 public class ObservableStation implements Observable{
 	/**

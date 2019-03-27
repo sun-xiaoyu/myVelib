@@ -9,7 +9,6 @@ import card.VlibreCardVisitor;
 import card.VmaxCard;
 import card.VmaxCardVisitor;
 import station.Station;
-import testSenario.User;
 
 public class OngoingRide extends Ride {
 	

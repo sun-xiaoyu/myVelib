@@ -1,9 +1,7 @@
-package testSenario;
+package ride;
 
 import card.Card;
 import card.Observer;
-import ride.OngoingRide;
-import ride.Record;
 import station.Station;
 
 public class User implements Observer{

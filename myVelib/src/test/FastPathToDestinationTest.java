@@ -9,8 +9,8 @@ import org.junit.Test;
 import planning.Answer;
 import planning.FastPathToDestination;
 import planning.Request;
+import ride.User;
 import station.GPS;
-import testSenario.User;
 
 public class FastPathToDestinationTest {
 

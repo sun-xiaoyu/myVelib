@@ -1,6 +1,6 @@
 package card;
 
-import testSenario.User;
+import ride.User;
 
 public class Card {
 	private User user;

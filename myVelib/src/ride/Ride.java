@@ -2,7 +2,6 @@ package ride;
 
 import bicycle.Bicycle;
 import station.Station;
-import testSenario.User;
 
 public abstract class Ride{
 	protected User user;

@@ -6,8 +6,8 @@ import org.junit.Test;
 
 import bicycle.EBike;
 import ride.OngoingRide;
+import ride.User;
 import station.Station;
-import testSenario.User;
 
 public class OngoingRideTest {
 

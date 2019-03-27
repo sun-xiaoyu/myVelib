@@ -10,7 +10,6 @@ import planning.Request;
 import planning.Solution;
 import station.Slot;
 import station.Station;
-import testSenario.User;
 
 /**
  * This class models the behavior of a real server, which is to handle the rent and the return(restore) of the bikes.

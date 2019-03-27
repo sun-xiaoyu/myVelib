@@ -3,8 +3,8 @@ package planning;
 import java.util.Calendar;
 
 import ride.Server;
+import ride.User;
 import station.GPS;
-import testSenario.User;
 
 public class Request {
 	private User user;

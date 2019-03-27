@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import card.VmaxCard;
 import ride.Server;
-import testSenario.User;
+import ride.User;
 
 public class UserTest {
 

@@ -4,6 +4,7 @@ import card.VlibreCard;
 import card.VmaxCard;
 import planning.Map;
 import ride.Server;
+import ride.User;
 import station.Station;
 
 /**

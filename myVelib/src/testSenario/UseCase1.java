@@ -5,6 +5,7 @@ import planning.Map;
 import planning.Request;
 import planning.Solution;
 import ride.Server;
+import ride.User;
 import station.GPS;
 import station.Station;
 
