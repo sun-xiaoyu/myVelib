@@ -18,6 +18,7 @@ public class Map {
 	 * size in kilometer and speed in km/min. map to hold number information. single pattern used.
 	 */
 	private ArrayList <Station> stationList; 
+	private String name;
 	private int stationNum;
 	private int totalSlotNum;
 	private int totalBicycleNum;
@@ -32,6 +33,13 @@ public class Map {
 	 * first case that station number is less than general bicycle number.(i.e enough to set each station with at least one mechanic bicycle.)
 	 */
 
+	/**
+	 * this function initialize the map, where stations are distributed on a square grid, the side of which is 4km.
+	 * The square grid is just right to fit into the map size given by the minimum of sizeX and sizeY
+	 * @param stationNum
+	 * @param totalSlotNum
+	 * @throws Exception
+	 */
 	public void init(int stationNum, int totalSlotNum) throws Exception{
 		if(stationNum < totalSlotNum) {//to avoid that 
 			throw new Exception("station number can not be more than total slot number");
@@ -53,7 +61,7 @@ public class Map {
 				plus = true;}
 			else {
 				plus = false;}
-			Station station = new Station(plus,11);
+			Station station = new Station(plus, (int) (min(sizeX,sizeY)/4));
 			this.stationList.add(station);
 		}
 		for(Station station: stationList) {
@@ -94,6 +102,11 @@ public class Map {
 		instance = this; 
 	}
 	
+	private double min(double a, double b) {
+		// TODO Auto-generated method stub
+		return a<b ? a:b;
+	}
+
 	/**
 	 * This correspond to the command 
 	 * setup <velibnetworkName>: to create a myVelib network with given name and
@@ -121,12 +134,28 @@ public class Map {
 		return instance;
 	}
 	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public double getSizeX() {
 		return sizeX;
 	}
 
 	public double getSizeY() {
 		return sizeY;
+	}
+	
+	public void setSizeX(double sizeX) {
+		this.sizeX = sizeX;
+	}
+
+	public void setSizeY(double sizeY) {
+		this.sizeY = sizeY;
 	}
 
 	public ArrayList<Station> getStationList() {
