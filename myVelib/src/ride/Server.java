@@ -144,7 +144,10 @@ public class Server {
 						instance.updateStatistic(record);
 						log("Returned with success, user paid " + String.format("%.2f",record.getFee())+ " EUR.");
 						log(record.toString());
-						station.getReturnObservableStation().removeObserver(user);
+						if(station.getReturnObservableStation().getObservers().contains(user)) {
+							station.getReturnObservableStation().removeObserver(user);
+							//for(Station s:)
+						}
 						if(station.isFull()) {
 							station.getReturnObservableStation().setAvailability();
 						}

@@ -44,5 +44,12 @@ public class ObservableStation implements Observable{
 		this.changed = true;
 		this.notifyObservers();
 	}
+	
+	public ArrayList<Observer> getObservers() {
+		return observers;
+	}
+	public void deletAllObservers() {
+		this.observers.clear();
+	}
 }
 

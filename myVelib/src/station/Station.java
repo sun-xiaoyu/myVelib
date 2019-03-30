@@ -110,8 +110,11 @@ public class Station {
 	}
 
 	public void setOffline(boolean offline) {
+		if(offline == false && this.offline == true) {
+			this.returnObservableStation.setAvailability();
+			this.returnObservableStation.deletAllObservers();
+		}
 		this.offline = offline;
-		this.returnObservableStation.setAvailability();;
 	}
 
 	public GPS getPos() {

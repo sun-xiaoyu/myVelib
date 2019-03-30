@@ -100,8 +100,8 @@ public class CLUI {
 	}
 
 	private static void sortStation(String[] args) {
-		MostUsedComparator mostUsedComp = new MostUsedComparator();
-		Collections.sort(Map.getInstance().getStations().values().toArray(null),mostUsedComp);
+		//MostUsedComparator mostUsedComp = new MostUsedComparator();
+		//Collections.sort(Map.getInstance().getStations().values().toArray(null),mostUsedComp);
 		
 	}
 
