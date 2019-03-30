@@ -213,6 +213,11 @@ public class Server {
 	public void addUser(User user) {
 		instance.users.put(user.getUserId(),user);
 	}
+
+	public HashMap<Integer, User> getUsers() {
+		return users;
+	}
+	
 	
 
 }

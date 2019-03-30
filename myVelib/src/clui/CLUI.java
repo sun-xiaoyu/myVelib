@@ -8,6 +8,7 @@ import card.VmaxCard;
 import planning.Map;
 import ride.Server;
 import ride.User;
+import station.Station;
 
 public class CLUI {
 	private static final String PARA_NB_NOT_MATCH = "The number of parameters is not correct.";
@@ -85,11 +86,19 @@ public class CLUI {
 		if (args.length != 2) {
 			Server.error(PARA_NB_NOT_MATCH);
 			return;
+		}	
+		try{
+			int userID = Integer.parseInt(args[0]);
+			int stationID = Integer.parseInt(args[1]);
+			Station station = Map.getInstance().getStations().get(stationID);
+			User user = Server.getInstance().getUsers().get(userID);
+			Server.getInstance().rent(user,station); 
+			Server.log(STATION_OFFLINE+stationID);
+		}catch(NumberFormatException e) {
+			Server.error(INVALID_PARA);
+		}catch(Exception e) {
+			Server.error(ID_NOT_FOUND);
 		}
-		if (!args[0].equals(Map.getInstance().getName())) {
-			Server.error(NETWORK_NOT_EXIST);
-			return;
-		}		
 	}
 	/**
 	 * 
