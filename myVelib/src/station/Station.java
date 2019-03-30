@@ -251,6 +251,11 @@ public class Station {
 		s.restore(b);
 		b.setRidingStatus(false);
 	}
+	
+	public void displayStat() {
+		Server.log("Station [stationId=" + stationId + ", offline=" + offline + ", pos=" + pos + ", plus=" + plus
+				+ ", totalRent=" + totalRent + ", totalReturn=" + totalReturn + ", slotNum=" + slotNum + "]");
+	}
 
 	@Override
 	public String toString() {
@@ -262,5 +267,6 @@ public class Station {
 				+ ", slots=\n" + slotsstr + ", spareSlotNum=" + this.getSpareSlotNum() + ", slotNum=" + this.getSlotNum() + ", full=" + full
 				+ ", eBicycleNumber=" + this.getEBicycleNumber() + ", mBicycleNumber=" + this.getMBicycleNumber() + "]";
 	}
+
 
 }

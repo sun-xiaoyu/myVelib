@@ -64,18 +64,92 @@ public class CLUI {
 			rentBike(args);
 			break;
 		case "returnbike":
+			returnBike(args);
 			break;
 		case "displaystation":
+			displayStation(args);
 			break;
 		case "displayuser":
+			displayUser(args);
 			break;
 		case "sortstation":
+			sortStation(args);
 			break;
 		case "display":
+			displayAll();
 			break;	
 		default:
 			Server.error(INVALID_COMMAND);
 		}
+	}
+
+	private static void displayAll() {
+		Server.log(Map.getInstance().toString());
+	}
+
+	private static void sortStation(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void displayUser(String[] args) {
+		if (args.length != 2) {
+			Server.error(PARA_NB_NOT_MATCH);
+			return;
+		}
+		if (!args[0].equals(Map.getInstance().getName())) {
+			Server.error(NETWORK_NOT_EXIST);
+			return;
+		}
+		try{
+			int userID = Integer.parseInt(args[1]);
+			User user = Server.getInstance().getUsers().get(userID);
+			user.displayStat();
+		}catch(NumberFormatException e) {
+			Server.error(INVALID_PARA);
+		}catch(Exception e) {
+			Server.error(ID_NOT_FOUND);
+		}
+	}
+
+	private static void displayStation(String[] args) {
+		if (args.length != 2) {
+			Server.error(PARA_NB_NOT_MATCH);
+			return;
+		}
+		if (!args[0].equals(Map.getInstance().getName())) {
+			Server.error(NETWORK_NOT_EXIST);
+			return;
+		}
+		try{
+			int stationID = Integer.parseInt(args[1]);
+			Station station = Map.getInstance().getStations().get(stationID);
+			station.displayStat();
+		}catch(NumberFormatException e) {
+			Server.error(INVALID_PARA);
+		}catch(Exception e) {
+			Server.error(ID_NOT_FOUND);
+		}
+	}
+
+	private static void returnBike(String[] args) {
+		if (args.length != 3) {
+			Server.error(PARA_NB_NOT_MATCH);
+			return;
+		}	
+		try{
+			int userID = Integer.parseInt(args[0]);
+			int stationID = Integer.parseInt(args[1]);
+			double time = Double.parseDouble(args[2]);
+			Station station = Map.getInstance().getStations().get(stationID);
+			User user = Server.getInstance().getUsers().get(userID);
+			Server.getInstance().restoreAfter(user,station,time); 
+		}catch(NumberFormatException e) {
+			Server.error(INVALID_PARA);
+		}catch(Exception e) {
+			Server.error(ID_NOT_FOUND);
+		}
+		
 	}
 
 	/**
@@ -93,7 +167,6 @@ public class CLUI {
 			Station station = Map.getInstance().getStations().get(stationID);
 			User user = Server.getInstance().getUsers().get(userID);
 			Server.getInstance().rent(user,station); 
-			Server.log("");
 		}catch(NumberFormatException e) {
 			Server.error(INVALID_PARA);
 		}catch(Exception e) {
@@ -182,7 +255,7 @@ public class CLUI {
 			Server.error(INVALID_PARA);	
 			return;
 		}
-		Server.log(USER_ADDED);
+		Server.log(USER_ADDED + u.getUserId());
 	}
 
 	/**
