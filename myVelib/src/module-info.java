@@ -6,5 +6,12 @@
  *
  */
 module myVelib {
-	exports myVelib;
+	exports planning;
+	exports clui;
+	exports bicycle;
+	exports test;
+	exports station;
+	exports testSenario;
+	exports ride;
+	exports card;
 }
