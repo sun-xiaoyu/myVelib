@@ -62,7 +62,7 @@ public class Map {
 				plus = true;}
 			else {
 				plus = false;}
-			Station station = new Station(plus, (int) (min(sizeX,sizeY)/4));
+			Station station = new Station(plus, (int) (min(sizeX+1,sizeY+1)/4));
 			this.stations.put(station.getStationId(),station);
 		}
 		for(Station station: stations.values()) {
@@ -121,13 +121,13 @@ public class Map {
 		if(stationNum > totalSlotNum) {//to avoid that 
 			throw new Exception("station number can not be more than total slot number");
 		}
-		else if(stationNum > 2.05*totalSlotNum) {//to avoid that 
+		else if(stationNum < 2.05*totalSlotNum) {//to avoid that 
 			throw new Exception("bicycles not enough for general initialization");
 		}
 		else if(totalSlotNum < totalBicycleNum) {
 			throw new Exception("bicycle number larger than slot number");
 		}
-		this.stationList = new ArrayList<Station>();
+		this.stations = new HashMap<Integer, Station>();
 		this.stationNum = stationNum;
 		this.totalSlotNum = totalSlotNum;
 		this.totalBicycleNum = totalBicycleNum;
@@ -141,23 +141,23 @@ public class Map {
 				plus = true;}
 			else {
 				plus = false;}
-			Station station = new Station(plus, (int) (min(sizeX,sizeY)/4));
-			this.stationList.add(station);
+			Station station = new Station(plus, (int) (min(sizeX+1,sizeY+1)/4));
+			this.stations.put(station.getStationId(),station);
 		}
-		for(Station station: stationList) {
+		for(Station station: stations.values()) {
 			station.addSlot(new Slot(1,0));
 		}
-		
-		for(int i = 0; i < totalSlotNum - stationNum; i++) {//to initialize slot distribution in all stations randomly
-			 int index = (int) (Math.random()* this.stationList.size()); 
-			 Station s = stationList.get(index);
+		Random random = new Random();
+		for(int i = 0; i < totalSlotNum - stationNum; i++) {//to finish initializing slot distribution in all stations randomly
+			 int index = random.nextInt(stations.size());
+			 Station s = stations.get(index+1);
 			 s.addSlot(new Slot());
 		}
 		
 		int alreadySetEleNum = 0;
 		while(alreadySetEleNum < eleTotalBicycleNum) {
-			 int index = (int) (Math.random()* this.stationList.size()); 
-			 Station s = stationList.get(index);
+			int index = random.nextInt(stations.size());
+			 Station s = stations.get(index+1);
 			 for(Slot slot: s.getSlots()) {
 				 if(!slot.isOccupied()) {
 					 slot.setBicycleInThisSlot(new EBike());
@@ -169,8 +169,8 @@ public class Map {
 		
 		int alreadySetMecNum = mecTotalBicycleNum - stationNum;
 		while(alreadySetMecNum < mecTotalBicycleNum) {
-			 int index = (int) (Math.random()* this.stationList.size()); 
-			 Station s = stationList.get(index);
+			int index = random.nextInt(stations.size());
+			 Station s = stations.get(index+1);
 			 for(Slot slot: s.getSlots()) {
 				 if(!slot.isOccupied()) {
 					 slot.setBicycleInThisSlot(new MBike());
@@ -181,6 +181,7 @@ public class Map {
 		}	
 		instance = this; 
 	}
+
 	/**
 	 * This correspond to the command 
 	 * setup <velibnetworkName>: to create a myVelib network with given name and
