@@ -118,6 +118,10 @@ public class Station {
 		return pos;
 	}
 
+	public void setStationId(int stationId) {
+		this.stationId = stationId;
+	}
+
 	public boolean isPlus() {
 		return plus;
 	}

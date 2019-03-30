@@ -15,8 +15,11 @@ public class CLUI {
 	private static final String NETWORK_EXIST = "The network already exist, only one network at a time.";
 	private static final String MAP_BUILT = "Map is built successfuly.";
 	private static final String NETWORK_NOT_EXIST = "The input network does not exist.";
-	private static final String USER_ADDED = "User added";
+	private static final String USER_ADDED = "User added, ID:";
 	private static final String INVALID_COMMAND = "Invalid command.";
+	private static final String STATION_OFFLINE = "Station offline, ID:";
+	private static final String STATION_ONLINE = "Station online, ID:";
+	private static final String ID_NOT_FOUND = "ID not found";
 	
 	public static void main(String[] args) {
 		System.out.println("Welcome to myVelib system. type \"help\" for help.");
@@ -54,8 +57,10 @@ public class CLUI {
 			offline(args);
 			break;
 		case "online":
+			online(args);
 			break;
 		case "rentbike":
+			rentBike(args);
 			break;
 		case "returnbike":
 			break;
@@ -72,6 +77,26 @@ public class CLUI {
 		}
 	}
 
+	/**
+	 * 
+	 * @param args UserID stationID
+	 */
+	private static void rentBike(String[] args) {
+		if (args.length != 2) {
+			Server.error(PARA_NB_NOT_MATCH);
+			return;
+		}
+		if (!args[0].equals(Map.getInstance().getName())) {
+			Server.error(NETWORK_NOT_EXIST);
+			return;
+		}
+		
+		
+	}
+	/**
+	 * 
+	 * @param args vlibnetworkName, stationID
+	 */
 	private static void offline(String[] args) {
 		if (args.length != 2) {
 			Server.error(PARA_NB_NOT_MATCH);
@@ -83,13 +108,42 @@ public class CLUI {
 		}
 		try{
 			int stationID = Integer.parseInt(args[1]);
-			Map.getInstance().getStationList().get(stationID).setOffline(false);
-			Server.log(STATION_OFFLINE);
-		}catch(Exception e) {
+			Map.getInstance().getStationList().get(stationID-1).setOffline(true);
+			Server.log(STATION_OFFLINE+stationID);
+		}catch(NumberFormatException e) {
 			Server.error(INVALID_PARA);
+		}catch(Exception e) {
+			Server.error(ID_NOT_FOUND);
+		}
+	}
+	/**
+	 * 
+	 * @param args vlibnetworkName, stationID
+	 */
+	private static void online(String[] args) {
+		if (args.length != 2) {
+			Server.error(PARA_NB_NOT_MATCH);
+			return;
+		}
+		if (!args[0].equals(Map.getInstance().getName())) {
+			Server.error(NETWORK_NOT_EXIST);
+			return;
+		}
+		try{
+			int stationID = Integer.parseInt(args[1]);
+			Map.getInstance().getStationList().get(stationID-1).setOffline(false);
+			Server.log(STATION_ONLINE+stationID);
+		}catch(NumberFormatException e) {
+			Server.error(INVALID_PARA);
+		}catch(Exception e) {
+			Server.error(ID_NOT_FOUND);
 		}		
 	}
 
+	/**
+	 * 
+	 * @param args userName, cardType, vlibnetworkName
+	 */
 	private static void addUser(String[] args) {
 		if (args.length != 3) {
 			Server.error(PARA_NB_NOT_MATCH);
@@ -124,6 +178,11 @@ public class CLUI {
 		Server.log(USER_ADDED);
 	}
 
+	/**
+	 * 
+	 * @param args vlibnetworkName
+	 * @param args name, nstations, nslots, s, nbikes
+	 */
 	private static void setup(String[] args) {
 		if (args.length != 1 && args.length != 5) {
 			Server.error(PARA_NB_NOT_MATCH);

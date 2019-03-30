@@ -214,6 +214,11 @@ public class Map {
 	}
 
 	public void display() {
+		System.out.print("Stations ID = [");
+		for (Station station : stationList) {
+			System.out.print(station.getStationId()+" ");
+		}
+		System.out.println("]");
 		// TODO Auto-generated method stub
 		
 	}
