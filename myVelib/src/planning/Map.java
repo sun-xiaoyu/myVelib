@@ -42,10 +42,13 @@ public class Map {
 	 * @throws Exception
 	 */
 	public void init(int stationNum, int totalSlotNum) throws Exception{
+		if((stationNum < 1) || (totalSlotNum <1)) {
+			throw new Exception("input number illeagal");
+		}
 		if(stationNum > totalSlotNum) {//to avoid that 
 			throw new Exception("station number can not be more than total slot number");
 		}
-		else if(stationNum < 2.05*totalSlotNum) {//to avoid that 
+		else if(stationNum > 2.05*totalSlotNum) {//to avoid that 
 			throw new Exception("bicycles not enough for general initialization");
 		}
 		this.stations = new HashMap<Integer, Station>();
@@ -66,7 +69,7 @@ public class Map {
 			this.stations.put(station.getStationId(),station);
 		}
 		for(Station station: stations.values()) {
-			station.addSlot(new Slot(1,0));
+			station.addSlot(new Slot());
 		}
 		Random random = new Random();
 		for(int i = 0; i < totalSlotNum - stationNum; i++) {//to finish initializing slot distribution in all stations randomly
@@ -88,7 +91,7 @@ public class Map {
 			 }
 		}
 		
-		int alreadySetMecNum = mecTotalBicycleNum - stationNum;
+		int alreadySetMecNum = mecTotalBicycleNum;
 		while(alreadySetMecNum < mecTotalBicycleNum) {
 			int index = random.nextInt(stations.size());
 			 Station s = stations.get(index+1);
@@ -118,13 +121,16 @@ public class Map {
 	 * @throws Exception
 	 */
 	public void init(int stationNum, int totalSlotNum, int totalBicycleNum) throws Exception{
+		if((stationNum < 1) || (totalSlotNum <1) || (totalBicycleNum <1)) {
+			throw new Exception("input number illeagal");
+		}
 		if(stationNum > totalSlotNum) {//to avoid that 
 			throw new Exception("station number can not be more than total slot number");
 		}
-		else if(stationNum < 2.05*totalSlotNum) {//to avoid that 
+		else if(stationNum > 2.05*totalSlotNum) {//to avoid that 
 			throw new Exception("bicycles not enough for general initialization");
 		}
-		else if(totalSlotNum < totalBicycleNum) {
+		else if(totalSlotNum > totalBicycleNum) {
 			throw new Exception("bicycle number larger than slot number");
 		}
 		this.stations = new HashMap<Integer, Station>();
@@ -145,7 +151,7 @@ public class Map {
 			this.stations.put(station.getStationId(),station);
 		}
 		for(Station station: stations.values()) {
-			station.addSlot(new Slot(1,0));
+			station.addSlot(new Slot());
 		}
 		Random random = new Random();
 		for(int i = 0; i < totalSlotNum - stationNum; i++) {//to finish initializing slot distribution in all stations randomly
@@ -167,7 +173,7 @@ public class Map {
 			 }
 		}
 		
-		int alreadySetMecNum = mecTotalBicycleNum - stationNum;
+		int alreadySetMecNum = mecTotalBicycleNum;
 		while(alreadySetMecNum < mecTotalBicycleNum) {
 			int index = random.nextInt(stations.size());
 			 Station s = stations.get(index+1);
