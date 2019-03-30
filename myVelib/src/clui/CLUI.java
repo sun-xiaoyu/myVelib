@@ -1,5 +1,6 @@
 package clui;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
@@ -100,9 +101,12 @@ public class CLUI {
 	}
 
 	private static void sortStation(String[] args) {
-		//MostUsedComparator mostUsedComp = new MostUsedComparator();
-		//Collections.sort(Map.getInstance().getStations().values().toArray(null),mostUsedComp);
-		
+		MostUsedComparator mostUsedComp = new MostUsedComparator();
+		ArrayList<Station> StationList = new ArrayList<Station>(Map.getInstance().getStations().values());
+		Collections.sort(StationList,mostUsedComp);
+		for (Station s:StationList) {
+			s.displayStat();
+		}
 	}
 
 	private static void displayUser(String[] args) {
