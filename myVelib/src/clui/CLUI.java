@@ -10,6 +10,11 @@ import ride.Server;
 import ride.User;
 import station.Station;
 
+/**
+ * 
+ * @author Lenovo
+ * ClUI with basic useful orders.
+ */
 public class CLUI {
 	private static final String PARA_NB_NOT_MATCH = "The number of parameters is not correct.";
 	private static final String INVALID_PARA =  "Invalid parameters.";
@@ -22,6 +27,10 @@ public class CLUI {
 	private static final String STATION_ONLINE = "Station online, ID:";
 	private static final String ID_NOT_FOUND = "ID not found";
 	
+	/**
+	 * get into order receiver
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		System.out.println("Welcome to myVelib system. type \"help\" for help.");
 		Scanner reader = new Scanner(System.in); // Reading from keyboard
@@ -36,7 +45,10 @@ public class CLUI {
 		}
 		reader.close();
 	}
-
+	/**
+	 * receive input from system at any time
+	 * @param input receive input from system
+	 */
 	private static void parseAndDo(String input) {
 		String[] inputForParsing = input.split(" ");
 		System.out.println(Arrays.toString(inputForParsing));
@@ -44,8 +56,6 @@ public class CLUI {
 		String[] args = Arrays.copyOfRange(inputForParsing, 1, inputForParsing.length);
 		System.out.println(Arrays.toString(args));
 		
-		Server server = Server.getInstance();
-		Map map = Map.getInstance();
 		command = command.toLowerCase();
 		switch(command) {
 		case "setup":
@@ -80,25 +90,43 @@ public class CLUI {
 
 	/**
 	 * 
-	 * @param args UserID stationID
+	 * @param args UserID stationID 
+	 * @param args UserID stationID bikeType(e or m)
 	 */
 	private static void rentBike(String[] args) {
-		if (args.length != 2) {
+		if ((args.length != 2) && (args.length != 3)) {
 			Server.error(PARA_NB_NOT_MATCH);
 			return;
-		}	
-		try{
-			int userID = Integer.parseInt(args[0]);
-			int stationID = Integer.parseInt(args[1]);
-			Station station = Map.getInstance().getStations().get(stationID);
-			User user = Server.getInstance().getUsers().get(userID);
-			Server.getInstance().rent(user,station); 
-			Server.log("");
-		}catch(NumberFormatException e) {
-			Server.error(INVALID_PARA);
-		}catch(Exception e) {
-			Server.error(ID_NOT_FOUND);
 		}
+		if (args.length == 2) {
+			try{
+				int userID = Integer.parseInt(args[0]);
+				int stationID = Integer.parseInt(args[1]);
+				Station station = Map.getInstance().getStations().get(stationID);
+				User user = Server.getInstance().getUsers().get(userID);
+				Server.getInstance().rent(user,station); 
+				Server.log("");
+			}catch(NumberFormatException e) {
+				Server.error(INVALID_PARA);
+			}catch(Exception e) {
+				Server.error(ID_NOT_FOUND);
+			}
+		}
+		if (args.length == 3) {
+			try{
+				int userID = Integer.parseInt(args[0]);
+				int stationID = Integer.parseInt(args[1]);
+				char bikeType = args[2].charAt(0);
+				Station station = Map.getInstance().getStations().get(stationID);
+				User user = Server.getInstance().getUsers().get(userID);
+				Server.getInstance().rent(user,station,bikeType); 
+				Server.log("");
+			}catch(NumberFormatException e) {
+				Server.error(INVALID_PARA);
+			}catch(Exception e) {
+				Server.error(ID_NOT_FOUND);
+		}
+	}
 	}
 	/**
 	 * 
