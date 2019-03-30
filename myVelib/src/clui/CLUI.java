@@ -10,12 +10,13 @@ import ride.Server;
 import ride.User;
 
 public class CLUI {
-	private static final String INCORRECT_NB_PARA = "The number of parameters is not correct.";
-	private static final String INVALID_PARA =  "Invalid parameters";
+	private static final String PARA_NB_NOT_MATCH = "The number of parameters is not correct.";
+	private static final String INVALID_PARA =  "Invalid parameters.";
 	private static final String NETWORK_EXIST = "The network already exist, only one network at a time.";
 	private static final String MAP_BUILT = "Map is built successfuly.";
 	private static final String NETWORK_NOT_EXIST = "The input network does not exist.";
 	private static final String USER_ADDED = "User added";
+	private static final String INVALID_COMMAND = "Invalid command.";
 	
 	public static void main(String[] args) {
 		System.out.println("Welcome to myVelib system. type \"help\" for help.");
@@ -41,7 +42,6 @@ public class CLUI {
 		
 		Server server = Server.getInstance();
 		Map map = Map.getInstance();
-		System.out.println(map.getName());
 		command = command.toLowerCase();
 		switch(command) {
 		case "setup":
@@ -51,6 +51,7 @@ public class CLUI {
 			addUser(args);
 			break;
 		case "offline":
+			offline(args);
 			break;
 		case "online":
 			break;
@@ -65,13 +66,33 @@ public class CLUI {
 		case "sortstation":
 			break;
 		case "display":
-			break;		
+			break;	
+		default:
+			Server.error(INVALID_COMMAND);
 		}
+	}
+
+	private static void offline(String[] args) {
+		if (args.length != 2) {
+			Server.error(PARA_NB_NOT_MATCH);
+			return;
+		}
+		if (!args[0].equals(Map.getInstance().getName())) {
+			Server.error(NETWORK_NOT_EXIST);
+			return;
+		}
+		try{
+			int stationID = Integer.parseInt(args[1]);
+			Map.getInstance().getStationList().get(stationID).setOffline(false);
+			Server.log(STATION_OFFLINE);
+		}catch(Exception e) {
+			Server.error(INVALID_PARA);
+		}		
 	}
 
 	private static void addUser(String[] args) {
 		if (args.length != 3) {
-			Server.error(INCORRECT_NB_PARA);
+			Server.error(PARA_NB_NOT_MATCH);
 			return;
 		}
 		if (!args[2].equals(Map.getInstance().getName())) {
@@ -105,7 +126,7 @@ public class CLUI {
 
 	private static void setup(String[] args) {
 		if (args.length != 1 && args.length != 5) {
-			Server.error(INCORRECT_NB_PARA);
+			Server.error(PARA_NB_NOT_MATCH);
 			return;
 		}
 		Map map = Map.getInstance();
@@ -140,7 +161,6 @@ public class CLUI {
 						map.setName(name);
 						map.display();
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					//TODO deal with nbike;

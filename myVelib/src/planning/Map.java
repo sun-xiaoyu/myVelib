@@ -41,7 +41,7 @@ public class Map {
 	 * @throws Exception
 	 */
 	public void init(int stationNum, int totalSlotNum) throws Exception{
-		if(stationNum < totalSlotNum) {//to avoid that 
+		if(stationNum > totalSlotNum) {//to avoid that 
 			throw new Exception("station number can not be more than total slot number");
 		}
 		else if(stationNum < 2.05*totalSlotNum) {//to avoid that 
