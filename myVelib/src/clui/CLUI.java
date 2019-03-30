@@ -14,9 +14,9 @@ import station.MostUsedComparator;
 import station.Station;
 
 /**
- * 
- * @author Lenovo
  * ClUI with basic useful orders.
+ * @author Zhihao Li
+ * 
  */
 public class CLUI {
 	private static final String PARA_NB_NOT_MATCH = "The number of parameters is not correct.";
@@ -32,7 +32,7 @@ public class CLUI {
 	
 	/**
 	 * get into order receiver
-	 * @param args
+	 * @param args not yet useful
 	 */
 	public static void main(String[] args) {
 		System.out.println("Welcome to myVelib system. type \"help\" for help.");
@@ -95,11 +95,16 @@ public class CLUI {
 			Server.error(INVALID_COMMAND);
 		}
 	}
-
+	/**
+	 * to display information of map condition
+	 */
 	private static void displayAll() {
 		Server.log(Map.getInstance().toString());
 	}
-
+	/**
+	 * to sort stations by most used consequence
+	 * @param args 
+	 */
 	private static void sortStation(String[] args) {
 		MostUsedComparator mostUsedComp = new MostUsedComparator();
 		ArrayList<Station> StationList = new ArrayList<Station>(Map.getInstance().getStations().values());
@@ -108,7 +113,10 @@ public class CLUI {
 			s.displayStat();
 		}
 	}
-
+	/**
+	 * to display user information
+	 * @param args
+	 */
 	private static void displayUser(String[] args) {
 		if (args.length != 2) {
 			Server.error(PARA_NB_NOT_MATCH);
@@ -128,7 +136,10 @@ public class CLUI {
 			Server.error(ID_NOT_FOUND);
 		}
 	}
-
+	/**
+	 * to display station condition
+	 * @param args userName userId
+	 */
 	private static void displayStation(String[] args) {
 		if (args.length != 2) {
 			Server.error(PARA_NB_NOT_MATCH);
@@ -148,7 +159,10 @@ public class CLUI {
 			Server.error(ID_NOT_FOUND);
 		}
 	}
-
+	/**
+	 * to return a bike into a station by somebody after a period of time
+	 * @param args userID stationId time:
+	 */
 	private static void returnBike(String[] args) {
 		if (args.length != 3) {
 			Server.error(PARA_NB_NOT_MATCH);
@@ -170,8 +184,8 @@ public class CLUI {
 	}
 
 	/**
-	 * 
-	 * @param args UserID, stationID, bikeType(e or m)
+	 * to rent a bike from a station by someone(we can appoint a specific type of bike to rent)
+	 * @param args userID stationID (bikeType(e or m))
 	 */
 	private static void rentBike(String[] args) {
 		if ((args.length != 2) && (args.length != 3)) {
@@ -209,8 +223,8 @@ public class CLUI {
 	}
 	}
 	/**
-	 * 
-	 * @param args vlibnetworkName, stationID
+	 * to set a station offline
+	 * @param args vlibnetworkName stationID
 	 */
 	private static void offline(String[] args) {
 		if (args.length != 2) {
@@ -232,7 +246,7 @@ public class CLUI {
 		}
 	}
 	/**
-	 * 
+	 * to set a station online
 	 * @param args vlibnetworkName, stationID
 	 */
 	private static void online(String[] args) {
@@ -256,8 +270,8 @@ public class CLUI {
 	}
 
 	/**
-	 * 
-	 * @param args userName, cardType, vlibnetworkName
+	 * to add a user into our system
+	 * @param args userName cardType vlibnetworkName
 	 */
 	private static void addUser(String[] args) {
 		if (args.length != 3) {
@@ -294,9 +308,8 @@ public class CLUI {
 	}
 
 	/**
-	 * 
-	 * @param args vlibnetworkName
-	 * @param args name, nstations, nslots, sidearea, nbikes
+	 * to set up a new system with several stations, slots, bikes and a given area side 
+	 * @param args vlibnetworkName or (name nstations nslots sidearea nbikes)
 	 */
 	private static void setup(String[] args) {
 		if (args.length != 1 && args.length != 5) {

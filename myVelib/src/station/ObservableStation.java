@@ -2,9 +2,12 @@ package station;
 
 import java.util.ArrayList;
 
-import card.Observer;
 import ride.User;
-
+/**
+ * concrete observable station to implement concrete methods
+ * @author Lenovo
+ *
+ */
 public class ObservableStation implements Observable{
 	/**
 	 *  when  a station is full, 
@@ -39,7 +42,9 @@ public class ObservableStation implements Observable{
 			this.changed = false;
 		}
 	}
-	// setInterest() invoke notifyObserver()
+	/**
+	 * invoke notifyObserver()
+	 */
 	public void setAvailability() {
 		this.changed = true;
 		this.notifyObservers();
@@ -48,6 +53,10 @@ public class ObservableStation implements Observable{
 	public ArrayList<Observer> getObservers() {
 		return observers;
 	}
+	/**
+	 * when a station is set to be offline,
+	 * all observers of this station should be deleted
+	 */
 	public void deletAllObservers() {
 		this.observers.clear();
 	}

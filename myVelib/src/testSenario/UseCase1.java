@@ -8,7 +8,14 @@ import ride.Server;
 import ride.User;
 import station.GPS;
 import station.Station;
-
+/**
+ * simulate that a user apply for solutions with different policies,
+ * then accept this solution,
+ * and shut down the end station
+ * finally try to return back bike to this station. 
+ * @author Zhihao Li
+ *
+ */
 public class UseCase1 {	
 	public static void main(String [] args) throws Exception {
 	Map map = Map.getInstance();
@@ -40,7 +47,7 @@ public class UseCase1 {
 	 * Alice wish to change to the ¡°fastest¡± policy
 	 */
 	
-	Alice.setPolicy("FPTD");
+	rq.setPolicy("FPTD");
 	//rq = Alice.send(); // no parameter means send the former request, but with her newly chosen policy.
 	Solution solution2 = server.handle(rq);
 	// Server.send(Alice, s2);
@@ -62,8 +69,7 @@ public class UseCase1 {
 	
 	//Alice is riding the bike.
 	//Station d became inavailble.
-	endStation.setOffline(false);;// This method triggers the observation pattern.
-	// TODO
-	//========Î´Íê´ýÐø========
+	endStation.setOffline(true);;// This method triggers the observation pattern.
+	server.restore(Alice, endStation);
 	}
 }

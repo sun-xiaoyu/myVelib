@@ -6,8 +6,8 @@ import java.util.HashMap;
 import station.Station;
 
 /**
- * Singleton Pattern Used.
- * @author LIZHIHAO
+ * this class hold station distribution in current time, in order that we can easily get station availability
+ * @author Zhihao Li
  *
  */
 public class CurrentDistribution {
@@ -17,7 +17,10 @@ public class CurrentDistribution {
 	private ArrayList<Station> returnableStationList;
 	private ArrayList<Station> rentableStationList;
 	private static CurrentDistribution instance;
-	
+	/**
+	 * generate a current distribution from map created before this
+	 * @param map regroups all stations
+	 */
 	private CurrentDistribution(Map map) {
 		this.allStation = new HashMap<Integer, Station>();
 		this.eAvaStationList = new ArrayList<Station>();
@@ -40,7 +43,10 @@ public class CurrentDistribution {
 		}
 		
 	}
-	
+	/**
+	 * singleton pattern to ensure that there's only one unique instance of current distribution
+	 * @return the only one current distribution
+	 */
 	public static CurrentDistribution getInstance() {
 		if (instance == null) {
 			instance = new CurrentDistribution(Map.getInstance());	
@@ -86,15 +92,10 @@ public class CurrentDistribution {
 	public ArrayList<Station> getRentableStationList() {
 		return rentableStationList;
 	}
-
-	public void deleAvastation(Station s) {
-		this.eAvaStationList.remove(s);
-	}
-	
-	public void delmAvaStation(Station s) {
-		this.mAvaStationList.remove(s);
-	}	
-	
+	/**
+	 * to set a station not returnable
+	 * @param s the station to set not returnable
+	 */
 	public void delRetuenableStation(Station s) {
 		this.returnableStationList.remove(s);
 	}

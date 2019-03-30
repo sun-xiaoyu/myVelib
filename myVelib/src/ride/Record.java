@@ -1,8 +1,16 @@
 package ride;
-
+/**
+ * a record can be easily noted by system
+ * @author Zhihao Li
+ *
+ */
 public class Record extends Ride{
 	private double distance;
 	private int timeCreditEarned;
+	/**
+	 * generate a record from a ride 
+	 * @param ride information during a ride
+	 */
 	public Record(OngoingRide ride) {
 		super();
 		this.user = ride.user;

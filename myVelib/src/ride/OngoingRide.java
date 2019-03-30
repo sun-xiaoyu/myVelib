@@ -9,9 +9,18 @@ import card.VlibreCardVisitor;
 import card.VmaxCard;
 import card.VmaxCardVisitor;
 import station.Station;
-
+/**
+ * generate a "half riding" with only starting information
+ * @author Zhihao Li
+ *
+ */
 public class OngoingRide extends Ride {
-	
+	/**
+	 * generate a "half riding" with only starting information without given start time
+	 * @param user riding user
+	 * @param startStation start station
+	 * @param bicycle riding bicycle 
+	 */
 	public OngoingRide(User user, Station startStation, Bicycle bicycle) {
 		super();
 		this.user = user;
@@ -19,7 +28,13 @@ public class OngoingRide extends Ride {
 		this.startTime = Calendar.getInstance().getTimeInMillis();
 		this.bicycle = bicycle;
 	}
-	
+	/**
+	 * generate a "half riding" with only starting information with given start time
+	 * @param user riding user
+	 * @param startStation start station
+	 * @param bicycle riding bicycle 
+	 * @param startTime given start time
+	 */
 	public OngoingRide(User user, Station startStation, Bicycle bicycle, long startTime) {
 		super();
 		this.user = user;
@@ -27,14 +42,19 @@ public class OngoingRide extends Ride {
 		this.startTime = startTime;
 		this.bicycle = bicycle;
 	}
-	
+	/**
+	 * override toString method of OngoingRide
+	 */
 	@Override
 	public String toString() {
 		return "OngoingRide [user=" + user + ", startStation=" + startStation + ", endStation=" + endStation
 				+ ", startTime=" + startTime + ", endTime=" + endTime + ", bicycle=" + bicycle + ", fee=" + fee
 				+ ", ispaid=" + ispaid + ", lengthInMin=" + lengthInMin + "]";
 	}
-
+	/**
+	 * to finish a ride at a station with system time to be noted down
+	 * @param endStation the end station to be noted down
+	 */
 	public void endAt(Station endStation) {
 		this.endTime = Calendar.getInstance().getTimeInMillis();
 		this.endStation = endStation;
@@ -43,15 +63,18 @@ public class OngoingRide extends Ride {
 	
 	/**
 	 * Let the ride end after a certain amount of time (durationInMin)
-	 * @param endStation 
-	 * @param durationInMin The length of time of the ride, in minutes.
+	 * @param endStation the end station to be noted down
+	 * @param lengthInMin The length of time of the ride, in minutes.
 	 */
 	public void endAfter(Station endStation, double lengthInMin) {
 		this.endTime = this.startTime + (long)lengthInMin*60*1000;
 		this.endStation = endStation;
 		this.lengthInMin = lengthInMin;
 	}
-	
+	/**
+	 * to get duration of a ride in order to calculate cost
+	 * @return duration time to be charged
+	 */
 	public double getTimeNeedsToPay() {
 		double duration = this.getLengthInMin();
 		int credit = this.user.getCard().getTimeCredit();

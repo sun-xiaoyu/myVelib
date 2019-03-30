@@ -1,6 +1,5 @@
 package planning;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -10,7 +9,7 @@ import station.Slot;
 import station.Station;
 
 /**
- * A map which regroups all the stations.
+ * A map regroups all the stations.
  * @author SUNXIAOYU
  *
  */
@@ -37,9 +36,9 @@ public class Map {
 	/**
 	 * this function initialize the map, where stations are distributed on a square grid, the side of which is 4km.
 	 * The square grid is just right to fit into the map size given by the minimum of sizeX and sizeY
-	 * @param stationNum
-	 * @param totalSlotNum
-	 * @throws Exception
+	 * @param stationNum station number
+	 * @param totalSlotNum slot number
+	 * @throws Exception several exceptions in initialization
 	 */
 	public void init(int stationNum, int totalSlotNum) throws Exception{
 		if((stationNum < 1) || (totalSlotNum <1)) {
@@ -105,20 +104,27 @@ public class Map {
 		}	
 		instance = this; 
 	}
-	
+	/**
+	 * to get the smaller number in two numbers
+	 * @param a the first number
+	 * @param b the second number
+	 * @return the smaller number
+	 */
 	private double min(double a, double b) {
 		// TODO Auto-generated method stub
 		return a<b ? a:b;
 	}
 
 	/**
-	 * This correspond to the command 
-	 * setup <name> <nstations> <nslots> <sidearea> <nbikes>: to create a myVelib network with given name and
-	 * consisting of <nstations> stations with <nslots> parking slots and such that stations
-	 * are arranged on a square grid whose of side <sidarea> and initially populated with a 
-	 * <nbikes> bikes randomly distributed over the stations
-	 * @param sidearea length of side in km
-	 * @throws Exception
+	 * 	 * This correspond to the command 
+	 * setup name nstations nslots sidearea nbikes: to create a myVelib network with given name and
+	 * consisting of nstations stations with nslots parking slots and such that stations
+	 * are arranged on a square grid whose of side sidarea and initially populated with a 
+	 * nbikes bikes randomly distributed over the stations
+	 * @param stationNum station total number
+	 * @param totalSlotNum slot total number
+	 * @param totalBicycleNum bike total number
+	 * @throws Exception several exceptions in initialization
 	 */
 	public void init(int stationNum, int totalSlotNum, int totalBicycleNum) throws Exception{
 		if((stationNum < 1) || (totalSlotNum <1) || (totalBicycleNum <1)) {
@@ -189,13 +195,12 @@ public class Map {
 	}
 
 	/**
+	 * 
 	 * This correspond to the command 
-	 * setup <velibnetworkName>: to create a myVelib network with given name and
+	 * setup velibnetworkName: to create a myVelib network with given name and
 	 * consisting of 10 stations each of which has 10 parking slots and such that stations
 	 * are arranged on a square grid whose of side 4km and initially populated with a 75%
 	 * bikes randomly distributed over the 10 stations
-	 * @param s length of side in km
-	 * @throws Exception
 	 */
 	public void init() {
 		this.sizeX = 40;
@@ -282,7 +287,9 @@ public class Map {
 		}
 	}
 	*/
-	
+	/**
+	 * override map toString method
+	 */
 	@Override
 	public String toString() {
 		String stationListstr = "";
@@ -293,11 +300,16 @@ public class Map {
 				+ ", totalBicycleNum=" + totalBicycleNum + ", eleTotalBicycleNum=" + eleTotalBicycleNum
 				+ ", mecTotalBicycleNum=" + mecTotalBicycleNum + "]";
 	}
-
+	/**
+	 * to initialize from a file
+	 * @param filepath file path to find
+	 */
 	public void initFromFile(String filepath) {
 		// TODO
 	}
-
+	/**
+	 * to display all stationIDs in this map
+	 */
 	public void display() {
 		System.out.print("Stations ID = [");
 		for (Station station : stations.values()) {

@@ -5,8 +5,16 @@ import java.util.ArrayList;
 import ride.Server;
 import station.GPS;
 import station.Station;
-
+/**
+ * policy: avoid plus station: like minimal walking distance but return station cannot be
+ * a ¡°plus¡± station
+ * @author Zhihao Li
+ *
+ */
 public class AvoidPlusStation implements PlanningAlgo{
+	/**
+	 * Avoid Plus Station
+	 */
 	@Override
 	public Answer handle(Request request) throws Exception {
 		GPS startPoint = request.getStartPos();

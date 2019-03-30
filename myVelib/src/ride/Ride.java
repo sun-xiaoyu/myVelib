@@ -2,7 +2,11 @@ package ride;
 
 import bicycle.Bicycle;
 import station.Station;
-
+/**
+ * a ride is a whole order which can be easily collected and recorded by system
+ * @author Zhihao Li
+ *
+ */
 public abstract class Ride{
 	protected User user;
 	protected Station startStation, endStation;

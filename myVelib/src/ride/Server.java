@@ -6,6 +6,7 @@ import java.util.HashMap;
 import bicycle.Bicycle;
 import bicycle.EBike;
 import bicycle.MBike;
+import planning.CurrentDistribution;
 import planning.Request;
 import planning.Solution;
 import station.Slot;
@@ -45,7 +46,7 @@ public class Server {
 	
 	/**
 	 * Returns the single instance of Server.
-	 * @return
+	 * @return the unique instance
 	 */
 	public static Server getInstance() {
 		if (instance == null) {
@@ -69,7 +70,7 @@ public class Server {
 	 * @param user The user who rents the bicycle.
 	 * @param station The station where the bicycle is rented.
 	 * @param bicycleType The type of bike the user wanted.
-	 * @throws Exception 
+	 * @throws Exception Exceptions when renting a bike
 	 */
 	public void rent(User user, Station station, char bicycleType) throws Exception{
 		if (!station.isOffline()){
@@ -93,10 +94,10 @@ public class Server {
 	}
 	
 	/**
-	 * A user tries to rent a bike at station, where the type of bike does not metter.
+	 * A user tries to rent a bike at station, where the type of bike does not matter.
 	 * @param user The user who rents the bicycle.
-	 * @param station
-	 * @throws Exception 
+	 * @param station station to rent bike
+	 * @throws Exception rent bike exception
 	 */
 	public void rent(User user, Station station) throws Exception {
 		if (!station.isOffline()){
@@ -124,12 +125,12 @@ public class Server {
 	 * This might lead to prevent a bug, which a user might use two cards to alternate renting bikes at return everyone in an hour.??	 *
 	 * @param user The user who returns the bicycle.
 	 * @param station The station where the bicycle is returned.
-	 * @throws Exception 
-	 * @throws IllegalArgumentException 
+	 * @throws Exception restore Exception
+	 * @throws IllegalArgumentException illegal input
 	 */
 	public void restore(User user, Station station) throws IllegalArgumentException, Exception {
 		if (!station.isOffline()){
-			if (!station.judgeFull()) {
+			if (!station.isFull()) {
 				for(Slot slot: station.getSlots()) {
 					if (!slot.isOccupied()) {
 						OngoingRide ride = instance.ongoingRides.get(user);
@@ -145,8 +146,11 @@ public class Server {
 						log("Returned with success, user paid " + String.format("%.2f",record.getFee())+ " EUR.");
 						log(record.toString());
 						if(station.getReturnObservableStation().getObservers().contains(user)) {
-							station.getReturnObservableStation().removeObserver(user);
-							//for(Station s:)
+							for (Station s : CurrentDistribution.getInstance().getAllStation().values()) {
+								if(s.getReturnObservableStation().getObservers().contains(user)) {
+									s.getReturnObservableStation().removeObserver(user);
+								}
+							}
 						}
 						if(station.isFull()) {
 							station.getReturnObservableStation().setAvailability();
@@ -160,7 +164,7 @@ public class Server {
 	
 	public void restoreAfter(User user, Station station, double LengthInMin) throws IllegalArgumentException, Exception {
 		if (!station.isOffline()){
-			if (!station.judgeFull()) {
+			if (!station.isFull()) {
 				for (Slot slot: station.getSlots()) {
 					if (!slot.isOccupied()) {
 						OngoingRide ride = instance.ongoingRides.get(user);
@@ -201,7 +205,6 @@ public class Server {
 		solution.solve();
 		if(solution.getStartStation().equals(solution.getEndStation())) {
 			System.out.println("no need to rend a bike as this policy leads to the same start and end stations");
-			return null;
 		}
 		return solution;
 	}

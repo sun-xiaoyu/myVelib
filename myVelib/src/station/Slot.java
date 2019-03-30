@@ -6,7 +6,11 @@ import bicycle.Bicycle;
 import bicycle.EBike;
 import bicycle.MBike;
 import ride.Server;
-
+/**
+ * slot in station, holding a bike or not
+ * @author Zhihao Li
+ *
+ */
 public class Slot {
 	private int slotId;
 	private boolean occupied;
@@ -26,7 +30,9 @@ public class Slot {
 	}
 
 	/**
-	 * probability initialization
+	 * probability initialization 
+	 * @param probaBike probability of generating a bike in this slot
+	 * @param probaEBike probability of generating electric bike if to generate one bike
 	 */
 	public Slot(double probaBike, double probaEBike) {
 		super();
@@ -41,7 +47,6 @@ public class Slot {
 		
 	}
 	
-
 	public int getSlotId() {
 		return slotId;
 	}
@@ -65,7 +70,9 @@ public class Slot {
 	public void setBicycleInThisSlot(Bicycle bicycleInThisSlot) {
 		this.bicycleInThisSlot = bicycleInThisSlot;
 	}
-	
+	/**
+	 * add an electric bike to this slot
+	 */
 	public void addEleBicycle(){
 		if (!this.occupied) {
 			EBike eBike = new EBike();
@@ -73,6 +80,9 @@ public class Slot {
 			this.setBicycleInThisSlot(eBike);
 		}else Server.error("Slot occupied!");
 	}
+	/**
+	 * add a mechanic bike to this slot
+	 */
 
 	public void addMecBicycle(){
 		if (!this.occupied) {
@@ -83,6 +93,9 @@ public class Slot {
 	}
 	//TODO use pattern to get add methods more flexible.
 
+	/**
+	 * remove the bike in this slot
+	 */
 	public void removeBicycle() {
 		this.bicycleInThisSlot = null;
 		this.occupied = false;

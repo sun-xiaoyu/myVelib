@@ -5,8 +5,17 @@ import java.util.ArrayList;
 import ride.Server;
 import station.GPS;
 import station.Station;
-
+/**
+ * Policy: prefer plus station: with this policy the return station should be a ¡°plus¡±
+ * station (given a ¡°plus¡± station no further away than 10% of the distance of the
+ * closest station to the destination location exists). If no such a ¡°plus¡± station exists
+ * then this policy behaves normally (as a minimal walking distance)
+ * @author Zhihao Li
+ *
+ */
 public class PreferPlusStation implements PlanningAlgo{
+	/**prefer plus station
+	 */
 	@Override
 	public Answer handle(Request request) throws Exception {
 		GPS startPoint = request.getStartPos();

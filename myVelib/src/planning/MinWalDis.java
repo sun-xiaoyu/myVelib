@@ -5,8 +5,16 @@ import java.util.ArrayList;
 import ride.Server;
 import station.GPS;
 import station.Station;
-
+/**
+ * policy: minimal walking distance:the pickup and return stations are chosen so that the
+/* total walking distance of the trip
+ * @author Zhihao Li
+ *
+ */
 public class MinWalDis implements PlanningAlgo{
+	/**
+	 * minimal walking distance
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public Answer handle(Request request) throws Exception {

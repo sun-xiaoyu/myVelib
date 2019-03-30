@@ -5,8 +5,15 @@ import java.util.ArrayList;
 import ride.Server;
 import station.GPS;
 import station.Station;
-
+/**
+ * with this policy the choice of the source and destination station is affected by the number
+ * of available bikes (at source station) and free slots (at destination).
+ * @author Zhihao Li
+ *
+ */
 public class PreservationOfUniformity implements PlanningAlgo{
+	/**prefer plus station
+	 */
 	@Override
 	public Answer handle(Request request) throws Exception {
 		GPS startPoint = request.getStartPos();

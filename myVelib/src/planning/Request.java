@@ -5,14 +5,27 @@ import java.util.Calendar;
 import ride.Server;
 import ride.User;
 import station.GPS;
-
+/**
+ * a request sent by a user with its location, bike type preference, policy preference and send time
+ * so that our system can respond to him an answer
+ * @author zhihao Li
+ *
+ */
 public class Request {
 	private User user;
 	private GPS startPos, endPos;
 	private String bikeType;
 	private String policy;
 	private long sendTime;
-
+	/**
+	 * 
+	 * @param user request user
+	 * @param startPos user's current position
+	 * @param endPos user's expected end position
+	 * @param bikeType bike type preference
+	 * @param policy policy type preference
+	 * @throws Exception several exceptions in parameters
+	 */
 	public Request(User user, GPS startPos, GPS endPos, String bikeType, String policy) throws Exception{
 		super();
 		this.user = user;
@@ -50,6 +63,23 @@ public class Request {
 	public String getPolicy() {
 		return policy;
 	}
+	
+	public void setStartPos(GPS startPos) {
+		this.startPos = startPos;
+	}
+
+	public void setEndPos(GPS endPos) {
+		this.endPos = endPos;
+	}
+
+	public void setBikeType(String bikeType) {
+		this.bikeType = bikeType;
+	}
+
+	public void setPolicy(String policy) {
+		this.policy = policy;
+	}
+
 	public User getUser() {
 		return user;
 	}
@@ -62,10 +92,12 @@ public class Request {
 	public long getSendTime() {
 		return sendTime;
 	}
-
+	/**
+	 * rewrite toString method of request
+	 */
 	@Override
 	public String toString() {
-		return "Request [user=" + user + ", startPos=" + startPos + ", endPos=" + endPos + ", bikeType=" + bikeType
+		return "Request [user=" + user.getUserId() + ", startPos=" + startPos + ", endPos=" + endPos + ", bikeType=" + bikeType
 				+ ", policy=" + policy + ", sendTime=" + sendTime + "]";
 	}
 	

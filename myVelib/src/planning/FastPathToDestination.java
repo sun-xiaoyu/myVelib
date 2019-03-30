@@ -5,11 +5,16 @@ import java.util.ArrayList;
 import ride.Server;
 import station.GPS;
 import station.Station;
-
+/**
+ * policy: fast path to destination: the pickup station is chosen so that the combined
+ * walk+ride delay to the destination point d is minimal whereas the return station is
+ * chosen so that the walking distance to destination point d is minimal
+ * @author Zhihao Li
+ *
+ */
 public class FastPathToDestination implements PlanningAlgo{
-	/*
+	/**
 	 * fast path to destination
-	 * @see myVelib.PlanningAlgo#handle(myVelib.Request)
 	 */
 	@Override
 	public Answer handle(Request request) throws Exception {
@@ -48,18 +53,18 @@ public class FastPathToDestination implements PlanningAlgo{
 		}
 		
 		double minWalkRideTime = Math.sqrt((minStartStation.getPos().getX() - startPoint.getX()) * (minStartStation.getPos().getX() - startPoint.getX())+
-				(minStartStation.getPos().getX() - startPoint.getX()) * (minStartStation.getPos().getX() - startPoint.getX()))/
+				(minStartStation.getPos().getY() - startPoint.getY()) * (minStartStation.getPos().getY() - startPoint.getY()))/
 				Server.walkingSpeed +
-				Math.abs((minStartStation.getPos().getX() - endPoint.getX())+ 
-						(minStartStation.getPos().getY() - endPoint.getY()))/
+				(Math.abs(minStartStation.getPos().getX() - endPoint.getX())+ 
+						Math.abs(minStartStation.getPos().getY() - endPoint.getY()))/
 				ridingSpeed;
 		
 		for(Station s: givenTypeAvaStations) {
 			double walkRideTime = Math.sqrt((s.getPos().getX() - startPoint.getX()) * (s.getPos().getX() - startPoint.getX())+
-					(s.getPos().getX() - startPoint.getX()) * (s.getPos().getX() - startPoint.getX()))/
+					(s.getPos().getY() - startPoint.getY()) * (s.getPos().getY() - startPoint.getY()))/
 					Server.walkingSpeed +
-					Math.abs((s.getPos().getX() - endPoint.getX())+ 
-							(s.getPos().getY() - endPoint.getY()))/
+					(Math.abs(s.getPos().getX() - endPoint.getX())+ 
+							Math.abs(s.getPos().getY() - endPoint.getY()))/
 					ridingSpeed;
 			if( walkRideTime < minWalkRideTime) {
 				minStartStation = s;
@@ -67,12 +72,12 @@ public class FastPathToDestination implements PlanningAlgo{
 			}
 		}			
 
-		double minTime = minEndDis/ Server.walkingSpeed + minWalkRideTime;
-		double minDis = minEndDis + 
-				Math.sqrt((minStartStation.getPos().getX() - endPoint.getX())*(minStartStation.getPos().getX() - endPoint.getX()) + 
-				(minStartStation.getPos().getY() - endPoint.getY()) * (minStartStation.getPos().getY() - endPoint.getY())) +
-				(Math.abs(minStartStation.getPos().getX() - minEndStation.getPos().getX()) +
+		double minStartDis = Math.sqrt((minStartStation.getPos().getX() - startPoint.getX())*(minStartStation.getPos().getX() - startPoint.getX())
+				+ (minStartStation.getPos().getY() - startPoint.getY())*(minStartStation.getPos().getY() - startPoint.getY()));
+		double minRideDis = (Math.abs(minStartStation.getPos().getX() - minEndStation.getPos().getX())+ 
 				Math.abs(minStartStation.getPos().getY() - minEndStation.getPos().getY()));
+		double minTime = (minEndDis + minStartDis)/ Server.walkingSpeed + minRideDis/ridingSpeed;
+		double minDis = minStartDis + minEndDis + minRideDis;
 		if(minTime > 500) {
 			throw new Exception("BikeType input illegal.");
 		}

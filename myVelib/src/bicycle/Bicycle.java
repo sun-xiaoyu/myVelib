@@ -3,6 +3,11 @@ package bicycle;
 import card.CardVisitor;
 import ride.OngoingRide;
 
+/**
+ * abstract class Bicycle contains 2 concrete classes: Ebike and Mbike.
+ * @author Zhihao Li
+ *
+ */
 public abstract class Bicycle {
 	private int bicycleId;
 	protected double speed;
@@ -10,6 +15,9 @@ public abstract class Bicycle {
 	private static int idConstructor;
 	protected char type;
 	
+	/**
+	 * to construct a concrete bike.
+	 */
 	public Bicycle(){
 		super();
 		this.bicycleId = ++idConstructor;
@@ -32,6 +40,12 @@ public abstract class Bicycle {
 		return type;
 	}
 
+	/**
+	 * to calculate total spend of an order
+	 * @param visitor visitor pattern
+	 * @param ongoingRide an order of a riding record.
+	 * @return total spend of a riding
+	 */
 	public abstract double accept(CardVisitor visitor, OngoingRide ongoingRide);
 
 	@Override

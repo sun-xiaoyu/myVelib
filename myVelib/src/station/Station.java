@@ -5,7 +5,11 @@ import java.util.Random;
 
 import bicycle.Bicycle;
 import ride.Server;
-
+/**
+ * Station holds several slots where users can rend bikes. 
+ * @author Zhihao Li
+ *
+ */
 public class Station {
 	private int stationId;
 	private boolean offline;
@@ -24,7 +28,7 @@ public class Station {
 	 * general initialization
 	 * @param plus if it is a plus station
 	 * @param gridSize edge length of the grid
-	 * @throws Exception
+	 * @throws Exception several exceptions to be solved
 	 */
 	public Station(boolean plus, int gridSize) throws Exception {
 		super();
@@ -36,7 +40,7 @@ public class Station {
 		this.plus = plus;
 		this.stationId = ++idConstructor;
 		this.slots = new ArrayList<Slot>();
-		this.full = this.judgeFull();
+		this.full = this.isFull();
 		GPS gps;
 		boolean newGPSFlag = false;
 		do {
@@ -50,7 +54,12 @@ public class Station {
 		this.pos = gps;
 		existedStations.add(this);
 	}
-	
+	/**
+	 * probability constructor
+	 * @param slotnum total slot number
+	 * @param probaBike bike generating probability
+	 * @param probaEBike electric bike generating probability
+	 */
 	public Station(int slotnum, double probaBike, double probaEBike) {//0.7,0.3 initialization
 		super();
 		Random random = new Random();
@@ -61,7 +70,7 @@ public class Station {
 		for (int i =0;i<slotnum;i++) {
 			this.slots.add(new Slot(probaBike, probaEBike));
 		}
-		this.full = this.judgeFull();
+		this.full = this.isFull();
 		GPS gps;
 		boolean newGPSFlag = false;
 		do {
@@ -77,6 +86,7 @@ public class Station {
 	}
 
 	/**
+	 * special initialization
 	 * grid size 4km * 4km , 10 *10 grid
 	 * 0.4 probability of plus(chosen)
 	 */
@@ -86,7 +96,7 @@ public class Station {
 		this.plus = (boolean)(random.nextFloat()>0.6);	
 		this.stationId = ++idConstructor;
 		this.slots = new ArrayList<Slot>();
-		this.full = this.judgeFull();
+		this.full = this.isFull();
 		GPS gps;
 		boolean newGPSFlag = false;
 		do {
@@ -108,9 +118,13 @@ public class Station {
 	public boolean isOffline() {
 		return offline;
 	}
-
+	/**
+	 * set offline condition of a station
+	 * if to shut down, delete all observer of this station
+	 * @param offline set offline or online
+	 */
 	public void setOffline(boolean offline) {
-		if(offline == false && this.offline == true) {
+		if(offline == true && this.offline == false) {
 			this.returnObservableStation.setAvailability();
 			this.returnObservableStation.deletAllObservers();
 		}
@@ -141,6 +155,10 @@ public class Station {
 		return slotNum;
 	}
 	
+	/**
+	 * to calculate spare slot number in this station
+	 * @return spare slot number in this station
+	 */
 	public int getSpareSlotNum() {
 		int spareSlotNum = 0;
 		for(Slot slot: this.slots) {
@@ -150,7 +168,10 @@ public class Station {
 		}		
 		return spareSlotNum;
 	}
-
+	/**
+	 * to observe if this station is full
+	 * @return full or not
+	 */
 	public boolean isFull() {
 		this.full = true;
 		for(Slot slot: this.slots) {
@@ -161,7 +182,10 @@ public class Station {
 		}
 		return this.full;
 	}
-
+	/**
+	 * to calculate available electric number in this station
+	 * @return available electric number in this station
+	 */
 	public int getEBicycleNumber() {
 		int eBicycleNumber = 0;
 		for(Slot slot: this.slots) {
@@ -172,7 +196,10 @@ public class Station {
 		return eBicycleNumber;
 	}
 
-
+	/**
+	 * to calculate available mechanic number in this station
+	 * @return available mechanic number in this station
+	 */
 	public int getMBicycleNumber() {
 		int mBicycleNumber = 0;
 		for(Slot slot: this.slots) {
@@ -182,6 +209,10 @@ public class Station {
 		}
 		return mBicycleNumber;
 	}
+	/**
+	 * to calculate available number in this station
+	 * @return available number in this station
+	 */
 	public int getBicycleNumber() {
 		int bicycleNumber = 0;
 		for(Slot slot: this.slots) {
@@ -191,40 +222,40 @@ public class Station {
 		}
 		return bicycleNumber;
 	}
-
+	/**
+	 * observer pattern, to get this concrete station observable
+	 * @return return the concrete observable
+	 */
 	public ObservableStation getReturnObservableStation() {
 		return returnObservableStation;
 	}
-
+	/**
+	 * add a new slot to this station
+	 * @param slot the new slot
+	 */
 	public void addSlot(Slot slot) {
 		this.slots.add(slot);
 		this.slotNum += 1;
 	}
-	
-	public void delSlot(Slot slot) throws Exception,IllegalArgumentException{
+	/**
+	 * 
+	 * @param slot the slot to be deleted
+	 * @throws IllegalArgumentException may given illegal argument that slot number less than 0 or wrong station
+	 */
+	public void delSlot(Slot slot) throws IllegalArgumentException{
 		if(this.slots.contains(slot)) {
 			this.slots.remove((Object)slot);
-			this.slotNum -= 1;
-			if(this.slotNum < 0) {
-				throw new Exception("slotNum < 0");
+			if(this.slotNum < 1) {
+				throw new IllegalArgumentException("slotNum < 0");
 			}
+			this.slotNum -= 1;
 			
 		}
 		else {
 			throw new IllegalArgumentException("this slot is not in the given station.");
 		}
 	}
-	
-	public boolean judgeFull() {
-		boolean flagFull = true;
-		for(int i = 0; i < this.slots.size(); i++){
-			if(this.slots.get(i).isOccupied() == false) {
-				flagFull = false;
-			}
-		}
-		this.full = flagFull;
-		return this.full;
-	}
+
 	
 	public void rentBicycle(Bicycle b) throws Exception {
 		try {
@@ -263,15 +294,23 @@ public class Station {
 		return totalReturn;
 	}
 	
-	
+	/**
+	 * add add rent number of this station
+	 * @param number rent number to be added
+	 */	
 	public void addTotalRent(int number) {
 		this.totalRent += number;
 	}
-
+	/**
+	 * add add return number of this station
+	 * @param number return number to be added
+	 */
 	public void addTotalReturn(int number) {
 		this.totalReturn += number;
 	}
-
+	/**
+	 * for screen display
+	 */
 	public void displayStat() {
 		Server.log("Station [stationId=" + stationId + ", offline=" + offline + ", pos=" + pos + ", plus=" + plus
 				+ ", totalRent=" + totalRent + ", totalReturn=" + totalReturn + ", slotNum=" + slotNum + "]");
