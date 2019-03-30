@@ -19,6 +19,7 @@ public class Slot {
 	public Slot() {
 		super();
 		this.slotId = ++idConstructor;
+		this.occupied = false;
 		/**
 		 * initially no bicycle in the bicycle slot so equals to -1 in order to avoid repeat with any real bicycleId.
 		 */
