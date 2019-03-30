@@ -1,7 +1,7 @@
 package clui;
 
 import java.util.Arrays;
-import java.util.Collection;
+import java.util.Collections;
 import java.util.Scanner;
 
 import card.VlibreCard;
@@ -9,6 +9,7 @@ import card.VmaxCard;
 import planning.Map;
 import ride.Server;
 import ride.User;
+import station.MostUsedComparator;
 import station.Station;
 
 /**
@@ -75,28 +76,32 @@ public class CLUI {
 			rentBike(args);
 			break;
 		case "returnbike":
+			returnBike(args);
 			break;
 		case "displaystation":
+			displayStation(args);
 			break;
 		case "displayuser":
+			displayUser(args);
 			break;
 		case "sortstation":
+			sortStation(args);
 			break;
 		case "display":
+			displayAll();
 			break;	
 		default:
 			Server.error(INVALID_COMMAND);
 		}
 	}
 
-<<<<<<< HEAD
 	private static void displayAll() {
 		Server.log(Map.getInstance().toString());
 	}
 
 	private static void sortStation(String[] args) {
-//		mostUsedComp;
-//		Collection.sort(Map.getInstance().getStations().values().toArray(),mostUsedComp);
+		MostUsedComparator mostUsedComp = new MostUsedComparator();
+		Collections.sort(Map.getInstance().getStations().values().toArray(null),mostUsedComp);
 		
 	}
 
@@ -160,12 +165,9 @@ public class CLUI {
 		
 	}
 
-=======
->>>>>>> branch 'master' of https://github.com/sun-xiaoyu/myVelib
 	/**
 	 * 
-	 * @param args UserID stationID 
-	 * @param args UserID stationID bikeType(e or m)
+	 * @param args UserID, stationID, bikeType(e or m)
 	 */
 	private static void rentBike(String[] args) {
 		if ((args.length != 2) && (args.length != 3)) {

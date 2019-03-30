@@ -252,6 +252,14 @@ public class Station {
 		b.setRidingStatus(false);
 	}
 	
+	public int getTotalRent() {
+		return totalRent;
+	}
+
+	public int getTotalReturn() {
+		return totalReturn;
+	}
+
 	public void displayStat() {
 		Server.log("Station [stationId=" + stationId + ", offline=" + offline + ", pos=" + pos + ", plus=" + plus
 				+ ", totalRent=" + totalRent + ", totalReturn=" + totalReturn + ", slotNum=" + slotNum + "]");
