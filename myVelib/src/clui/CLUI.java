@@ -1,6 +1,7 @@
 package clui;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Scanner;
 
 import card.VlibreCard;
@@ -44,8 +45,6 @@ public class CLUI {
 		String[] args = Arrays.copyOfRange(inputForParsing, 1, inputForParsing.length);
 		System.out.println(Arrays.toString(args));
 		
-		Server server = Server.getInstance();
-		Map map = Map.getInstance();
 		command = command.toLowerCase();
 		switch(command) {
 		case "setup":
@@ -88,7 +87,8 @@ public class CLUI {
 	}
 
 	private static void sortStation(String[] args) {
-		// TODO Auto-generated method stub
+//		mostUsedComp;
+//		Collection.sort(Map.getInstance().getStations().values().toArray(),mostUsedComp);
 		
 	}
 
