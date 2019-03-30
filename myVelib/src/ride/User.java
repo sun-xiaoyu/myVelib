@@ -27,7 +27,6 @@ public class User implements Observer{
 		super();
 		this.name = name;
 		this.userId = ++idConstructor;
-		idConstructor += 1;
 	}
 	
 	public int getUserId() {
@@ -95,10 +94,10 @@ public class User implements Observer{
 		System.out.println(this.getName()+ ", station " + station.getStationId() + "is offline or full, you can not return bike to it.");
 	}
 
-	public String showStatistics() {
-		return "User [userId=" + userId + ", name=" + name + ", totalRides=" + totalRides
+	public void displayStat() {
+		Server.log("User [userId=" + userId + ", name=" + name + ", totalRides=" + totalRides
 				+ ", totalRidingTimeInMIn=" + totalRidingTimeInMIn + ", totalCharge=" + totalCharge
-				+ ", totalTimeCreditEarned=" + totalTimeCreditEarned + "]";
+				+ ", totalTimeCreditEarned=" + totalTimeCreditEarned + "]");
 	}
 
 	public void payFor(OngoingRide ride) {
@@ -108,8 +107,6 @@ public class User implements Observer{
 		ride.setPaid();
 		if (ride.getEndStation().isPlus() && this.isWithCard()) card.addCredit(5);
 		
-	}
-	
-	
+	}	
 	
 }

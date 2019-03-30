@@ -210,7 +210,7 @@ public class CLUI {
 			Server.error(INVALID_PARA);	
 			return;
 		}
-		Server.log(USER_ADDED);
+		Server.log(USER_ADDED + u.getUserId());
 	}
 
 	/**
