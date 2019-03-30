@@ -64,11 +64,11 @@ public class Map {
 			Station station = new Station(plus, (int) (min(sizeX,sizeY)/4));
 			this.stationList.add(station);
 		}
-		for(Station station: stationList) {
+		for(Station station: stationList) {//add a slot to every station
 			station.addSlot(new Slot(1,0));
 		}
 		
-		for(int i = 0; i < totalSlotNum - stationNum; i++) {//to initialize slot distribution in all stations randomly
+		for(int i = 0; i < totalSlotNum - stationNum; i++) {//to finish initializing slot distribution in all stations randomly
 			 int index = (int) (Math.random()* this.stationList.size()); 
 			 Station s = stationList.get(index);
 			 s.addSlot(new Slot());
@@ -107,6 +107,79 @@ public class Map {
 		return a<b ? a:b;
 	}
 
+	/**
+	 * This correspond to the command 
+	 * setup <name> <nstations> <nslots> <sidearea> <nbikes>: to create a myVelib network with given name and
+	 * consisting of <nstations> stations with <nslots> parking slots and such that stations
+	 * are arranged on a square grid whose of side <sidarea> and initially populated with a 
+	 * <nbikes> bikes randomly distributed over the stations
+	 * @param sidearea length of side in km
+	 * @throws Exception
+	 */
+	public void init(int stationNum, int totalSlotNum, int totalBicycleNum) throws Exception{
+		if(stationNum > totalSlotNum) {//to avoid that 
+			throw new Exception("station number can not be more than total slot number");
+		}
+		else if(stationNum > 2.05*totalSlotNum) {//to avoid that 
+			throw new Exception("bicycles not enough for general initialization");
+		}
+		else if(totalSlotNum < totalBicycleNum) {
+			throw new Exception("bicycle number larger than slot number");
+		}
+		this.stationList = new ArrayList<Station>();
+		this.stationNum = stationNum;
+		this.totalSlotNum = totalSlotNum;
+		this.totalBicycleNum = totalBicycleNum;
+		this.mecTotalBicycleNum = (int) (0.7 * this.totalBicycleNum);
+		this.eleTotalBicycleNum = this.totalBicycleNum - this.mecTotalBicycleNum;
+		for(int i = 0; i < stationNum; i++) {//initialize numbers
+			Random random = new Random();
+			float plusFlag = random.nextFloat(); 
+			boolean plus;
+			if(plusFlag < 0.2) {//probability of 0.2 to set a station into plus
+				plus = true;}
+			else {
+				plus = false;}
+			Station station = new Station(plus, (int) (min(sizeX,sizeY)/4));
+			this.stationList.add(station);
+		}
+		for(Station station: stationList) {
+			station.addSlot(new Slot(1,0));
+		}
+		
+		for(int i = 0; i < totalSlotNum - stationNum; i++) {//to initialize slot distribution in all stations randomly
+			 int index = (int) (Math.random()* this.stationList.size()); 
+			 Station s = stationList.get(index);
+			 s.addSlot(new Slot());
+		}
+		
+		int alreadySetEleNum = 0;
+		while(alreadySetEleNum < eleTotalBicycleNum) {
+			 int index = (int) (Math.random()* this.stationList.size()); 
+			 Station s = stationList.get(index);
+			 for(Slot slot: s.getSlots()) {
+				 if(!slot.isOccupied()) {
+					 slot.setBicycleInThisSlot(new EBike());
+					 alreadySetEleNum += 1;
+					 break;
+				 }
+			 }
+		}
+		
+		int alreadySetMecNum = mecTotalBicycleNum - stationNum;
+		while(alreadySetMecNum < mecTotalBicycleNum) {
+			 int index = (int) (Math.random()* this.stationList.size()); 
+			 Station s = stationList.get(index);
+			 for(Slot slot: s.getSlots()) {
+				 if(!slot.isOccupied()) {
+					 slot.setBicycleInThisSlot(new MBike());
+					 alreadySetMecNum += 1;
+					 break;
+				 }
+			 }
+		}	
+		instance = this; 
+	}
 	/**
 	 * This correspond to the command 
 	 * setup <velibnetworkName>: to create a myVelib network with given name and

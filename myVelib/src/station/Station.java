@@ -40,7 +40,7 @@ public class Station {
 		GPS gps;
 		boolean newGPSFlag = false;
 		do {
-			gps = new GPS(random.nextInt(gridSize)*4,random.nextInt(gridSize)*4);
+			gps = new GPS(random.nextInt(gridSize+1)*4,random.nextInt(gridSize+1)*4);
 			for(Station s: existedStations) {
 				if(s.getPos().equals(gps)) {
 					newGPSFlag = true;

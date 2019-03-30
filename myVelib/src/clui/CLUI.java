@@ -181,7 +181,7 @@ public class CLUI {
 	/**
 	 * 
 	 * @param args vlibnetworkName
-	 * @param args name, nstations, nslots, s, nbikes
+	 * @param args name, nstations, nslots, sidearea, nbikes
 	 */
 	private static void setup(String[] args) {
 		if (args.length != 1 && args.length != 5) {
@@ -205,24 +205,24 @@ public class CLUI {
 		if (args.length == 5){
 			if (args[0] != "") {
 				String name;
-				int nstations, nslot, nbikes;
+				int nstations, nslots, nbikes;
 				double s;
 				name = args[0];
 				try {
 					nstations = Integer.parseInt(args[1]);
-					nslot = Integer.parseInt(args[2]);
+					nslots = Integer.parseInt(args[2]);
 					s = Double.parseDouble(args[3]);
 					nbikes = Integer.parseInt(args[4]);
 					map.setSizeX(s);
 					map.setSizeY(s);
 					try {
-						map.init(nstations,nslot);
+						map.init(nstations,nslots,nbikes);
 						map.setName(name);
 						map.display();
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-					//TODO deal with nbike;
+					//TODO deal with nbikes;
 				}catch (Exception NumberFormatException) {
 					Server.error(INVALID_PARA);
 				}
