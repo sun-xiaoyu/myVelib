@@ -212,6 +212,11 @@ public class Map {
 	public void initFromFile(String filepath) {
 		// TODO
 	}
+
+	public void display() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 //	map.serize;
 //	map.deserialize;

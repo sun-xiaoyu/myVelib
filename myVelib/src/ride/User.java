@@ -90,12 +90,6 @@ public class User implements Observer{
 		if (record.getEndStation().isPlus()) totalTimeCreditEarned += 5; 
 	}
 	
-	
-	
-	/**
-	 * 
-	 */
-	
 	@Override
 	public void update(Station station) {
 		System.out.println(this.getName()+ ", station " + station.getStationId() + "is offline or full, you can not return bike to it.");
