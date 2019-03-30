@@ -19,7 +19,7 @@ import station.Station;
  */
 public class Server {
 	private ArrayList <Record> records;
-	private ArrayList <User> users;
+	private HashMap<Integer, User> users;
 	private HashMap<User, OngoingRide> ongoingRides;
 	private HashMap<User, Solution> solutions;
 	private double occupation = 0.3;
@@ -39,7 +39,7 @@ public class Server {
 	private Server() {
 		this.records = new ArrayList <Record>();
 		this.ongoingRides = new HashMap<User, OngoingRide>();
-		this.users = new ArrayList <User>();
+		this.users = new HashMap<Integer, User>();
 		this.solutions = new HashMap<User, Solution> ();
 	}
 	
@@ -211,7 +211,7 @@ public class Server {
 	}
 	
 	public void addUser(User user) {
-		instance.users.add(user);
+		instance.users.put(user.getUserId(),user);
 	}
 	
 

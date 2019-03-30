@@ -1,6 +1,7 @@
 package planning;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 import bicycle.EBike;
@@ -17,7 +18,7 @@ public class Map {
 	/**
 	 * size in kilometer and speed in km/min. map to hold number information. single pattern used.
 	 */
-	private ArrayList <Station> stationList; 
+	private HashMap<Integer, Station> stations;
 	private String name;
 	private int stationNum;
 	private int totalSlotNum;
@@ -47,7 +48,7 @@ public class Map {
 		else if(stationNum < 2.05*totalSlotNum) {//to avoid that 
 			throw new Exception("bicycles not enough for general initialization");
 		}
-		this.stationList = new ArrayList<Station>();
+		this.stations = new HashMap<Integer, Station>();
 		this.stationNum = stationNum;
 		this.totalSlotNum = totalSlotNum;
 		this.totalBicycleNum = (int)(0.7 * this.totalSlotNum);
@@ -62,22 +63,22 @@ public class Map {
 			else {
 				plus = false;}
 			Station station = new Station(plus, (int) (min(sizeX,sizeY)/4));
-			this.stationList.add(station);
+			this.stations.put(station.getStationId(),station);
 		}
-		for(Station station: stationList) {//add a slot to every station
+		for(Station station: stations.values()) {
 			station.addSlot(new Slot(1,0));
 		}
-		
+		Random random = new Random();
 		for(int i = 0; i < totalSlotNum - stationNum; i++) {//to finish initializing slot distribution in all stations randomly
-			 int index = (int) (Math.random()* this.stationList.size()); 
-			 Station s = stationList.get(index);
+			 int index = random.nextInt(stations.size());
+			 Station s = stations.get(index+1);
 			 s.addSlot(new Slot());
 		}
 		
 		int alreadySetEleNum = 0;
 		while(alreadySetEleNum < eleTotalBicycleNum) {
-			 int index = (int) (Math.random()* this.stationList.size()); 
-			 Station s = stationList.get(index);
+			int index = random.nextInt(stations.size());
+			 Station s = stations.get(index+1);
 			 for(Slot slot: s.getSlots()) {
 				 if(!slot.isOccupied()) {
 					 slot.setBicycleInThisSlot(new EBike());
@@ -89,8 +90,8 @@ public class Map {
 		
 		int alreadySetMecNum = mecTotalBicycleNum - stationNum;
 		while(alreadySetMecNum < mecTotalBicycleNum) {
-			 int index = (int) (Math.random()* this.stationList.size()); 
-			 Station s = stationList.get(index);
+			int index = random.nextInt(stations.size());
+			 Station s = stations.get(index+1);
 			 for(Slot slot: s.getSlots()) {
 				 if(!slot.isOccupied()) {
 					 slot.setBicycleInThisSlot(new MBike());
@@ -192,10 +193,10 @@ public class Map {
 	public void init() {
 		this.sizeX = 40;
 		this.sizeY = 40;
-		this.stationList = new ArrayList <Station>();
+		this.stations = new HashMap<Integer, Station>();
 		for (int i=0;i<10;i++) {
 			Station s = new Station(10,0.7,0.3);
-			this.stationList.add(s);
+			this.stations.put(s.getStationId(),s);
 		}
 		instance = this;
 	}
@@ -231,9 +232,6 @@ public class Map {
 		this.sizeY = sizeY;
 	}
 
-	public ArrayList<Station> getStationList() {
-		return stationList;
-	}
 	public int getStationNum() {
 		return stationNum;
 	}
@@ -251,10 +249,11 @@ public class Map {
 	}
 
 	public void addStation(Station s) {
-		this.stationList.add(s);
+		this.stations.put(s.getStationId(),s);
 		this.stationNum += 1;
 	}
 	
+	/*
 	public void delStation(Station s) throws Exception{
 		if(this.stationList.contains(s)) {
 			throw new Exception("this station is not in the station list.");
@@ -270,11 +269,12 @@ public class Map {
 			throw new Exception("no station any more");
 		}
 	}
-
+	*/
+	
 	@Override
 	public String toString() {
 		String stationListstr = "";
-		for (Station s: stationList) {
+		for (Station s: stations.values()) {
 			stationListstr += s.toString()+"\n\n";
 		}
 		return "Map [stationList=\n" + stationListstr + ", stationNum=" + stationNum + ", totalSlotNum=" + totalSlotNum
@@ -288,7 +288,7 @@ public class Map {
 
 	public void display() {
 		System.out.print("Stations ID = [");
-		for (Station station : stationList) {
+		for (Station station : stations.values()) {
 			System.out.print(station.getStationId()+" ");
 		}
 		System.out.println("]");

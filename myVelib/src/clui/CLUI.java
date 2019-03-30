@@ -89,9 +89,7 @@ public class CLUI {
 		if (!args[0].equals(Map.getInstance().getName())) {
 			Server.error(NETWORK_NOT_EXIST);
 			return;
-		}
-		
-		
+		}		
 	}
 	/**
 	 * 
