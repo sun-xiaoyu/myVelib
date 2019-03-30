@@ -93,7 +93,7 @@ public class CLUI {
 			Station station = Map.getInstance().getStations().get(stationID);
 			User user = Server.getInstance().getUsers().get(userID);
 			Server.getInstance().rent(user,station); 
-			Server.log(STATION_OFFLINE+stationID);
+			Server.log("");
 		}catch(NumberFormatException e) {
 			Server.error(INVALID_PARA);
 		}catch(Exception e) {
@@ -229,7 +229,6 @@ public class CLUI {
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-					//TODO deal with nbikes;
 				}catch (Exception NumberFormatException) {
 					Server.error(INVALID_PARA);
 				}
