@@ -1,6 +1,7 @@
 package planning;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import station.Station;
 
@@ -10,7 +11,7 @@ import station.Station;
  *
  */
 public class CurrentDistribution {
-	private ArrayList<Station> allStation;
+	private HashMap<Integer, Station> allStation;
 	private  ArrayList<Station> eAvaStationList;
 	private ArrayList<Station> mAvaStationList;
 	private ArrayList<Station> returnableStationList;
@@ -18,13 +19,13 @@ public class CurrentDistribution {
 	private static CurrentDistribution instance;
 	
 	private CurrentDistribution(Map map) {
-		this.allStation = new ArrayList<Station>();
+		this.allStation = new HashMap<Integer, Station>();
 		this.eAvaStationList = new ArrayList<Station>();
 		this.mAvaStationList = new ArrayList<Station>();
 		this.returnableStationList = new ArrayList<Station>();
 		this.rentableStationList = new ArrayList<Station>();
-		this.allStation = map.getStationList();
-		for(Station s : this.allStation) {
+		this.allStation = map.getStations();
+		for(Station s : this.allStation.values()) {
 			if(s.getEBicycleNumber() > 0) {
 				this.eAvaStationList.add(s);
 				this.rentableStationList.add(s);
@@ -45,7 +46,7 @@ public class CurrentDistribution {
 			instance = new CurrentDistribution(Map.getInstance());	
 		}
 		else {
-			for(Station s : instance.allStation) {
+			for(Station s : instance.allStation.values()) {
 				if(s.getEBicycleNumber() > 0) {
 					instance.eAvaStationList.add(s);
 					instance.rentableStationList.add(s);
@@ -62,7 +63,7 @@ public class CurrentDistribution {
 		return instance;
 	}
 
-	public ArrayList<Station> getAllStation() {
+	public HashMap<Integer, Station> getAllStation() {
 		return allStation;
 	}
 

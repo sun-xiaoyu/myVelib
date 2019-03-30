@@ -106,7 +106,7 @@ public class CLUI {
 		}
 		try{
 			int stationID = Integer.parseInt(args[1]);
-			Map.getInstance().getStationList().get(stationID-1).setOffline(true);
+			Map.getInstance().getStations().get(stationID).setOffline(true);
 			Server.log(STATION_OFFLINE+stationID);
 		}catch(NumberFormatException e) {
 			Server.error(INVALID_PARA);
@@ -129,7 +129,7 @@ public class CLUI {
 		}
 		try{
 			int stationID = Integer.parseInt(args[1]);
-			Map.getInstance().getStationList().get(stationID-1).setOffline(false);
+			Map.getInstance().getStations().get(stationID).setOffline(false);
 			Server.log(STATION_ONLINE+stationID);
 		}catch(NumberFormatException e) {
 			Server.error(INVALID_PARA);

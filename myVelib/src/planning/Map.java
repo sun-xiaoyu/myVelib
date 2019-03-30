@@ -163,6 +163,11 @@ public class Map {
 		return stationNum;
 	}
 	
+	
+	public HashMap<Integer, Station> getStations() {
+		return stations;
+	}
+
 	public int getTotalBicycleNum() {
 		return totalBicycleNum;
 	}

@@ -31,9 +31,9 @@ public class UseCase {
 		server.addUser(Bob);
 		Bob.addCard(new VmaxCard(Bob));
 		
-		Station s1 = map.getStationList().get(0);
-		Station s5 = map.getStationList().get(4);
-		Station s6 = map.getStationList().get(5);
+		Station s1 = map.getStations().get(1);
+		Station s5 = map.getStations().get(5);
+		Station s6 = map.getStations().get(6);
 		
 		//Bob went to s, the source station
 		//Bob pick up a bike at random
