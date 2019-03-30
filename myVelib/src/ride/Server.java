@@ -187,9 +187,10 @@ public class Server {
 	 */
 	private void updateStatistic(Record record) {
 		record.getUser().updateStatistic(record);
-		// TODO Auto-generatsed method stub
-		 
-		
+		Station startStation = record.getStartStation();
+		Station endStation = record.getEndStation();
+		startStation.addTotalRent(1);
+		endStation.addTotalReturn(1);
 	}
 	
 	public Solution handle(Request rq) {

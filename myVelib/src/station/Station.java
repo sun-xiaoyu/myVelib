@@ -259,6 +259,15 @@ public class Station {
 	public int getTotalReturn() {
 		return totalReturn;
 	}
+	
+	
+	public void addTotalRent(int number) {
+		this.totalRent += number;
+	}
+
+	public void addTotalReturn(int number) {
+		this.totalReturn += number;
+	}
 
 	public void displayStat() {
 		Server.log("Station [stationId=" + stationId + ", offline=" + offline + ", pos=" + pos + ", plus=" + plus
