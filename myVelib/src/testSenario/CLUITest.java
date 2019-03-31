@@ -1,4 +1,4 @@
-package test;
+package testSenario;
 
 import java.lang.reflect.Method;
 import static org.junit.Assert.*;
@@ -43,8 +43,6 @@ public class CLUITest {
 		
 		declaredMethod.invoke(CLUI.class, "returnbike 2 5 30");
 		assertFalse(Server.getInstance().getUsers().get(2).isRiding());
-		
-		
 		
 		
 		
