@@ -9,7 +9,7 @@ addUser Bob Vmax VELIB
 #### I)
 
 # wrong user ID
-rentBike 2 1
+rentBike 3 1
 
 #wrong station ID
 rentBike 1 99

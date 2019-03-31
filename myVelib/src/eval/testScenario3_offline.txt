@@ -1,14 +1,18 @@
 # Offline stations. Rent and Return fails. Wrong stationId or UserId fails
 setup velib3 10 10 40 75
-addUser velib3 Alice none
+addUser Alice none velib3
 offline velib3 1
 # Rent from station 1 fails 
-rentBike velib3 1 1
+rentBike 1 1
 # Rent from another station 
-rentBike velib3 1 2
+rentBike 1 2
 # Return to station 1 fails
-returnBike velib3 1 1
+returnBike 1 1 90
 # Fails to rent bike from inexistant station
-rentBike velib3  1 100
+rentBike 1 100
 # Fails to rent bike for inexistant user 
-rentBike velib3 100 1
+rentBike 100 1
+# Fails to rent another bike because user is already riding
+rentBike 1 3
+# Return the bike
+returnBike 1 6 200
