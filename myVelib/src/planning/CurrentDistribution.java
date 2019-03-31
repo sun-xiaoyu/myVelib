@@ -2,6 +2,7 @@ package planning;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 import station.Station;
 
@@ -91,6 +92,14 @@ public class CurrentDistribution {
 
 	public ArrayList<Station> getRentableStationList() {
 		return rentableStationList;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "CurrentDistribution [allStation=" + allStation.size() + ", eAvaStationList=" + eAvaStationList.size()
+				+ ", mAvaStationList=" + mAvaStationList.size() + ", returnableStationList=" + returnableStationList.size()
+				+ ", rentableStationList=" + rentableStationList.size() + "]";
 	}
 	/**
 	 * to set a station not returnable
