@@ -36,6 +36,11 @@ public class Answer {
 	public double getTotalDis() {
 		return totalDis;
 	}
+	@Override
+	public String toString() {
+		return "Answer [startStation=" + startStation.getStationId() + ", endStation=" + endStation.getStationId() + ", totalTime=" + totalTime
+				+ ", totalDis=" + totalDis + "]";
+	}
 	
-
+	
 }

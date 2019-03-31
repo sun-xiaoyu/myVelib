@@ -13,7 +13,7 @@ public class CurrentDistributionTest {
 	Map map = Map.getInstance();
 	map.init();
 	CurrentDistribution curDis = CurrentDistribution.getInstance();
-	System.out.println(curDis.getAllStation());
+	System.out.println(curDis.toString());
 	}
 	
 	@Test
