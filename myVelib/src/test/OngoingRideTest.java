@@ -33,8 +33,8 @@ public class OngoingRideTest {
 		assertEquals(ongoingRide.isPaid(),false);
 		assertEquals(ongoingRide.getStartStation(),startStation);
 		assertEquals(ongoingRide.getEndStation(),endStation);
-		assertEquals((ongoingRide.getEndTime() - ongoingRide.getStartTime()),600,50);
-		assertEquals((ongoingRide.getLengthInMin()*60000),600,50);
+		assertEquals((ongoingRide.getEndTime() - ongoingRide.getStartTime()),660,50);
+		assertEquals((ongoingRide.getLengthInMin()*60000),600,100);
 	}
 	@Test
 	public void testEndAfter() throws Exception {
@@ -50,7 +50,7 @@ public class OngoingRideTest {
 		assertEquals(ongoingRide.isPaid(),false);
 		assertEquals(ongoingRide.getStartStation(),startStation);
 		assertEquals(ongoingRide.getEndStation(),endStation);
-		assertEquals((ongoingRide.getEndTime() - ongoingRide.getStartTime()),600,50);
-		assertEquals((ongoingRide.getLengthInMin()*60000),600,50);
+		assertEquals((ongoingRide.getEndTime() - ongoingRide.getStartTime()),0,50);
+		assertEquals((ongoingRide.getLengthInMin()*60000),600,100);
 	}
 }

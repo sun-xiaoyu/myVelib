@@ -30,14 +30,15 @@ public class CurrentDistribution {
 		this.rentableStationList = new ArrayList<Station>();
 		this.allStation = map.getStations();
 		for(Station s : this.allStation.values()) {
-			if(s.getEBicycleNumber() > 0) {
-				this.eAvaStationList.add(s);
+			if(s.getBicycleNumber() > 0) {
+				if(s.getEBicycleNumber() > 0) {
+					this.eAvaStationList.add(s);
+					}
+				if(s.getMBicycleNumber() > 0) {
+					this.mAvaStationList.add(s);
+					}
 				this.rentableStationList.add(s);
-				}
-			if(s.getMBicycleNumber() > 0) {
-				this.mAvaStationList.add(s);
-				this.rentableStationList.add(s);
-				}
+			}
 			if(s.isFull() == false) {
 				this.returnableStationList.add(s);
 				}

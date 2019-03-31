@@ -216,7 +216,7 @@ public class Map {
 			for(Slot slot: this.stations.get(key).getSlots()) {
 				if(slot.isOccupied()) {
 					this.totalBicycleNum += 1;
-					if(slot.getBicycleInThisSlot().getType() == 'm') {
+					if(slot.getBicycleInThisSlot().getType() == 'M') {
 						this.mecTotalBicycleNum += 1;
 					}
 					else {
