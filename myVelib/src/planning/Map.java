@@ -184,7 +184,7 @@ public class Map {
 			 }
 		}
 		
-		int alreadySetMecNum = mecTotalBicycleNum;
+		int alreadySetMecNum = 0;
 		while(alreadySetMecNum < mecTotalBicycleNum) {
 			int index = random.nextInt(stations.size());
 			 Station s = stations.get(index+1);

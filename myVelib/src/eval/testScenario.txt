@@ -1,10 +1,11 @@
-#general correct scenario
+# A well-functionning scenario
 setup myvelib
 addUser Alice Vlibre myvelib
 addUser Bob Vmax myvelib
 rentBike 1 1
-returnBike 1 7 50
-displayStation myvelib
-displayStation myvelib
+returnBike 1 7 90
+displayStation myvelib 7
+displayStation myvelib 1
+displayUser 1
 sortStation
 display myvelib

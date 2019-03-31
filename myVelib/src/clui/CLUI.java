@@ -141,6 +141,11 @@ public class CLUI {
 				"users) of an a myVelib network velibnetworkName.\n");
 		
 	}
+	
+	/**
+	 * run test scenarios from file
+	 * @param args filepath
+	 */
 	private static void runtest(String[] args) {
 		if (args.length != 1) {
 			Server.error(PARA_NB_NOT_MATCH);
@@ -148,7 +153,9 @@ public class CLUI {
 		}
 		FileReader file = null;
 		BufferedReader reader = null;
+//		
 		System.out.println("Working Directory = " + System.getProperty("user.dir"));
+		
 		try {
 			file = new FileReader("./myVelib/src/eval/" + args[0]);
 			reader = new BufferedReader(file);
@@ -181,7 +188,7 @@ public class CLUI {
 		
 	}
 	/**
-	 * to display information of map condition
+	 * to display the whole status of map
 	 */
 	private static void displayAll() {
 		Server.log("");
