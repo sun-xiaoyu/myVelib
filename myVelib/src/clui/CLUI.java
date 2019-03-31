@@ -35,6 +35,7 @@ public class CLUI {
 	private static final String STATION_OFFLINE = "Station offline, ID:";
 	private static final String STATION_ONLINE = "Station online, ID:";
 	private static final String ID_NOT_FOUND = "ID not found";
+	private static final String TOO_DENSE = "The station are too dense, failed to build a map.";
 	
 	/**
 	 * get into order receiver
@@ -276,6 +277,7 @@ public class CLUI {
 			Server.error(INVALID_PARA);
 		}catch(Exception e) {
 			Server.error(ID_NOT_FOUND);
+			e.printStackTrace();
 		}
 		
 	}
@@ -405,7 +407,7 @@ public class CLUI {
 	}
 
 	/**
-	 * to set up a new system with several stations, slots, bikes and a given area side 
+	 * to set up a new system with several stations, slots, bikes and a given squared area side 
 	 * @param args vlibnetworkName or (name nstations nslots sidearea nbikes)
 	 */
 	private static void setup(String[] args) {
@@ -440,6 +442,10 @@ public class CLUI {
 					nbikes = Integer.parseInt(args[4]);
 					map.setSizeX(s);
 					map.setSizeY(s);
+					if (nstations > 0.5 * (int)(s/4)*(int)(s/4)) {
+						Server.error(TOO_DENSE);
+						return;
+					}
 					try {
 						map.init(nstations,nslots,nbikes,s);
 						map.setName(name);

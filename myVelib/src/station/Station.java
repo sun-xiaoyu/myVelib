@@ -77,6 +77,7 @@ public class Station {
 			for(Station s: existedStations) {
 				if(s.getPos().equals(gps)) {
 					newGPSFlag = true;
+					break;
 				}
 			}
 		}while(newGPSFlag);
