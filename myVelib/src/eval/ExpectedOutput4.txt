@@ -1,0 +1,11 @@
+Welcome to myVelib system. type "help" for help.
+> Runtest testScenario4_fullStation.txt
+Working Directory = C:\Users\SUNXIAOYU\git\myVelib
+Reading scenario file testScenario4_fullStation.txt
+Stations ID = [1 2 3 4 5 6 7 8 9 10 ]
+User added, ID:1
+Rent failed. The station does not have the bicycle of required type!
+User Id:1 StartStationID 1
+ID not found
+Scenario completed!
+> 

@@ -1,5 +1,5 @@
 # All stations are full in this network.
-setup velib2
+setup velib2 10 10 40 100
 addUser Alice none velib2 
 # Rent bike from station 1
 rentBike 1 1 e

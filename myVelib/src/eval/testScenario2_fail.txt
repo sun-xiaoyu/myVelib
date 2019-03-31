@@ -1,3 +1,4 @@
+# a scenario where everything went wrong. This scenario shows how we handled different invalid input.
 setup velib
 # Fail addUser -> incorrect card type
 addUser Alice velib  NO_CARD
