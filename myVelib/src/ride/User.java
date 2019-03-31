@@ -26,6 +26,7 @@ public class User implements Observer{
 		super();
 		this.name = "NoName";	
 		this.userId = ++idConstructor;
+		
 	}
 	/**
 	 * a user with given name

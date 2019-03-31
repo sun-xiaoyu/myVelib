@@ -210,6 +210,21 @@ public class Map {
 			Station s = new Station(10,0.7,0.3);
 			this.stations.put(s.getStationId(),s);
 		}
+		this.stationNum = 10;
+		for(Integer key : this.stations.keySet()) {
+			this.totalSlotNum += this.stations.get(key).getSlotNum();
+			for(Slot slot: this.stations.get(key).getSlots()) {
+				if(slot.isOccupied()) {
+					this.totalBicycleNum += 1;
+					if(slot.getBicycleInThisSlot().getType() == 'm') {
+						this.mecTotalBicycleNum += 1;
+					}
+					else {
+						this.eleTotalBicycleNum += 1;
+					}
+				}
+			};
+		}
 		instance = this;
 	}
 	
@@ -248,7 +263,14 @@ public class Map {
 		return stationNum;
 	}
 	
-	
+	public int getTotalSlotNum() {
+		return totalSlotNum;
+	}
+
+	public void setTotalSlotNum(int totalSlotNum) {
+		this.totalSlotNum = totalSlotNum;
+	}
+
 	public HashMap<Integer, Station> getStations() {
 		return stations;
 	}

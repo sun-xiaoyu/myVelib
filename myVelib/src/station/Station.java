@@ -8,7 +8,6 @@ import ride.Server;
 /**
  * Station holds several slots where users can rend bikes. 
  * @author Zhihao Li
- *
  */
 public class Station {
 	private int stationId;
@@ -22,7 +21,6 @@ public class Station {
 	private boolean full;
 	private static ArrayList<Station> existedStations = new ArrayList<Station>();
 	private ObservableStation returnObservableStation = new ObservableStation(this);
-	
 	
 	/**
 	 * general initialization
@@ -54,6 +52,7 @@ public class Station {
 		this.pos = gps;
 		existedStations.add(this);
 	}
+	
 	/**
 	 * probability constructor
 	 * @param slotnum total slot number
@@ -84,7 +83,6 @@ public class Station {
 		this.pos = gps;
 		existedStations.add(this);
 	}
-
 	/**
 	 * special initialization
 	 * grid size 4km * 4km , 10 *10 grid

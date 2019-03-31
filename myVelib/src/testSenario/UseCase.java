@@ -52,7 +52,7 @@ public class UseCase {
 		User Alix = new User();
 		server.addUser(Alix);
 		Alix.addCard(new VlibreCard(Alix));
-		
+
 		s6.setPlus(true);
 		Server.log(s1.toString());
 		Server.log(s6.toString());
@@ -60,7 +60,6 @@ public class UseCase {
 			server.rent(Alix, s1);
 			server.restoreAfter(Alix, s6, 125);
 		}
-
 		Server.log(s1.toString());
 		Server.log(s6.toString());		
 	}

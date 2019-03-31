@@ -23,10 +23,6 @@ public class Server {
 	private HashMap<Integer, User> users;
 	private HashMap<User, OngoingRide> ongoingRides;
 	private HashMap<User, Solution> solutions;
-	private double occupation = 0.3;
-	private double eleRate = 0.3;
-	private int numEleBicyle;
-	private int numMecBicyle;
 	public static final double walkingSpeed = (double)4/60;
 	public static final double mecRidingSpeed = (double)15/60;
 	public static final double eleRidingSpeed = (double)20/60;
@@ -65,6 +61,8 @@ public class Server {
 	public static String[] getBikeTypes() {
 		return bikeTypes;
 	}
+	
+	
 	/**
 	 * A user try to rent a bicycle of a certain type.
 	 * @param user The user who rents the bicycle.

@@ -77,7 +77,10 @@ public class OngoingRide extends Ride {
 	 */
 	public double getTimeNeedsToPay() {
 		double duration = this.getLengthInMin();
-		int credit = this.user.getCard().getTimeCredit();
+		int credit = 0;
+		if(user.isWithCard() == true) {
+			credit = this.user.getCard().getTimeCredit();
+		}
 		if (duration >60 && credit != 0) {
 			if (duration - credit > 60) {
 				// The user will use all his time credit.
