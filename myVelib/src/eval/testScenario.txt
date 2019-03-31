@@ -1,0 +1,10 @@
+#general correct scenario
+setup myvelib
+addUser Alice Vlibre myvelib
+addUser Bob Vmax myvelib
+rentBike 1 1
+returnBike 1 7 50
+displayStation myvelib
+displayStation myvelib
+sortStation
+display myvelib

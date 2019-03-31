@@ -99,4 +99,7 @@ public class CurrentDistribution {
 	public void delRetuenableStation(Station s) {
 		this.returnableStationList.remove(s);
 	}
+	public void reset() {
+		instance = null;		
+	}
 }

@@ -1,6 +1,10 @@
 package clui;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -8,6 +12,7 @@ import java.util.Scanner;
 
 import card.VlibreCard;
 import card.VmaxCard;
+import planning.CurrentDistribution;
 import planning.Map;
 import ride.Server;
 import ride.User;
@@ -92,55 +97,54 @@ public class CLUI {
 			break;	
 		case "runtest":
 			runtest(args);
+		case "reset":
+			reset();
 		default:
 			Server.error(INVALID_COMMAND);
 		}
 	}
+	
+	private static void reset() {
+		Map.getInstance().reset();
+		Server.getInstance().reset();
+		CurrentDistribution.getInstance().reset();		
+	}
+	
 	private static void runtest(String[] args) {
 		if (args.length != 1) {
 			Server.error(PARA_NB_NOT_MATCH);
 			return;
 		}
-		File outputFile = new File("src/eval/" + args[0] + "Result.txt");
-		
+		FileReader file = null;
+		BufferedReader reader = null;
+		System.out.println("Working Directory = " + System.getProperty("user.dir"));
 		try {
-			file = new FileReader("src/eval/" + filename);
+			file = new FileReader("./myVelib/src/eval/" + args[0]);
 			reader = new BufferedReader(file);
 			String line = "";
 			
-			System.out.println("Reading scenario file " + filename);
-			outputFile.createNewFile();
-			// creates a FileWriter Object
-			writer = new FileWriter(outputFile, true);
+			System.out.println("Reading scenario file " + args[0]);
 
-			while ((line = reader.readLine()) != null) { // read the file linebyline
+			while ((line = reader.readLine()) != null) { // read the file line by line
 				// pass line to CLUIThread.parseUserInput
 				// ignores empty lines or lines starting with #
-				if (line.length() > 0 && !line.substring(0, 1).equals("#")) {
-					message = clui.parseUserInput(line);
-					writer.write(message + "\n");
-					System.out.println(message + "\n");
-				}
+				if (line.length() > 0 && !line.substring(0, 1).equals("#")) parseAndDo(line);
 			}
-			System.out.println("Scenario completed! Results were stored in " + trimmedFilename + "Result.txt");
+			Server.log("Scenario completed!");
 		} catch (FileNotFoundException e) {
 			System.out.print("File not found. If scenario file is in eval folder, the filepath should be src/eval/filename> \n");
-		} catch (IOException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
-			try {
-				if (reader != null) {
-					reader.close();
-					if (file != null) {
-						file.close();
-					}
+			if (reader != null) {
+				try {reader.close();}
+				catch (IOException e) {// Ignore issues 
 				}
-				if (writer != null) {
-					writer.flush();
-					writer.close();  
+			}
+			if (file != null) {
+				try {file.close();}
+				catch (IOException e) { // Ignore issues during closing g
 				}
-			} catch (IOException e) {
-				System.out.println(e.getMessage());
 			}
 		}
 		
@@ -159,9 +163,11 @@ public class CLUI {
 		MostUsedComparator mostUsedComp = new MostUsedComparator();
 		ArrayList<Station> StationList = new ArrayList<Station>(Map.getInstance().getStations().values());
 		Collections.sort(StationList,mostUsedComp);
+		Server.log("*************BEGIN SORTING*****************");
 		for (Station s:StationList) {
 			s.displayStat();
 		}
+		Server.log("*************END SORTING*****************");
 	}
 	/**
 	 * to display user information

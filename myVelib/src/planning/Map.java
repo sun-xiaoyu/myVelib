@@ -341,6 +341,10 @@ public class Map {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public void reset() {
+		instance = null;		
+	}
 	
 //	map.serize;
 //	map.deserialize;
