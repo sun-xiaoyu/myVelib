@@ -1,9 +1,7 @@
 package test;
 
 import org.junit.Test;
-
 import station.GPS;
-
 import static org.junit.Assert.*;
 
 class GPSTest {

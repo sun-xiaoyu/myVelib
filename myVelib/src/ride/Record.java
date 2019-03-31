@@ -24,6 +24,11 @@ public class Record extends Ride{
 		this.lengthInMin = ride.lengthInMin;
 		if (this.endStation.isPlus()) this.timeCreditEarned = 5;
 	}
+	
+	public int getTimeCreditEarned() {
+		return timeCreditEarned;
+	}
+
 	@Override
 	public String toString() {
 		return "Record [user=" + user + ", startStation=" + startStation.getStationId() + ", endStation="

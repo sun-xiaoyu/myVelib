@@ -1,7 +1,7 @@
 package test;
 
 import org.junit.Test;
-
+import static org.junit.Assert.*;
 import planning.Map;
 
 public class MapTest {
@@ -14,11 +14,13 @@ public class MapTest {
 		Map map = Map.getInstance();
 		map.init();		
 		System.out.println(map);
+		assertEquals(map.getStationNum(), 10);
+		assertEquals(map.getTotalSlotNum(), 100);
+		assertEquals(map.getTotalBicycleNum(), 70, 10);
+		assertEquals(map.getEleTotalBicycleNum(), 21, 5);
+		assertEquals(map.getMecTotalBicycleNum(), 49, 10);
+		
 	}
 	
-	public static void main(String [] args) {
-		MapTest maptest = new MapTest();
-		maptest.testInit();
-	}
 
 }

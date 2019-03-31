@@ -78,7 +78,6 @@ public class Server {
 					Bicycle bicycle = slot.getBicycleInThisSlot();
 					if (bicycle instanceof MBike && bicycleType == 'M' || bicycle instanceof EBike && bicycleType == 'E') {
 						successful = true;
-						station.getReturnObservableStation().removeObserver(user);
 						station.rentBicycle(bicycle);
 						OngoingRide ride = new OngoingRide(user, station, bicycle);
 						user.setRiding(true);
