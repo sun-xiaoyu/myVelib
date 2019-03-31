@@ -1,0 +1,38 @@
+setup velib
+# Fail addUser -> incorrect card type
+addUser velib Alice NO_CARD
+# Correct implementation
+# setup <myvelibnetworkname> <dateTime> <nstations> <nslots> <sidearea> <nbikes>
+# Failure to rent bike, no correct bike is available (There are no bikes in this network)
+setup velib 1 1 40 0
+
+setup vlibre 10 10 40 70
+#wrong system name
+addUser velib1 Alice none
+
+addUser velib1 Alice none
+
+# wrong vlib system name
+rentBike velib1 1 e
+# Fail to set station online -> incorrect id
+online velib 99
+# Correct implementation
+online velib 1
+# Fail to set station offline -> incorrect id
+offline velib 99
+# Correct implementation
+offline velib 1
+# Fail to rent bike -> station 1 offline
+rentBike velib 1 1 m
+# Fail to return bike -> user does not have a bike rental 
+returnBike velib 1 1 
+# Fail to display station -> incorrect id
+displayStation velib 99
+# Fail to display user -> incorrect id
+displayUser velib 99
+
+# Parsing failures 
+# Fail -> station Id should be an int 
+online velib station1
+# Fail -> Forget to indicate network name
+displayUser 1

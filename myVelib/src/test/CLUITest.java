@@ -26,8 +26,13 @@ public class CLUITest {
 		}
 		assertEquals(bikeNum, 70, 10);
 		declaredMethod.invoke(CLUI.class, "addUser Alice Vlibre vlibre1");
-		declaredMethod.setAccessible(false);
 		assertEquals(Server.getInstance().getUsers().size(), 1);
+		declaredMethod.invoke(CLUI.class, "addUser Bob Vlibre vlibre1");
+		assertEquals(Server.getInstance().getUsers().size(), 2);
+		
+		
+		
+		
 		declaredMethod.setAccessible(false);
 	}
 }
