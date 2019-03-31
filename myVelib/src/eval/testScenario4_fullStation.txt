@@ -1,7 +1,7 @@
 # All stations are full in this network.
-setup velib2 10 10 40 100
-addUser velib2 Alice none
+setup velib2
+addUser Alice none velib2 
 # Rent bike from station 1
-rentBike velib2 1 1 e
+rentBike 1 1 e
 # Return bike to another station. The station is full. It should not work
-returnBike velib2 1 2
+returnBike 1 2 90

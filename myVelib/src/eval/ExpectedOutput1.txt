@@ -1,0 +1,171 @@
+Welcome to myVelib system. type "help" for help.
+> displayUser myvelib 1
+The input network does not exist.
+> Runtest testScenario.txt
+Working Directory = C:\Users\SUNXIAOYU\git\myVelib
+Reading scenario file testScenario.txt
+Map is built successfuly.
+Stations ID = [1 2 3 4 5 6 7 8 9 10 ]
+User added, ID:1
+User added, ID:2
+Rented with success.
+User Id:1 StartStationID 1
+Rented with success.
+User Id:2 StartStationID 7
+Returned with success, user paid 0.50 EUR.
+Record [user=User [userId=1, name=Alice, riding=false, card=VlibreCard, totalCharge=0.5, startStation=1, endStation=7, startTime=1554061983666, endTime=1554067383666, bicycle=Bicycle [bicycleId=1, ridingStatus=false, type=M], fee=0.5, ispaid=true, lengthInMin=90.0, distance=0.0, timeCreditEarned=5]
+Returned with success, user paid 4.00 EUR.
+Record [user=User [userId=2, name=Bob, riding=false, card=VmaxCard, totalCharge=4.0, startStation=7, endStation=3, startTime=1554061983669, endTime=1554079983669, bicycle=Bicycle [bicycleId=45, ridingStatus=false, type=E], fee=4.0, ispaid=true, lengthInMin=300.0, distance=0.0, timeCreditEarned=5]
+Station [stationId=7, offline=false, pos=GPS [x=36.0, y=32.0], plus=true, totalRent=1, totalReturn=1, slotNum=10]
+Station [stationId=1, offline=false, pos=GPS [x=8.0, y=8.0], plus=false, totalRent=1, totalReturn=0, slotNum=10]
+User [userId=1, name=Alice, totalRides=1, totalRidingTimeInMIn=90.0, totalCharge=0.5, totalTimeCreditEarned=5]
+User [userId=2, name=Bob, totalRides=1, totalRidingTimeInMIn=300.0, totalCharge=4.0, totalTimeCreditEarned=5]
+*************BEGIN SORTING*****************
+Station [stationId=7, offline=false, pos=GPS [x=36.0, y=32.0], plus=true, totalRent=1, totalReturn=1, slotNum=10]
+Station [stationId=1, offline=false, pos=GPS [x=8.0, y=8.0], plus=false, totalRent=1, totalReturn=0, slotNum=10]
+Station [stationId=3, offline=false, pos=GPS [x=4.0, y=4.0], plus=true, totalRent=0, totalReturn=1, slotNum=10]
+Station [stationId=2, offline=false, pos=GPS [x=8.0, y=16.0], plus=false, totalRent=0, totalReturn=0, slotNum=10]
+Station [stationId=4, offline=false, pos=GPS [x=32.0, y=4.0], plus=true, totalRent=0, totalReturn=0, slotNum=10]
+Station [stationId=5, offline=false, pos=GPS [x=12.0, y=32.0], plus=false, totalRent=0, totalReturn=0, slotNum=10]
+Station [stationId=6, offline=false, pos=GPS [x=12.0, y=24.0], plus=false, totalRent=0, totalReturn=0, slotNum=10]
+Station [stationId=8, offline=false, pos=GPS [x=32.0, y=32.0], plus=false, totalRent=0, totalReturn=0, slotNum=10]
+Station [stationId=9, offline=false, pos=GPS [x=24.0, y=4.0], plus=false, totalRent=0, totalReturn=0, slotNum=10]
+Station [stationId=10, offline=false, pos=GPS [x=32.0, y=0.0], plus=false, totalRent=0, totalReturn=0, slotNum=10]
+*************END SORTING*****************
+
+*************DISPLAYING THE SYSTEM*****************
+Map [stationList=
+Station [stationId=1, offline=false, pos=GPS [x=8.0, y=8.0], plus=false, slots=
+	Slot [slotId=1, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=2, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=2, ridingStatus=false, type=M]]
+	Slot [slotId=3, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=4, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=5, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=3, ridingStatus=false, type=M]]
+	Slot [slotId=6, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=7, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=4, ridingStatus=false, type=M]]
+	Slot [slotId=8, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=5, ridingStatus=false, type=M]]
+	Slot [slotId=9, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=10, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=6, ridingStatus=false, type=E]]
+, spareSlotNum=5, slotNum=10, full=false, eBicycleNumber=1, mBicycleNumber=4]
+
+Station [stationId=2, offline=false, pos=GPS [x=8.0, y=16.0], plus=false, slots=
+	Slot [slotId=11, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=7, ridingStatus=false, type=M]]
+	Slot [slotId=12, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=8, ridingStatus=false, type=E]]
+	Slot [slotId=13, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=9, ridingStatus=false, type=M]]
+	Slot [slotId=14, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=10, ridingStatus=false, type=M]]
+	Slot [slotId=15, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=11, ridingStatus=false, type=M]]
+	Slot [slotId=16, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=17, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=12, ridingStatus=false, type=M]]
+	Slot [slotId=18, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=19, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=13, ridingStatus=false, type=M]]
+	Slot [slotId=20, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=14, ridingStatus=false, type=E]]
+, spareSlotNum=2, slotNum=10, full=false, eBicycleNumber=2, mBicycleNumber=6]
+
+Station [stationId=3, offline=false, pos=GPS [x=4.0, y=4.0], plus=true, slots=
+	Slot [slotId=21, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=15, ridingStatus=false, type=M]]
+	Slot [slotId=22, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=45, ridingStatus=false, type=E]]
+	Slot [slotId=23, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=24, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=16, ridingStatus=false, type=M]]
+	Slot [slotId=25, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=17, ridingStatus=false, type=M]]
+	Slot [slotId=26, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=27, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=18, ridingStatus=false, type=M]]
+	Slot [slotId=28, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=29, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=19, ridingStatus=false, type=M]]
+	Slot [slotId=30, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=20, ridingStatus=false, type=M]]
+, spareSlotNum=3, slotNum=10, full=false, eBicycleNumber=1, mBicycleNumber=6]
+
+Station [stationId=4, offline=false, pos=GPS [x=32.0, y=4.0], plus=true, slots=
+	Slot [slotId=31, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=21, ridingStatus=false, type=M]]
+	Slot [slotId=32, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=22, ridingStatus=false, type=M]]
+	Slot [slotId=33, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=23, ridingStatus=false, type=E]]
+	Slot [slotId=34, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=24, ridingStatus=false, type=M]]
+	Slot [slotId=35, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=25, ridingStatus=false, type=E]]
+	Slot [slotId=36, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=26, ridingStatus=false, type=M]]
+	Slot [slotId=37, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=38, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=27, ridingStatus=false, type=M]]
+	Slot [slotId=39, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=40, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=28, ridingStatus=false, type=M]]
+, spareSlotNum=2, slotNum=10, full=false, eBicycleNumber=2, mBicycleNumber=6]
+
+Station [stationId=5, offline=false, pos=GPS [x=12.0, y=32.0], plus=false, slots=
+	Slot [slotId=41, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=42, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=29, ridingStatus=false, type=M]]
+	Slot [slotId=43, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=30, ridingStatus=false, type=M]]
+	Slot [slotId=44, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=31, ridingStatus=false, type=M]]
+	Slot [slotId=45, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=32, ridingStatus=false, type=M]]
+	Slot [slotId=46, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=33, ridingStatus=false, type=E]]
+	Slot [slotId=47, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=34, ridingStatus=false, type=M]]
+	Slot [slotId=48, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=35, ridingStatus=false, type=M]]
+	Slot [slotId=49, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=50, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=36, ridingStatus=false, type=E]]
+, spareSlotNum=2, slotNum=10, full=false, eBicycleNumber=2, mBicycleNumber=6]
+
+Station [stationId=6, offline=false, pos=GPS [x=12.0, y=24.0], plus=false, slots=
+	Slot [slotId=51, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=37, ridingStatus=false, type=E]]
+	Slot [slotId=52, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=53, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=38, ridingStatus=false, type=M]]
+	Slot [slotId=54, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=55, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=39, ridingStatus=false, type=M]]
+	Slot [slotId=56, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=40, ridingStatus=false, type=M]]
+	Slot [slotId=57, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=41, ridingStatus=false, type=E]]
+	Slot [slotId=58, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=42, ridingStatus=false, type=E]]
+	Slot [slotId=59, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=43, ridingStatus=false, type=E]]
+	Slot [slotId=60, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=44, ridingStatus=false, type=E]]
+, spareSlotNum=2, slotNum=10, full=false, eBicycleNumber=5, mBicycleNumber=3]
+
+Station [stationId=7, offline=false, pos=GPS [x=36.0, y=32.0], plus=true, slots=
+	Slot [slotId=61, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=1, ridingStatus=false, type=M]]
+	Slot [slotId=62, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=46, ridingStatus=false, type=M]]
+	Slot [slotId=63, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=47, ridingStatus=false, type=M]]
+	Slot [slotId=64, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=48, ridingStatus=false, type=M]]
+	Slot [slotId=65, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=66, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=49, ridingStatus=false, type=M]]
+	Slot [slotId=67, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=50, ridingStatus=false, type=M]]
+	Slot [slotId=68, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=69, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=51, ridingStatus=false, type=M]]
+	Slot [slotId=70, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=52, ridingStatus=false, type=M]]
+, spareSlotNum=2, slotNum=10, full=false, eBicycleNumber=0, mBicycleNumber=8]
+
+Station [stationId=8, offline=false, pos=GPS [x=32.0, y=32.0], plus=false, slots=
+	Slot [slotId=71, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=53, ridingStatus=false, type=M]]
+	Slot [slotId=72, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=73, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=54, ridingStatus=false, type=M]]
+	Slot [slotId=74, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=55, ridingStatus=false, type=M]]
+	Slot [slotId=75, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=56, ridingStatus=false, type=M]]
+	Slot [slotId=76, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=57, ridingStatus=false, type=M]]
+	Slot [slotId=77, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=78, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=79, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=58, ridingStatus=false, type=M]]
+	Slot [slotId=80, occupied=false, bicycleInThisSlot=null]
+, spareSlotNum=4, slotNum=10, full=false, eBicycleNumber=0, mBicycleNumber=6]
+
+Station [stationId=9, offline=false, pos=GPS [x=24.0, y=4.0], plus=false, slots=
+	Slot [slotId=81, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=59, ridingStatus=false, type=M]]
+	Slot [slotId=82, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=60, ridingStatus=false, type=M]]
+	Slot [slotId=83, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=61, ridingStatus=false, type=M]]
+	Slot [slotId=84, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=85, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=62, ridingStatus=false, type=E]]
+	Slot [slotId=86, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=63, ridingStatus=false, type=E]]
+	Slot [slotId=87, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=64, ridingStatus=false, type=M]]
+	Slot [slotId=88, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=65, ridingStatus=false, type=E]]
+	Slot [slotId=89, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=66, ridingStatus=false, type=E]]
+	Slot [slotId=90, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=67, ridingStatus=false, type=E]]
+, spareSlotNum=1, slotNum=10, full=false, eBicycleNumber=5, mBicycleNumber=4]
+
+Station [stationId=10, offline=false, pos=GPS [x=32.0, y=0.0], plus=false, slots=
+	Slot [slotId=91, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=68, ridingStatus=false, type=E]]
+	Slot [slotId=92, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=69, ridingStatus=false, type=M]]
+	Slot [slotId=93, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=70, ridingStatus=false, type=E]]
+	Slot [slotId=94, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=95, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=71, ridingStatus=false, type=E]]
+	Slot [slotId=96, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=97, occupied=false, bicycleInThisSlot=null]
+	Slot [slotId=98, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=72, ridingStatus=false, type=E]]
+	Slot [slotId=99, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=73, ridingStatus=false, type=M]]
+	Slot [slotId=100, occupied=true, bicycleInThisSlot=Bicycle [bicycleId=74, ridingStatus=false, type=M]]
+, spareSlotNum=3, slotNum=10, full=false, eBicycleNumber=4, mBicycleNumber=3]
+
+, stationNum=10, totalSlotNum=100, totalBicycleNum=74, eleTotalBicycleNum=22, mecTotalBicycleNum=52]
+
+Scenario completed!
+> 

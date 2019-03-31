@@ -296,7 +296,7 @@ public class CLUI {
 				Station station = Map.getInstance().getStations().get(stationID);
 				User user = Server.getInstance().getUsers().get(userID);
 				Server.getInstance().rent(user,station); 
-				Server.log("");
+				Server.log(String.format("User Id:%d StartStationID %d", user.getUserId(), station.getStationId()));
 			}catch(NumberFormatException e) {
 				Server.error(INVALID_PARA);
 			}catch(Exception e) {
@@ -311,7 +311,7 @@ public class CLUI {
 				Station station = Map.getInstance().getStations().get(stationID);
 				User user = Server.getInstance().getUsers().get(userID);
 				Server.getInstance().rent(user,station,bikeType); 
-				Server.log("");
+				Server.log(String.format("User Id:%d StartStationID %d", user.getUserId(), station.getStationId()));
 			}catch(NumberFormatException e) {
 				Server.error(INVALID_PARA);
 			}catch(Exception e) {

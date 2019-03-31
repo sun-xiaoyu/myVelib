@@ -1,0 +1,35 @@
+# standard setup
+setup VELIB
+
+# add one user. Please note his ID 
+addUser Alice Vlibre VELIB 
+addUser Bob Vmax VELIB 
+
+
+#### I)
+
+# wrong user ID
+rentBike 3 1
+
+#wrong station ID
+rentBike 1 99
+
+#correct rent
+rentBike 1 7
+
+#wrong return duration
+returnBike 1 8 -10
+
+#wrong user without having rented a bike
+returnBike 2 8 -10
+
+# return the bike to destination station 2h 30 mins later
+returnBike 1 8 150
+
+#User2 get a rent and restore it
+rentBike 2 3
+returnBike 2 4 120
+
+# sort stations
+sortStation
+
