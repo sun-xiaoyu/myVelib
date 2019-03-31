@@ -434,7 +434,7 @@ public class CLUI {
 					map.setSizeX(s);
 					map.setSizeY(s);
 					try {
-						map.init(nstations,nslots,nbikes);
+						map.init(nstations,nslots,nbikes,s);
 						map.setName(name);
 						map.display();
 					} catch (Exception e) {

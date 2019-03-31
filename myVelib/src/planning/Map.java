@@ -56,6 +56,8 @@ public class Map {
 		this.totalBicycleNum = (int)(0.7 * this.totalSlotNum);
 		this.mecTotalBicycleNum = (int) (0.7 * this.totalBicycleNum);
 		this.eleTotalBicycleNum = this.totalBicycleNum - this.mecTotalBicycleNum;
+		this.sizeX = 40;
+		this.sizeY = 40;
 		for(int i = 0; i < stationNum; i++) {//initialize numbers
 			Random random = new Random();
 			float plusFlag = random.nextFloat(); 
@@ -64,7 +66,7 @@ public class Map {
 				plus = true;}
 			else {
 				plus = false;}
-			Station station = new Station(plus, (int) (min(sizeX+1,sizeY+1)/4));
+			Station station = new Station(plus, (int) (min(sizeX,sizeY)/4+1));
 			this.stations.put(station.getStationId(),station);
 		}
 		for(Station station: stations.values()) {
@@ -90,7 +92,7 @@ public class Map {
 			 }
 		}
 		
-		int alreadySetMecNum = mecTotalBicycleNum;
+		int alreadySetMecNum = 0;
 		while(alreadySetMecNum < mecTotalBicycleNum) {
 			int index = random.nextInt(stations.size());
 			 Station s = stations.get(index+1);
@@ -124,9 +126,10 @@ public class Map {
 	 * @param stationNum station total number
 	 * @param totalSlotNum slot total number
 	 * @param totalBicycleNum bike total number
+	 * @param size map size length in km(each 4 km to be a grid).
 	 * @throws Exception several exceptions in initialization
 	 */
-	public void init(int stationNum, int totalSlotNum, int totalBicycleNum) throws Exception{
+	public void init(int stationNum, int totalSlotNum, int totalBicycleNum, double size) throws Exception{
 		if((stationNum < 1) || (totalSlotNum <1) || (totalBicycleNum <1)) {
 			throw new Exception("input number illeagal");
 		}
@@ -145,6 +148,8 @@ public class Map {
 		this.totalBicycleNum = totalBicycleNum;
 		this.mecTotalBicycleNum = (int) (0.7 * this.totalBicycleNum);
 		this.eleTotalBicycleNum = this.totalBicycleNum - this.mecTotalBicycleNum;
+		this.sizeX = size;
+		this.sizeY = size;
 		for(int i = 0; i < stationNum; i++) {//initialize numbers
 			Random random = new Random();
 			float plusFlag = random.nextFloat(); 
@@ -153,7 +158,7 @@ public class Map {
 				plus = true;}
 			else {
 				plus = false;}
-			Station station = new Station(plus, (int) (min(sizeX+1,sizeY+1)/4));
+			Station station = new Station(plus, (int) (min(sizeX,sizeY)/4+1));
 			this.stations.put(station.getStationId(),station);
 		}
 		for(Station station: stations.values()) {
