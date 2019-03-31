@@ -140,6 +140,7 @@ public class Server {
 						instance.ongoingRides.remove(user);
 						instance.solutions.remove(user);
 						instance.updateStatistic(record);
+						instance.records.add(record);
 						log("Returned with success, user paid " + String.format("%.2f",record.getFee())+ " EUR.");
 						log(record.toString());
 						if(station.getReturnObservableStation().getObservers().contains(user)) {
@@ -220,6 +221,10 @@ public class Server {
 
 	public HashMap<Integer, User> getUsers() {
 		return users;
+	}
+
+	public void reset() {
+		instance = null;		
 	}
 	
 	

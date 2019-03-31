@@ -1,6 +1,10 @@
 package clui;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -8,6 +12,7 @@ import java.util.Scanner;
 
 import card.VlibreCard;
 import card.VmaxCard;
+import planning.CurrentDistribution;
 import planning.Map;
 import ride.Server;
 import ride.User;
@@ -92,55 +97,85 @@ public class CLUI {
 			break;	
 		case "runtest":
 			runtest(args);
+			break;
+		case "help":
+			help();
+			break;
 		default:
 			Server.error(INVALID_COMMAND);
 		}
+	}
+	
+	private static void help() {
+		Server.log("setup <velibnetworkName>: to create a myVelib network with given name and\r\n" + 
+				"consisting of 10 stations each of which has 10 parking slots and such that stations\r\n" + 
+				"are arranged on a square grid whose of side 4km and initially populated with a 75%\r\n" + 
+				"bikes randomly distributed over the 10 stations\r\n\n" + 
+				"setup <name> <nstations> <nslots> <s> <nbikes>: to create a myVelib net-\r\n" + 
+				"work with given name and consisting of nstations stations each of which has nslots\r\n" + 
+				"parking slots and such that stations are arranged in as uniform as possible manner\r\n" + 
+				"over an area you may assume either being circular of radium s or squared of side s\r\n" + 
+				"(please document what kind of area your implementation of this command takes into\r\n" + 
+				"account and how stations are distributed over it).Furthermore the network should\r\n" + 
+				"be initially populated with a nbikes bikes randomly distributed over the nstations\r\n" + 
+				"stations\r\n\n" + 
+				"addUser <userName,cardType, velibnetworkName> : to add a user with name\r\n" + 
+				"userName and card cardType (i.e. ''none'' if the user has no card) to a myVelib net-\r\n" + 
+				"work velibnetworkName\r\n\n" + 
+				"offline <velibnetworkName, stationID> : to put oine the station stationID\r\n" + 
+				"of the myVelib network velibnetworkName\r\n\n" + 
+				"online <velibnetworkName, stationID> : to put online the station stationID of\r\n" + 
+				"the myVelib network velibnetworkName\r\n\n" + 
+				"rentBike <userID, stationID> : to let the user userID renting a bike from station\r\n" + 
+				"stationID (if no bikes are available should behave accordingly)\r\n\n" + 
+				"returnBike <userID, stationID, time> : to let the user userID returning a bike\r\n" + 
+				"to station stationID at a given instant of time time (if no parking bay is available\r\n" + 
+				"should behave accordingly). This command should display the cost of the rent\r\n\n" + 
+				"displayStation<velibnetworkName, stationID> : to display the statistics (as of\r\n" + 
+				"Section 2.4) of station stationID of a myVelib network velibnetwork.\r\n" + 
+				"displayUser<velibnetworkName, userID> : to display the statistics (as of Sec-\r\n" + 
+				"tion 2.4) of user userID of a myVelib network velibnetwork.\r\n\n" + 
+				"sortStation<velibnetworkName, sortpolicy> : to display the stations in increas-\r\n" + 
+				"ing order w.r.t. to the sorting policy (as of Section 2.4) of user sortpolicy.\r\n\n" + 
+				"display <velibnetworkName>: to display the entire status (stations, parking bays,\r\n" + 
+				"users) of an a myVelib network velibnetworkName.\n");
+		
 	}
 	private static void runtest(String[] args) {
 		if (args.length != 1) {
 			Server.error(PARA_NB_NOT_MATCH);
 			return;
 		}
-		File outputFile = new File("src/eval/" + args[0] + "Result.txt");
-		
+		FileReader file = null;
+		BufferedReader reader = null;
+		System.out.println("Working Directory = " + System.getProperty("user.dir"));
 		try {
-			file = new FileReader("src/eval/" + filename);
+			file = new FileReader("./myVelib/src/eval/" + args[0]);
 			reader = new BufferedReader(file);
 			String line = "";
 			
-			System.out.println("Reading scenario file " + filename);
-			outputFile.createNewFile();
-			// creates a FileWriter Object
-			writer = new FileWriter(outputFile, true);
+			System.out.println("Reading scenario file " + args[0]);
 
-			while ((line = reader.readLine()) != null) { // read the file linebyline
+			while ((line = reader.readLine()) != null) { // read the file line by line
 				// pass line to CLUIThread.parseUserInput
 				// ignores empty lines or lines starting with #
-				if (line.length() > 0 && !line.substring(0, 1).equals("#")) {
-					message = clui.parseUserInput(line);
-					writer.write(message + "\n");
-					System.out.println(message + "\n");
-				}
+				if (line.length() > 0 && !line.substring(0, 1).equals("#")) parseAndDo(line);
 			}
-			System.out.println("Scenario completed! Results were stored in " + trimmedFilename + "Result.txt");
+			Server.log("Scenario completed!");
 		} catch (FileNotFoundException e) {
 			System.out.print("File not found. If scenario file is in eval folder, the filepath should be src/eval/filename> \n");
-		} catch (IOException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
-			try {
-				if (reader != null) {
-					reader.close();
-					if (file != null) {
-						file.close();
-					}
+			if (reader != null) {
+				try {reader.close();}
+				catch (IOException e) {// Ignore issues 
 				}
-				if (writer != null) {
-					writer.flush();
-					writer.close();  
+			}
+			if (file != null) {
+				try {file.close();}
+				catch (IOException e) { // Ignore issues during closing g
 				}
-			} catch (IOException e) {
-				System.out.println(e.getMessage());
 			}
 		}
 		
@@ -149,7 +184,10 @@ public class CLUI {
 	 * to display information of map condition
 	 */
 	private static void displayAll() {
+		Server.log("");
+		Server.log("*************DISPLAYING THE SYSTEM*****************");
 		Server.log(Map.getInstance().toString());
+		Server.log("");
 	}
 	/**
 	 * to sort stations by most used consequence
@@ -159,9 +197,11 @@ public class CLUI {
 		MostUsedComparator mostUsedComp = new MostUsedComparator();
 		ArrayList<Station> StationList = new ArrayList<Station>(Map.getInstance().getStations().values());
 		Collections.sort(StationList,mostUsedComp);
+		Server.log("*************BEGIN SORTING*****************");
 		for (Station s:StationList) {
 			s.displayStat();
 		}
+		Server.log("*************END SORTING*****************");
 	}
 	/**
 	 * to display user information
