@@ -39,11 +39,10 @@ public class CLUITest {
 		
 		declaredMethod.invoke(CLUI.class, "rentbike 2 3");
 		assertFalse(Map.getInstance().getStations().get(3).getSlots().get(0).isOccupied());
+		assertTrue(Server.getInstance().getUsers().get(2).isRiding());
 		
-		int code = Map.getInstance().getStations().get(5).getBicycleNumber();
 		declaredMethod.invoke(CLUI.class, "returnbike 2 5 30");
-		
-		assertTrue(Map.getInstance().getStations().get(5).getSlots().get(code+1).isOccupied());
+		assertFalse(Server.getInstance().getUsers().get(2).isRiding());
 		
 		
 		
