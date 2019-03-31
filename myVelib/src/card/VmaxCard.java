@@ -17,6 +17,10 @@ public class VmaxCard extends Card {
 		// TODO Auto-generated constructor stub
 	}
 	
+	@Override
+	public String toString() {
+		return "VmaxCard";
+	}
 	
 
 }

@@ -1,5 +1,6 @@
 package clui;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -54,10 +55,8 @@ public class CLUI {
 	 */
 	private static void parseAndDo(String input) {
 		String[] inputForParsing = input.split(" ");
-		System.out.println(Arrays.toString(inputForParsing));
 		String command = inputForParsing[0];
 		String[] args = Arrays.copyOfRange(inputForParsing, 1, inputForParsing.length);
-		System.out.println(Arrays.toString(args));
 		
 		command = command.toLowerCase();
 		switch(command) {
@@ -91,9 +90,60 @@ public class CLUI {
 		case "display":
 			displayAll();
 			break;	
+		case "runtest":
+			runtest(args);
 		default:
 			Server.error(INVALID_COMMAND);
 		}
+	}
+	private static void runtest(String[] args) {
+		if (args.length != 1) {
+			Server.error(PARA_NB_NOT_MATCH);
+			return;
+		}
+		File outputFile = new File("src/eval/" + args[0] + "Result.txt");
+		
+		try {
+			file = new FileReader("src/eval/" + filename);
+			reader = new BufferedReader(file);
+			String line = "";
+			
+			System.out.println("Reading scenario file " + filename);
+			outputFile.createNewFile();
+			// creates a FileWriter Object
+			writer = new FileWriter(outputFile, true);
+
+			while ((line = reader.readLine()) != null) { // read the file linebyline
+				// pass line to CLUIThread.parseUserInput
+				// ignores empty lines or lines starting with #
+				if (line.length() > 0 && !line.substring(0, 1).equals("#")) {
+					message = clui.parseUserInput(line);
+					writer.write(message + "\n");
+					System.out.println(message + "\n");
+				}
+			}
+			System.out.println("Scenario completed! Results were stored in " + trimmedFilename + "Result.txt");
+		} catch (FileNotFoundException e) {
+			System.out.print("File not found. If scenario file is in eval folder, the filepath should be src/eval/filename> \n");
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (reader != null) {
+					reader.close();
+					if (file != null) {
+						file.close();
+					}
+				}
+				if (writer != null) {
+					writer.flush();
+					writer.close();  
+				}
+			} catch (IOException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		
 	}
 	/**
 	 * to display information of map condition
