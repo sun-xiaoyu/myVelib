@@ -1,0 +1,500 @@
+[33mcommit 44aa6af8e9dba27e6a4cb53a54022d63258f8088[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Merge: 5880b2e 60a7114
+Author: ZhihaoLi1 <zhihao.li@student-cs.fr>
+Date:   Sat Mar 30 19:21:21 2019 +0100
+
+    Merge branch 'master' of https://github.com/sun-xiaoyu/myVelib
+    
+    Conflicts:
+            myVelib/src/clui/CLUI.java
+
+[33mcommit 5880b2e274379583e6b563ccc3129f3059fd49ee[m
+Author: ZhihaoLi1 <zhihao.li@student-cs.fr>
+Date:   Sat Mar 30 19:17:49 2019 +0100
+
+    1
+
+[33mcommit 60a7114acea317c86fb23a0dbd2ffe15a1ae274e[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sat Mar 30 19:14:04 2019 +0100
+
+    sortStation implemented
+
+[33mcommit 9060acd3797c23022aa0c315237462fbb2fa34e7[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sat Mar 30 18:39:29 2019 +0100
+
+    kl
+
+[33mcommit b69b649ca4c30a3d3dfb6be4429990267ac305f4[m
+Merge: 059e152 a488433
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sat Mar 30 18:33:44 2019 +0100
+
+    Merge branch 'master' of https://github.com/sun-xiaoyu/myVelib
+    
+    Conflicts:
+            myVelib/src/clui/CLUI.java
+
+[33mcommit 059e152f6fc5c77fb4b716186cd3b3201461d3f3[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sat Mar 30 18:28:30 2019 +0100
+
+    sortStation first step
+
+[33mcommit a488433aa5f9ed825a4b342754d9bbb5ce74dcb2[m
+Merge: 08fc3e2 39c6554
+Author: ZhihaoLi1 <zhihao.li@student-cs.fr>
+Date:   Sat Mar 30 18:25:09 2019 +0100
+
+    Merge branch 'master' of https://github.com/sun-xiaoyu/myVelib
+    
+    Conflicts:
+            myVelib/src/clui/CLUI.java
+
+[33mcommit 39c6554c81aab2549083cf09e11b97d404f51a12[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sat Mar 30 18:12:46 2019 +0100
+
+    rent, return and display implemented
+    
+    bug fix on user idconstructor
+
+[33mcommit 08fc3e2c97ff61a90234ef3b3ff3a946e6b8a6df[m
+Author: ZhihaoLi1 <zhihao.li@student-cs.fr>
+Date:   Sat Mar 30 18:12:38 2019 +0100
+
+    1
+
+[33mcommit 830911865b18f161f6f537aff7de005e09fe5b4f[m
+Author: ZhihaoLi1 <zhihao.li@student-cs.fr>
+Date:   Sat Mar 30 17:47:05 2019 +0100
+
+    1
+
+[33mcommit b14aa05a7eadea2a08cbd9bf96cf90850cf59c8c[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sat Mar 30 17:35:46 2019 +0100
+
+    jk
+
+[33mcommit bbb990401e811f1df6005e78e218dc9e6c3cc7c0[m
+Merge: 8e5bbce 377aeaf
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sat Mar 30 17:34:16 2019 +0100
+
+    Merge branch 'master' of https://github.com/sun-xiaoyu/myVelib
+
+[33mcommit 377aeaf6f08853c6687727d322f126a049a27ff7[m
+Author: ZhihaoLi1 <zhihao.li@student-cs.fr>
+Date:   Sat Mar 30 17:31:28 2019 +0100
+
+    1
+
+[33mcommit 8e5bbce04af5dd5060a0ff35f98566151793d45b[m
+Merge: 06a8276 95f4798
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sat Mar 30 17:29:52 2019 +0100
+
+    Merge branch 'master' of https://github.com/sun-xiaoyu/myVelib
+
+[33mcommit 06a827633af9b00ebdcbe658e8cbc342227c0047[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sat Mar 30 17:29:34 2019 +0100
+
+    oh no
+
+[33mcommit 95f47987f2438c1435c9c795cd6ed06efb13e285[m
+Merge: 082f508 f3640ea
+Author: ZhihaoLi1 <zhihao.li@student-cs.fr>
+Date:   Sat Mar 30 17:26:56 2019 +0100
+
+    Merge branch 'master' of https://github.com/sun-xiaoyu/myVelib
+    
+    Conflicts:
+            myVelib/src/planning/Map.java
+
+[33mcommit 082f5084ef0bba7d413eef008802a4b05844517b[m
+Author: ZhihaoLi1 <zhihao.li@student-cs.fr>
+Date:   Sat Mar 30 17:19:36 2019 +0100
+
+    1
+
+[33mcommit 954551dadbe73425416edb2787d2676bbcfbe35d[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sat Mar 30 17:02:40 2019 +0100
+
+    bug fix followed by the change from list to map
+
+[33mcommit f3640ea434b886431550f577c135237a6c646b91[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sat Mar 30 16:56:12 2019 +0100
+
+    change userlist to map<id,user>, change stationlist to map<id,station>
+
+[33mcommit 4afb0775da6f034061cbe1f94b189fff82373378[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sat Mar 30 16:28:34 2019 +0100
+
+    unknown changes
+
+[33mcommit a6643b81b9bc890c9e019c4911e6260a26bdb5ba[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sat Mar 30 15:15:38 2019 +0100
+
+    minor bug fixed
+
+[33mcommit 0525b02d8e8cefc10ec1b2f2b91215363b1c5791[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sat Mar 30 14:18:54 2019 +0100
+
+    CLUI: setup and addUser implemented
+    
+    nbike still not used
+
+[33mcommit a86918bfc529a0266d551bd1b8be8feeb83e1acf[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Thu Mar 28 18:28:18 2019 +0100
+
+    setup implemented, bugs remain:
+    
+    1.setup multiple times
+    2.deal with nbike
+
+[33mcommit bae91d0e45e82db832a60bba3fb3eb233845bb79[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Thu Mar 28 00:16:54 2019 +0100
+
+    A framework for CLUI is built
+    
+    a number of functions need to be completed.
+
+[33mcommit 0461fa4cdef5afd83576afe7c73972e16a968873[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Tue Mar 26 22:33:55 2019 +0100
+
+    bug fixed by removing the submodule .git file.
+    
+    Now classes are really in different packages
+
+[33mcommit ffabbaa723a8b5ebcac822703b30efdfe3e6fd01[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Tue Mar 26 22:28:49 2019 +0100
+
+    doc deleted
+
+[33mcommit 5547e87def6bee0d41fc811c239ecab8ee34b3e8[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Tue Mar 26 09:18:02 2019 +0100
+
+    classes are now in different packages
+
+[33mcommit 01dd1368de0bcb6922e3b3a7c30d4289f065d4b5[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Fri Mar 22 09:57:42 2019 +0100
+
+    model-half built, all class shown, but some fields&method missing
+
+[33mcommit 497591c1ea8f35896a09e30ed2883fbe86abd973[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Thu Mar 21 23:21:15 2019 +0100
+
+    few parts of uml
+
+[33mcommit 9ab09ecc032bfa2bd12fbaa4a7f86c24649f174c[m
+Merge: de968d7 a5ec991
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Wed Mar 20 20:56:22 2019 +0100
+
+    Merge branch 'master' of https://github.com/sun-xiaoyu/myVelib
+
+[33mcommit de968d741229bb3a0c9c6ac10bb93bbdaac56f75[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Wed Mar 20 20:53:34 2019 +0100
+
+    bug fix on biketype
+
+[33mcommit a5ec991ae62c3595e155ca05d3c5e618040e3bbb[m
+Author: ZhihaoLi1 <zhihao.li@student-cs.fr>
+Date:   Wed Mar 20 20:27:20 2019 +0100
+
+    new one
+
+[33mcommit 76394d5c8812c7d6054ad5c5e43232a2de058f77[m
+Author: ZhihaoLi1 <zhihao.li@student-cs.fr>
+Date:   Wed Mar 20 20:26:36 2019 +0100
+
+    remain remove problem unsolved
+
+[33mcommit 89c1c4fa5824bae87d4ed4fc844c69fb9178dfea[m
+Author: ZhihaoLi1 <zhihao.li@student-cs.fr>
+Date:   Wed Mar 20 01:17:58 2019 +0100
+
+    renting and returning function simplified. biketype changed into string.
+    still a problem is not settled that when start station and end station
+    are recommended to be the same we should return "no need to rent bike"
+
+[33mcommit 0535c56c01678f6fdbb4f2c6039118b4baa844ae[m
+Author: ZhihaoLi1 <zhihao.li@student-cs.fr>
+Date:   Wed Mar 20 01:14:02 2019 +0100
+
+    usecase1 implement succeeded while problem that user registration
+    repeats is not yet solved
+
+[33mcommit 6a06fe613d248f2dff1a37cca4a09e9f91c9ef65[m
+Author: ZhihaoLi1 <zhihao.li@student-cs.fr>
+Date:   Tue Mar 19 22:11:18 2019 +0100
+
+    new one
+
+[33mcommit 5afcd23444ba65452f086e1400554df3a9e362ee[m
+Author: ZhihaoLi1 <zhihao.li@student-cs.fr>
+Date:   Tue Mar 19 18:26:16 2019 +0100
+
+    observable pattern finished
+
+[33mcommit 566c67f12757e4895bc54fbe33fe9b9f69cb3ae5[m
+Author: ZhihaoLi1 <zhihao.li@student-cs.fr>
+Date:   Tue Mar 19 08:33:46 2019 +0100
+
+    observer pattern rebuilt
+
+[33mcommit 3ee646cada3d8afc7ce25f52f595a68dae9603ae[m
+Merge: cc7aa6e 5326144
+Author: ZhihaoLi1 <zhihao.li@student-cs.fr>
+Date:   Mon Mar 18 20:50:29 2019 +0100
+
+    Merge branch 'master' of https://github.com/sun-xiaoyu/myVelib
+
+[33mcommit cc7aa6e5aebc228681475254a3184f4b8c6d0839[m
+Author: ZhihaoLi1 <zhihao.li@student-cs.fr>
+Date:   Mon Mar 18 20:49:56 2019 +0100
+
+    observable pattern
+
+[33mcommit 53261445320db7d06217888765705ca625df3e2b[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Mon Mar 18 09:58:45 2019 +0100
+
+    a major bug fix on the basic system
+    
+    Visitor ride-->OngoingRide
+    fix bug on TimeCredit
+    Optimization code reuse in pattern visitor
+    improve of output of server.rent,server.restore
+    more test performed in UseCase.java
+
+[33mcommit 7ce571132e713c13a682796f3dcc2992654407ac[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Mon Mar 18 09:26:04 2019 +0100
+
+    change on .class
+
+[33mcommit 40fe930e4870bcb15ed3941b757892b768f1c1c6[m
+Author: ZhihaoLi1 <zhihao.li@student-cs.fr>
+Date:   Mon Mar 18 00:23:59 2019 +0100
+
+    All kinds of algos and observer pattern realized
+
+[33mcommit 3fe650e1a1b363e25a60f5299fb13d793cce9ebb[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Mon Mar 18 00:09:57 2019 +0100
+
+    A first bug fix to let Usecase.java run.
+
+[33mcommit 3bd118cde22228a2677987c85816d9453fb7b491[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sun Mar 17 22:58:16 2019 +0100
+
+    start userTest
+
+[33mcommit 3e184c6f142e05a449f5a3800340ba63b7d07c62[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sun Mar 17 22:33:38 2019 +0100
+
+    bug fix
+
+[33mcommit 952dfdf795e154727f18a64125b21f4f68e70746[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sun Mar 17 22:27:43 2019 +0100
+
+    small bug fix on OngoingRide
+
+[33mcommit 5a0d6c1db9ed3674830194167939e7a4a5ccd57a[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sun Mar 17 21:57:02 2019 +0100
+
+    slot&slotTest
+
+[33mcommit 6b0841b8b07ddbb57ef43ab0690bd8d1db09bede[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sun Mar 17 21:55:31 2019 +0100
+
+    slottest implmented
+
+[33mcommit d41a4a7bd502158214bef774e45c865d7e35cd8f[m
+Author: ZhihaoLi1 <zhihao.li@student-cs.fr>
+Date:   Sun Mar 17 20:13:44 2019 +0100
+
+    planningAlgo implementations completed
+
+[33mcommit 0561c1e21017192f817b5f43787dded604533780[m
+Author: ZhihaoLi1 <zhihao.li@student-cs.fr>
+Date:   Sun Mar 17 18:15:02 2019 +0100
+
+    12
+
+[33mcommit f08b1163b682970446463843b73384f597888730[m
+Author: ZhihaoLi1 <zhihao.li@student-cs.fr>
+Date:   Sun Mar 17 18:08:38 2019 +0100
+
+    18:08
+
+[33mcommit a24c82bf4892db733ef6971a6f090bc084edce8c[m
+Author: ZhihaoLi1 <zhihao.li@student-cs.fr>
+Date:   Sun Mar 17 17:44:50 2019 +0100
+
+    17:45
+
+[33mcommit fa6819dcf813eff0f7cbf9514c30f4701a142fff[m
+Author: ZhihaoLi1 <zhihao.li@student-cs.fr>
+Date:   Sun Mar 17 17:44:06 2019 +0100
+
+    17:44
+
+[33mcommit 8d0ebf3a7fec5d1dc361e4d951e3fb764d776f3e[m
+Author: ZhihaoLi1 <zhihao.li@student-cs.fr>
+Date:   Sun Mar 17 17:43:52 2019 +0100
+
+    17:43
+
+[33mcommit 6a3c2dd4594daa080b30c5f042b27a906e76e956[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sun Mar 17 17:23:16 2019 +0100
+
+    bug fix on ongoingride
+
+[33mcommit 7203f2d68869dc25025010d85280314fb1d1e8dc[m
+Merge: 828c745 41ecfdb
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sun Mar 17 16:49:24 2019 +0100
+
+    Merge branch 'master' of https://github.com/sun-xiaoyu/myVelib
+
+[33mcommit 828c7455e78db2f76fa2125c6c2a9dd6e207a858[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sun Mar 17 16:44:44 2019 +0100
+
+    one comment added
+
+[33mcommit 41ecfdb99d9ca11fd045e70021a13be41de3a27a[m
+Author: ZhihaoLi1 <48623341+ZhihaoLi1@users.noreply.github.com>
+Date:   Sun Mar 17 16:20:10 2019 +0100
+
+    3.17-16.20
+
+[33mcommit 8f72b7cedf5eb118b40fbedf9b25b0178073b5e4[m
+Merge: bdaf982 bacdd78
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sun Mar 17 15:51:34 2019 +0100
+
+    Merge branch 'master' of https://github.com/sun-xiaoyu/myVelib
+
+[33mcommit bdaf982f5f9c2f320c68c585c6d797dfd6d6b43c[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sun Mar 17 15:49:24 2019 +0100
+
+    Unknown commit
+
+[33mcommit bacdd780aa23fb5ca71e925d42d2ec38c26dc893[m
+Author: ZhihaoLi1 <48623341+ZhihaoLi1@users.noreply.github.com>
+Date:   Sun Mar 17 15:37:01 2019 +0100
+
+    3.17-15.36
+
+[33mcommit ce3e215bc421312d99f4edb7e81dbff3e4212f25[m
+Author: ZhihaoLi1 <48623341+ZhihaoLi1@users.noreply.github.com>
+Date:   Sun Mar 17 15:22:38 2019 +0100
+
+    3.17——15.21
+    
+    new consideration of superposision in GPS of stations and others
+
+[33mcommit 076ebf7e8ef5fa2b5ffff08e5f94eb9091cd1517[m
+Merge: 4c83cf5 48d7bb4
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sun Mar 17 12:24:45 2019 +0100
+
+    Merge pull request #4 from sun-xiaoyu/Li-Zhihao-11
+    
+    Li zhihao update of 3.16
+
+[33mcommit 48d7bb4ee5a9bf937d19df2f9d5511481f62932c[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sun Mar 17 12:20:48 2019 +0100
+
+    Update MinWalDis.java
+
+[33mcommit 7cebb3bf5844266db17683d565c04cd5e6850671[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sun Mar 17 12:18:32 2019 +0100
+
+    Changes from LI - part 2
+
+[33mcommit fdc15ad87a4251aa15e841a59c6c3932cdcb8947[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sun Mar 17 11:49:01 2019 +0100
+
+    Take new changes from Li Zhihao 1
+    
+    just before map
+
+[33mcommit 75b2fc6b6e4daccfd1990e6119f86bc94764c390[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sun Mar 17 11:35:19 2019 +0100
+
+    Create AvoidPlusStation.java
+
+[33mcommit 4c83cf573abe0d926b129c86cc59ab8d29a4fb1f[m
+Merge: 6dde1c4 408a38d
+Author: ZhihaoLi1 <48623341+ZhihaoLi1@users.noreply.github.com>
+Date:   Sat Mar 16 22:55:19 2019 +0100
+
+    Merge pull request #2 from sun-xiaoyu/sun-xiaoyu-patch-1
+    
+    Add files via upload
+
+[33mcommit 408a38d47e1242a9c75860b5b5651adf8f983417[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sat Mar 16 22:40:38 2019 +0100
+
+    Add files via upload
+
+[33mcommit 6dde1c4705e99fee183fb5bc4acb902b2558f84d[m
+Merge: 35d2636 510223c
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sat Mar 16 03:17:40 2019 +0100
+
+    Merge pull request #1 from sun-xiaoyu/start-testing
+    
+    start testing map, bike and slot
+
+[33mcommit 510223c5b284f436919315d4ac92674b024a28b7[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Sat Mar 16 03:11:21 2019 +0100
+
+    start testing map, bike and slot
+
+[33mcommit 35d2636526aba87fb6adc96c1e493e244bbfa29f[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Thu Mar 14 15:02:51 2019 +0100
+
+    Add files via upload
+    
+    All the codes are note tested.
+
+[33mcommit fdf94cbdb2eb84468e4aa49a3a61366a1b149642[m
+Author: sun-xiaoyu <43569888+sun-xiaoyu@users.noreply.github.com>
+Date:   Thu Mar 14 14:54:43 2019 +0100
+
+    Initial commit

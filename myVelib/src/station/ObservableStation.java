@@ -29,7 +29,7 @@ public class ObservableStation implements Observable{
 		if(observers.contains(observer)) {
 			observers.remove(observer);}
 		else {
-			System.out.println("observers is trying to delete an observer which doesn't exist in it!");
+//			System.out.println("observers is trying to delete an observer which doesn't exist in it!");
 		}
 	}
 	@Override

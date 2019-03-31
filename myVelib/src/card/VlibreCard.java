@@ -15,5 +15,10 @@ public class VlibreCard extends Card{
 		super(user);
 		// TODO Auto-generated constructor stub
 	}
+	
+	@Override
+	public String toString() {
+		return "VlibreCard";
+	}
 
 }
