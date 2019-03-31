@@ -17,18 +17,19 @@ public class CurrentDistribution {
 	private ArrayList<Station> mAvaStationList;
 	private ArrayList<Station> returnableStationList;
 	private ArrayList<Station> rentableStationList;
-	private static CurrentDistribution instance;
+	private static CurrentDistribution instance = null;
 	/**
 	 * generate a current distribution from map created before this
 	 * @param map regroups all stations
 	 */
-	private CurrentDistribution(Map map) {
+	private CurrentDistribution() {
 		this.allStation = new HashMap<Integer, Station>();
 		this.eAvaStationList = new ArrayList<Station>();
 		this.mAvaStationList = new ArrayList<Station>();
 		this.returnableStationList = new ArrayList<Station>();
 		this.rentableStationList = new ArrayList<Station>();
-		this.allStation = map.getStations();
+		this.allStation = Map.getInstance().getStations();
+		if (this.allStation != null) {
 		for(Station s : this.allStation.values()) {
 			if(s.getEBicycleNumber() > 0) {
 				this.eAvaStationList.add(s);
@@ -42,6 +43,7 @@ public class CurrentDistribution {
 				this.returnableStationList.add(s);
 				}
 		}
+		}
 		
 	}
 	/**
@@ -50,7 +52,7 @@ public class CurrentDistribution {
 	 */
 	public static CurrentDistribution getInstance() {
 		if (instance == null) {
-			instance = new CurrentDistribution(Map.getInstance());	
+			instance = new CurrentDistribution();	
 		}
 		else {
 			for(Station s : instance.allStation.values()) {

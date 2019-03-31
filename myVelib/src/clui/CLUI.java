@@ -97,19 +97,50 @@ public class CLUI {
 			break;	
 		case "runtest":
 			runtest(args);
-		case "reset":
-			reset();
+			break;
+		case "help":
+			help();
+			break;
 		default:
 			Server.error(INVALID_COMMAND);
 		}
 	}
 	
-	private static void reset() {
-		Map.getInstance().reset();
-		Server.getInstance().reset();
-		CurrentDistribution.getInstance().reset();		
+	private static void help() {
+		Server.log("setup <velibnetworkName>: to create a myVelib network with given name and\r\n" + 
+				"consisting of 10 stations each of which has 10 parking slots and such that stations\r\n" + 
+				"are arranged on a square grid whose of side 4km and initially populated with a 75%\r\n" + 
+				"bikes randomly distributed over the 10 stations\r\n\n" + 
+				"setup <name> <nstations> <nslots> <s> <nbikes>: to create a myVelib net-\r\n" + 
+				"work with given name and consisting of nstations stations each of which has nslots\r\n" + 
+				"parking slots and such that stations are arranged in as uniform as possible manner\r\n" + 
+				"over an area you may assume either being circular of radium s or squared of side s\r\n" + 
+				"(please document what kind of area your implementation of this command takes into\r\n" + 
+				"account and how stations are distributed over it).Furthermore the network should\r\n" + 
+				"be initially populated with a nbikes bikes randomly distributed over the nstations\r\n" + 
+				"stations\r\n\n" + 
+				"addUser <userName,cardType, velibnetworkName> : to add a user with name\r\n" + 
+				"userName and card cardType (i.e. ''none'' if the user has no card) to a myVelib net-\r\n" + 
+				"work velibnetworkName\r\n\n" + 
+				"offline <velibnetworkName, stationID> : to put oine the station stationID\r\n" + 
+				"of the myVelib network velibnetworkName\r\n\n" + 
+				"online <velibnetworkName, stationID> : to put online the station stationID of\r\n" + 
+				"the myVelib network velibnetworkName\r\n\n" + 
+				"rentBike <userID, stationID> : to let the user userID renting a bike from station\r\n" + 
+				"stationID (if no bikes are available should behave accordingly)\r\n\n" + 
+				"returnBike <userID, stationID, time> : to let the user userID returning a bike\r\n" + 
+				"to station stationID at a given instant of time time (if no parking bay is available\r\n" + 
+				"should behave accordingly). This command should display the cost of the rent\r\n\n" + 
+				"displayStation<velibnetworkName, stationID> : to display the statistics (as of\r\n" + 
+				"Section 2.4) of station stationID of a myVelib network velibnetwork.\r\n" + 
+				"displayUser<velibnetworkName, userID> : to display the statistics (as of Sec-\r\n" + 
+				"tion 2.4) of user userID of a myVelib network velibnetwork.\r\n\n" + 
+				"sortStation<velibnetworkName, sortpolicy> : to display the stations in increas-\r\n" + 
+				"ing order w.r.t. to the sorting policy (as of Section 2.4) of user sortpolicy.\r\n\n" + 
+				"display <velibnetworkName>: to display the entire status (stations, parking bays,\r\n" + 
+				"users) of an a myVelib network velibnetworkName.\n");
+		
 	}
-	
 	private static void runtest(String[] args) {
 		if (args.length != 1) {
 			Server.error(PARA_NB_NOT_MATCH);
@@ -153,7 +184,10 @@ public class CLUI {
 	 * to display information of map condition
 	 */
 	private static void displayAll() {
+		Server.log("");
+		Server.log("*************DISPLAYING THE SYSTEM*****************");
 		Server.log(Map.getInstance().toString());
+		Server.log("");
 	}
 	/**
 	 * to sort stations by most used consequence
